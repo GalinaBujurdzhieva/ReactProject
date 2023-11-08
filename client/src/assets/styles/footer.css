@@ -1,0 +1,19 @@
+.footer
+{
+	display: block;
+	width: 100%;
+	background: #262626;
+	padding-top: 20px;
+	border-top: solid 1px #88591d;
+	padding-bottom: 20px;
+}
+
+.copyright
+{
+	padding-right: 15px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #686868;
+	line-height: 0.75;
+	margin-top: 5px;
+}
