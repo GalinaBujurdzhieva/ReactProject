@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom'
 
+import * as func from '../../utils/dateFormatter'
+
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../assets/styles/blog.css'
@@ -20,7 +22,7 @@ export const BlogPost = ({
          {blog.title}
       </div>
       <div className="blog_post_date">
-        {blog.createdAt}
+        {func.formatDate(blog.createdAt)}
       </div>
       <div className="blog_post_text">
         <p>
