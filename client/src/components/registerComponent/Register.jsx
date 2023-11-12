@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react';
 
 import '../../assets/styles/register.css'
 
 export const Register = () => {
+const firstNameInputRef = useRef();
+
+useEffect(() => {
+firstNameInputRef.current.focus();
+}, [])
+
     return (
         <div className="footer">
       <div className="container">
@@ -22,6 +28,7 @@ export const Register = () => {
                       className="newsletter_input"
                       placeholder="Enter your first name here"
                       required="required"
+                      ref={firstNameInputRef}
                     />
                     <input
                       type="text"

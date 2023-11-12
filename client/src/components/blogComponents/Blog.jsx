@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import { BlogMain } from './BlogMain'
@@ -10,9 +9,11 @@ import '../../assets/styles/blog.css'
 import '../../assets/styles/blog_responsive.css'
 
 import { BlogPost } from './BlogPost'
+import { BlogAll } from './BlogAll'
 
 export const Blog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
 useEffect(()=> {
   blogService.getAll()
@@ -20,12 +21,8 @@ useEffect(()=> {
 }, [])
 
 const loadAllBlogsHandler = () => {
-  useEffect(()=> {
-    blogService.getAll()
-    .then(blogs => setBlogs(blogs))
-  }, [])
+  setShowAll(true);
 }
-
 
     return (
         <div className="super_container">
@@ -42,19 +39,32 @@ const loadAllBlogsHandler = () => {
           </div>
         </div>
       </div>
+      {showAll 
+      ? 
+      <BlogAll blogs={blogs}/> 
+      : 
       <div className="row blog_row">
-         {Object.values(blogs).slice(-3).map(blog => 
-          <BlogPost 
-          key= {blog._id}
-          {...blog}
-          />
-          )} 
-      </div>
+      {Object.values(blogs).slice(-3).map(blog => 
+       <BlogPost 
+       key= {blog._id}
+       {...blog}
+       />
+       )} 
+   </div>}
       <div className="row">
         <div className="col d-flex align-items-center justify-content-center">
-          <button onClick={() => loadAllBlogsHandler()} className="button blog_button">
-            Load More
+          {showAll
+          ?
+            <button style={{ display: 'none' }} className="button blog_button">
+            Load Less
           </button>
+        : 
+         
+          <button onClick={() => loadAllBlogsHandler()} className="button blog_button">
+          Load More
+        </button>
+        
+        }
         </div>
       </div>
     </div>

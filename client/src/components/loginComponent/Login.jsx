@@ -1,9 +1,16 @@
+import { useEffect, useRef } from 'react'
+
 import '../../assets/styles/login.css'
 
 import footerImage from '../../assets/images/footer.png'
 
 export const Login = () => {
-    return(<div className="footer">
+  const usernameInputRef = useRef();
+  
+  useEffect(() => {
+usernameInputRef.current.focus();
+  }, [])
+  return(<div className="footer">
     <div className="container">
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
@@ -21,6 +28,7 @@ export const Login = () => {
                     className="newsletter_input"
                     placeholder="Enter your username here"
                     required="required"
+                    ref={usernameInputRef}
                   />
                   <input
                     type="text"

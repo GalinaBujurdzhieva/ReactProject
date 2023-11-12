@@ -29,6 +29,17 @@
 	color: #FFFFFF;
     margin-bottom: 30px;
 }
+.newsletter_textarea {
+	width: 100%;
+	background: rgba(0,0,0,0.58);
+	border-radius: 31px;
+	border: solid 1px #ff880f;
+	padding-left: 39px;
+	outline: none;
+	color: #FFFFFF;
+    margin-bottom: 30px;
+    height: 300px
+}
 .newsletter_input::-webkit-input-placeholder
 {
 	font-size: 12px !important;
@@ -64,6 +75,21 @@
 	font-style: italic;
 	color: rgba(255,255,255,0.48) !important;
 }
+.newsletter_button
+{
+	width: 200px;
+	height: 61px;
+	border-radius: 22px;
+	background: #ff880f;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	font-weight: 700;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
 .register_button
 {
 	position: absolute;
@@ -80,4 +106,7 @@
 	color: #FFFFFF;
 	text-transform: uppercase;
 	cursor: pointer;
+}
+.error_message{
+	color: red;
 }

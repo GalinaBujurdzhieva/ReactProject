@@ -7,8 +7,6 @@ import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../assets/styles/blog.css'
 import '../../assets/styles/blog_responsive.css'
 
-import blogImage4 from '../../assets/images/blog_4.jpg'
-
 export const BlogPost = ({
     ...blog
 }) => {
@@ -18,9 +16,11 @@ export const BlogPost = ({
       <div className="blog_post_image">
         <img src={blog.imageUrl} alt="" />
       </div>
+      <Link to={`/blog/${blog._id}`}>
       <div className="blog_post_title">
-         {blog.title}
+      {blog.title}
       </div>
+      </Link>
       <div className="blog_post_date">
         {func.formatDate(blog.createdAt)}
       </div>
@@ -30,7 +30,7 @@ export const BlogPost = ({
         </p>
       </div>
       <div className="blog_post_link">
-        <Link to="#">Read More</Link>
+        <Link to={`/blog/${blog._id}`}>Read More</Link>
       </div>
     </div>
   </div>)

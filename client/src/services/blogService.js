@@ -5,3 +5,9 @@ const response = await fetch(baseUrl);
 const result = await response.json();
 return result.blogs;
 }
+
+export const getOne = async (blogId) => {
+    const response = await fetch(`${baseUrl}/blogs/${blogId._id}`);
+    const result = await response.json();
+    return result;
+}
