@@ -10,8 +10,10 @@ import { Contact } from './components/contactComponents/Contact'
 import { Home } from './components/homeComponents/Home'
 import { Register } from './components/registerComponent/Register'
 import { Login } from './components/loginComponent/Login'
+import { BlogAll } from './components/blogComponents/BlogAll'
 import { BlogPostDetails } from './components/blogComponents/BlogPostDetails'
 import { CreateBlog } from './components/blogComponents/CreateBlog'
+import { AboutTeamMemberDetails } from './components/aboutComponents/AboutTeamMemberDetails'
 
 function App() {
   return (
@@ -21,14 +23,16 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<About />} />
+    <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />} />
     <Route path="/services" element={<Services />} />
     <Route path="/blog" element={<Blog />}/>
     <Route path="/blog/create" element={<CreateBlog/>}/>
-    {/* <Route path="/blog/all" element={<BlogAll/>}/> */}
+    <Route path="/blog/:_id" element={<BlogPostDetails/>}/>
+    <Route path="/blog/all" element={<BlogAll/>}/> 
     <Route path="/contact" element={<Contact />}/>
     <Route path="/register" element={<Register />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/blog/:_id" element={<BlogPostDetails/>}/>
+    
     </Routes>
     <Footer />
     </BrowserRouter>

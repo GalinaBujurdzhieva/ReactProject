@@ -7,7 +7,7 @@ return result.blogs;
 }
 
 export const getOne = async (blogId) => {
-    const response = await fetch(`${baseUrl}/blogs/${blogId._id}`);
+    const response = await fetch(`${baseUrl}/blogs/${blogId}`);
     const result = await response.json();
     return result;
 }

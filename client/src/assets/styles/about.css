@@ -788,6 +788,13 @@ section
 	text-transform: uppercase;
 	margin-top: 3px;
 }
+.team_courses
+{
+	font-size: 12px;
+	font-weight: 600;
+	color: #FFFFFF;
+	margin-top: 3px;
+}
 
 /*********************************
 8. Footer

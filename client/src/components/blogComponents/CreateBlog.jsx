@@ -7,31 +7,28 @@ export const CreateBlog = () => {
     imageUrl: '',
     text: '',
   });
-
   const [blogFormHasErrors, setBlogFormHasErrors] = useState({
     title: '',
     imageUrl: '',
     text: '',
   });
-
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
   };
-
   const blogTitleAndTextErrorHandler = (e, minLength, maxLength) =>{
     setBlogFormHasErrors(state => ({
         ...state,
         [e.target.name] : values[e.target.name].length < minLength || values[e.target.name].length > maxLength
     }))
   }
-
   const imageUrlErrorHandler = (e) =>{ 
+    const regex = new RegExp("^https?://.+/");
     setBlogFormHasErrors(state =>({
         ...state,
-        [e.target.name]: values[e.target.name] === ''
+        [e.target.name]: !regex.test(e.target.value),
     }))
   }
   return (
@@ -42,7 +39,7 @@ export const CreateBlog = () => {
             <div className="footer_container">
               <div className="footer_content ">
                 <div className="newsletter_container">
-                  <h2 className="register text-center">Create New Blog</h2>
+                  <h2 className="register text-center">New Blog</h2>
                   <form
                     action="#"
                     id="newsletter_form"
@@ -62,7 +59,7 @@ export const CreateBlog = () => {
                       onBlur={(e) => blogTitleAndTextErrorHandler(e, 3, 50)}
                     />
                     {blogFormHasErrors.imageUrl &&
-                    <span className="error_message">Please, type image url</span>
+                    <span className="error_message">Please, type correct image url</span>
                     }
                     <input
                       type="text"
@@ -89,8 +86,8 @@ export const CreateBlog = () => {
                   </form>
                 </div>
                 <div className="d-flex justify-content-center">
-                <button className="newsletter_button text-center">
-                  save blog
+                <button type="submit" disabled={Object.values(blogFormHasErrors).some(x => x)} className="newsletter_button text-center">
+                  create blog
                 </button>
                 </div>
               </div>

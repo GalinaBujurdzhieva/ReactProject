@@ -1,4 +1,12 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import * as trainerService from '../../services/trainerService'
+
+import { AboutMain } from './AboutMain'
+import { AboutWelcome } from './AboutWelcome'
+import { AboutTeamBackground } from './AboutTeamBackground'
+import { AboutTeamMember } from './AboutTeamMember'
 
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
@@ -9,22 +17,20 @@ import '../../assets/plugins/colorbox/colorbox.css'
 import '../../assets/styles/about.css'
 import '../../assets/styles/about_responsive.css'
 
-import backgroundAboutImage from '../../assets/images/about_page.jpg'
-import aboutSportFitImage from '../../assets/images/a2.png'
-import teamBackgroundImage from '../../assets/images/blog.jpg'
-import MichaelSmithImage from '../../assets/images/team_1.jpg'
-import SimoneParkerImage from '../../assets/images/team_2.jpg'
-import WilliamJamesImage from '../../assets/images/team_3.jpg'
 import backgroundDiscountImage from '../../assets/images/extra.jpg'
 
-const backgroundImage ={
-    backgroundImage: `url(${backgroundAboutImage})`,
-}
 const backgroundDiscount = {
     backgroundImage: `url(${backgroundDiscountImage})`,
 }
 
 export const About = () =>{
+  const [trainers, setTrainers] = useState([]);
+
+  useEffect(() => {
+    trainerService.getAll()
+    .then(trainers => setTrainers(trainers))
+  }, [])
+
     return(
         <>
   <title>About us</title>
@@ -35,125 +41,28 @@ export const About = () =>{
   <div className="super_container">
    
     {/* Home */}
-    <div className="home">
-      <div
-        className="background_image"
-        style={backgroundImage}
-      />
-      <div className="overlay" />
-      <div className="home_container">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="home_content">
-                <div className="home_title">About us</div>
-                <div className="home_subtitle">
-                  Pilates, Yoga, Fitness, Spinning &amp; many more
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <AboutMain />
     {/* About */}
-    <div className="about">
-      <div className="container about_container">
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="about_content">
-              <div className="section_title_container">
-                <div className="section_subtitle">welcome to sportfit</div>
-                <div className="section_title">
-                  About <span>Sportfit</span>
-                </div>
-              </div>
-              <div className="text_highlight">
-                Etiam commodo justo nec aliquam feugiat. Donec a leo eget eget
-                augue porttitor sollicitudin augue porttitor sollicitudin.
-              </div>
-              <div className="about_text">
-                <p>
-                  Morbi sed varius risus, vitae molestie lectus. Donec id
-                  hendrerit velit, eu fringilla neque. Etiam id finibus sapien.
-                  Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut
-                  leo vel porta. Maecenas ac vestibulum lectus. Cras nulla urna,
-                  lacinia ut tempor facilisis, congue dignissim tellus. Maecenas
-                  ac vestibulum lectus. Cras nulla urna, lacinia ut tempor
-                  facilisis, congue dignissim tellus. Phasellus sit amet justo
-                  ullamcorper, elementum ipsum nec.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="about_background">
-        <div className="about_image">
-          <img src={aboutSportFitImage} alt="" />
-        </div>
-      </div>
-    </div>
+    <AboutWelcome />
     {/* Team */}
     <div className="team">
-      <div
-        className="parallax_background parallax-window"
-        data-parallax="scroll"
-        data-speed="0.8">
-            <img className="parallax_background" src={teamBackgroundImage}/>
-        </div>
+      <AboutTeamBackground />
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
             <div className="section_title_container">
-              <div className="section_subtitle">welcome to sportfit</div>
               <div className="section_title">The Team</div>
             </div>
           </div>
         </div>
         <div className="row team_row">
           {/* Team Member */}
-          <div className="col-lg-4 team_col">
-            <div className="team_item">
-              <div className="team_image">
-                <img src={MichaelSmithImage} alt="" />
-              </div>
-              <div className="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-                <div className="team_name">
-                  <a href="#">Michael Smith</a>
-                </div>
-                <div className="team_title">personal trainer</div>
-              </div>
-            </div>
-          </div>
-          {/* Team Member */}
-          <div className="col-lg-4 team_col">
-            <div className="team_item">
-              <div className="team_image">
-                <img src={SimoneParkerImage} alt="" />
-              </div>
-              <div className="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-                <div className="team_name">
-                  <a href="#">Simone Parker</a>
-                </div>
-                <div className="team_title">personal trainer</div>
-              </div>
-            </div>
-          </div>
-          {/* Team Member */}
-          <div className="col-lg-4 team_col">
-            <div className="team_item">
-              <div className="team_image">
-                <img src={WilliamJamesImage} alt="" />
-              </div>
-              <div className="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-                <div className="team_name">
-                  <a href="#">William James</a>
-                </div>
-                <div className="team_title">personal trainer</div>
-              </div>
-            </div>
-          </div>
+          {Object.values(trainers).map(trainer => 
+       <AboutTeamMember 
+       key= {trainer._id}
+       {...trainer}
+       />
+       )} 
         </div>
       </div>
     </div>
