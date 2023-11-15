@@ -1,36 +1,63 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import * as blogService from "../../services/blogService";
+
 import "../../assets/styles/register.css";
+import BlogContext from "../../contexts/Blog/BlogContext";
 
 export const CreateBlog = () => {
   const [values, setValues] = useState({
-    title: '',
-    imageUrl: '',
-    text: '',
+    title: "",
+    imageUrl: "",
+    text: "",
   });
   const [blogFormHasErrors, setBlogFormHasErrors] = useState({
-    title: '',
-    imageUrl: '',
-    text: '',
+    title: "",
+    imageUrl: "",
+    text: "",
   });
+  const {addBlog} = useContext(BlogContext);
+  const navigate = useNavigate();
+  const titleInputRef = useRef();
+
+  // useEffect(() => {
+  //   blogService.getAll().then((blogs) => setBlogs(blogs));
+  // }, []);
+
+  useEffect(() => {
+    titleInputRef.current.focus();
+  }, []);
+
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
   };
-  const blogTitleAndTextErrorHandler = (e, minLength, maxLength) =>{
-    setBlogFormHasErrors(state => ({
-        ...state,
-        [e.target.name] : values[e.target.name].length < minLength || values[e.target.name].length > maxLength
-    }))
-  }
-  const imageUrlErrorHandler = (e) =>{ 
+
+  const createBlogSubmitHandler = (e) => {
+    e.preventDefault();
+    const newBlog = blogService.create(values);
+    addBlog(newBlog);
+    navigate("/blog/all");
+  };
+
+  const blogTitleAndTextErrorHandler = (e, minLength, maxLength) => {
+    setBlogFormHasErrors((state) => ({
+      ...state,
+      [e.target.name]:
+        values[e.target.name].length < minLength ||
+        values[e.target.name].length > maxLength,
+    }));
+  };
+  const imageUrlErrorHandler = (e) => {
     const regex = new RegExp("^https?://.+/");
-    setBlogFormHasErrors(state =>({
-        ...state,
-        [e.target.name]: !regex.test(e.target.value),
-    }))
-  }
+    setBlogFormHasErrors((state) => ({
+      ...state,
+      [e.target.name]: !regex.test(e.target.value),
+    }));
+  };
   return (
     <div className="footer">
       <div className="container">
@@ -41,13 +68,16 @@ export const CreateBlog = () => {
                 <div className="newsletter_container">
                   <h2 className="register text-center">New Blog</h2>
                   <form
+                    onSubmit={createBlogSubmitHandler}
                     action="#"
                     id="newsletter_form"
                     className="newsletter_form"
                   >
-                    {blogFormHasErrors.title &&
-                    <span className="error_message">Title should be between 3 and 20 characters</span>
-                    }
+                    {blogFormHasErrors.title && (
+                      <span className="error_message">
+                        Title should be between 3 and 20 characters
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="title"
@@ -57,10 +87,13 @@ export const CreateBlog = () => {
                       value={values.title}
                       onChange={changeHandler}
                       onBlur={(e) => blogTitleAndTextErrorHandler(e, 3, 50)}
+                      ref={titleInputRef}
                     />
-                    {blogFormHasErrors.imageUrl &&
-                    <span className="error_message">Please, type correct image url</span>
-                    }
+                    {blogFormHasErrors.imageUrl && (
+                      <span className="error_message">
+                        Please, type correct image url
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="imageUrl"
@@ -71,9 +104,11 @@ export const CreateBlog = () => {
                       onChange={changeHandler}
                       onBlur={(e) => imageUrlErrorHandler(e)}
                     />
-                    {blogFormHasErrors.text &&
-                    <span className="error_message">Text should be between 50 and 5000 characters</span>
-                    }
+                    {blogFormHasErrors.text && (
+                      <span className="error_message">
+                        Text should be between 50 and 5000 characters
+                      </span>
+                    )}
                     <textarea
                       name="text"
                       className="newsletter_textarea"
@@ -83,12 +118,18 @@ export const CreateBlog = () => {
                       onChange={changeHandler}
                       onBlur={(e) => blogTitleAndTextErrorHandler(e, 50, 5000)}
                     ></textarea>
+                    <div className="d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        disabled={Object.values(blogFormHasErrors).some(
+                          (x) => x
+                        )}
+                        className="newsletter_button text-center"
+                      >
+                        create blog
+                      </button>
+                    </div>
                   </form>
-                </div>
-                <div className="d-flex justify-content-center">
-                <button type="submit" disabled={Object.values(blogFormHasErrors).some(x => x)} className="newsletter_button text-center">
-                  create blog
-                </button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import BlogContext from '../../contexts/Blog/BlogContext'
 import { useNavigate } from "react-router-dom";
 
 import { BlogMain } from "./BlogMain";
@@ -12,12 +13,8 @@ import "../../assets/styles/blog_responsive.css";
 import { BlogPost } from "./BlogPost";
 
 export const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
+  const {blogs, setBlogs} = useContext(BlogContext)
   const navigate = useNavigate();
-
-  useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, []);
 
   const loadAllBlogsHandler = () => {
     navigate("/blog/all");
@@ -45,7 +42,6 @@ export const Blog = () => {
                 <BlogPost key={blog._id} {...blog} />
               ))}
           </div>
-
           <div className="row">
             <div className="col d-flex align-items-center justify-content-center">
               <button

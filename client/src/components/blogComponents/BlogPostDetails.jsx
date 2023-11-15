@@ -26,13 +26,17 @@ export const BlogPostDetails = () => {
         <div className="blog_post_title d-flex justify-content-center align-items-center">
           {currentBlog.title}
         </div>
-
+        <div className="blog_post_date d-flex justify-content-center align-items-center">
+          {func.formatDate(currentBlog.createdAt)}
+        </div>
         <div className="blog_post_text_all">
           <p>{currentBlog.text}</p>
         </div>
-
-        <div className="blog_post_date d-flex justify-content-start align-items-center">
-          {func.formatDate(currentBlog.createdAt)}
+        <div class="btn-group d-flex justify-content-center" role="group">
+          <button className="button blog_button">Edit Blog</button>
+          <button type="button" className="button blog_button">
+            Delete Blog
+          </button>
         </div>
       </div>
     </div>

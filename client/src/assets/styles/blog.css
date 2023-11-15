@@ -683,6 +683,7 @@ section
 .blog_post_title
 {
 	margin-top: 20px;
+	margin-bottom: 20px;
 	font-size: 24px;
 	font-weight: 400;
 	color: #ff9711;
@@ -690,7 +691,7 @@ section
 }
 .blog_post_date
 {
-	margin-top: 4px;
+	margin-bottom: 15px;
 	font-size: 12px;
 	font-weight: 600;
 	text-transform: uppercase;

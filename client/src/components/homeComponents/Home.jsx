@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import { BlogPost } from "../blogComponents/BlogPost";
 
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
@@ -18,9 +21,6 @@ import nutritionClassesIcon from "../../assets/images/icon_8.png";
 import pillatesClassesIcon from "../../assets/images/icon_9.png";
 import aboutImage from "../../assets/images/a1.png";
 import blogImage from "../../assets/images/blog.jpg";
-import blogImagePost1 from "../../assets/images/blog_1.jpg";
-import blogImagePost2 from "../../assets/images/blog_2.jpg";
-import blogImagePost3 from "../../assets/images/blog_3.jpg";
 
 import backgroundTestimonialsImage from "../../assets/images/testimonials.jpg";
 import DianeSmithImage from "../../assets/images/test_1.jpg";
@@ -36,12 +36,16 @@ import sliderImage5 from "../../assets/images/gallery_5.jpg";
 import weightLossIcon from "../../assets/images/icon_4.png";
 import yogaClassesIcon from "../../assets/images/icon_5.png";
 import spinningClassIcon from "../../assets/images/icon_6.png";
+import BlogContext from "../../contexts/Blog/BlogContext";
 
 const backgroundHome = {
   backgroundImage: `url(${backgroundHomeImage})`,
 };
 
 export const Home = () => {
+  const {blogs, setBlogs} = useContext(BlogContext)
+  const navigate = useNavigate();
+
   return (
     <div className="super_container">
       {/* Home */}
@@ -500,84 +504,17 @@ export const Home = () => {
                   <div className="section_title">The Blog</div>
                 </div>
                 <div className="all_posts_link ml-auto">
-                  <Link to="/blog">View all blog posts</Link>
+                  <Link to="/blog/all">View all blog posts</Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="row blog_row">
-            {/* Blog Post */}
-            <div className="col-lg-4 blog_col">
-              <div className="blog_post">
-                <div className="blog_post_image">
-                  <img src={blogImagePost1} alt="" />
-                </div>
-                <div className="blog_post_title">
-                  <a href="#">Tips for the perfect body</a>
-                </div>
-                <div className="blog_post_date">
-                  <a href="#">june 29, 2018</a>
-                </div>
-                <div className="blog_post_text">
-                  <p>
-                    Etiam nec odio vestibulum est mattis effic iturut magna.
-                    Pellentesque sit amet tellus blandit. Odio vestibulum est
-                    mattis effic iturut.
-                  </p>
-                </div>
-                <div className="blog_post_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Blog Post */}
-            <div className="col-lg-4 blog_col">
-              <div className="blog_post">
-                <div className="blog_post_image">
-                  <img src={blogImagePost2} alt="" />
-                </div>
-                <div className="blog_post_title">
-                  <a href="#">Tips for the perfect body</a>
-                </div>
-                <div className="blog_post_date">
-                  <a href="#">june 29, 2018</a>
-                </div>
-                <div className="blog_post_text">
-                  <p>
-                    Etiam nec odio vestibulum est mattis effic iturut magna.
-                    Pellentesque sit amet tellus blandit. Odio vestibulum est
-                    mattis effic iturut.
-                  </p>
-                </div>
-                <div className="blog_post_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Blog Post */}
-            <div className="col-lg-4 blog_col">
-              <div className="blog_post">
-                <div className="blog_post_image">
-                  <img src={blogImagePost3} alt="" />
-                </div>
-                <div className="blog_post_title">
-                  <a href="#">Video: Pilates 4 Begginers</a>
-                </div>
-                <div className="blog_post_date">
-                  <a href="#">june 29, 2018</a>
-                </div>
-                <div className="blog_post_text">
-                  <p>
-                    Etiam nec odio vestibulum est mattis effic iturut magna.
-                    Pellentesque sit amet tellus blandit. Odio vestibulum est
-                    mattis effic iturut.
-                  </p>
-                </div>
-                <div className="blog_post_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
+            {Object.values(blogs)
+              .slice(-3)
+              .map((blog) => (
+                <BlogPost key={blog._id} {...blog} />
+              ))}
           </div>
         </div>
       </div>
