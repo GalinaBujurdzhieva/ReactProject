@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import * as func from "../../utils/dateFormatter";
 import * as blogService from "../../services/blogService";
@@ -7,15 +7,28 @@ import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
 import "../../assets/styles/blog.css";
 import "../../assets/styles/blog_responsive.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import {BlogContext} from "../../contexts/Blog/BlogContext";
 
 export const BlogPostDetails = () => {
   const { _id } = useParams();
+  const {deleteBlogFunc} = useContext(BlogContext);
   const [currentBlog, setCurrentBlog] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     blogService.getOne(_id).then((result) => setCurrentBlog(result));
   }, [_id]);
+
+  const deleteBlogHandler = (blogId) => {
+    blogService.remove(blogId);
+    deleteBlogFunc(currentBlog);
+    navigate('/blog/all');
+  }
+
+  const loadEditBlogHandler = () => {
+    navigate(`/blog/edit/${currentBlog._id}`);
+  }
 
   return (
     <div className="col-xl-10 offset-xl-1 col-md-12 align-items-center blog_col">
@@ -32,11 +45,9 @@ export const BlogPostDetails = () => {
         <div className="blog_post_text_all">
           <p>{currentBlog.text}</p>
         </div>
-        <div class="btn-group d-flex justify-content-center" role="group">
-          <button className="button blog_button">Edit Blog</button>
-          <button type="button" className="button blog_button">
-            Delete Blog
-          </button>
+        <div className="btn-group d-flex justify-content-center" role="group">
+          <button onClick={()=> loadEditBlogHandler(currentBlog._id)} type="button" className="button blog_button">Edit Blog</button>
+          <button onClick={()=> deleteBlogHandler(currentBlog._id)} type="button" className="button blog_button">Delete Blog</button>
         </div>
       </div>
     </div>

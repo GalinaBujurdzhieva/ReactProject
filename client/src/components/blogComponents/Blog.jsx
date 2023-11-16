@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import BlogContext from '../../contexts/Blog/BlogContext'
+import {BlogContext} from '../../contexts/Blog/BlogContext'
 import { useNavigate } from "react-router-dom";
 
 import { BlogMain } from "./BlogMain";
@@ -13,7 +13,7 @@ import "../../assets/styles/blog_responsive.css";
 import { BlogPost } from "./BlogPost";
 
 export const Blog = () => {
-  const {blogs, setBlogs} = useContext(BlogContext)
+  const {blogs} = useContext(BlogContext)
   const navigate = useNavigate();
 
   const loadAllBlogsHandler = () => {

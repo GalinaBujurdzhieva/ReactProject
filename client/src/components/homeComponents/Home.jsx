@@ -36,14 +36,14 @@ import sliderImage5 from "../../assets/images/gallery_5.jpg";
 import weightLossIcon from "../../assets/images/icon_4.png";
 import yogaClassesIcon from "../../assets/images/icon_5.png";
 import spinningClassIcon from "../../assets/images/icon_6.png";
-import BlogContext from "../../contexts/Blog/BlogContext";
+import {BlogContext} from "../../contexts/Blog/BlogContext";
 
 const backgroundHome = {
   backgroundImage: `url(${backgroundHomeImage})`,
 };
 
 export const Home = () => {
-  const {blogs, setBlogs} = useContext(BlogContext)
+  const {blogs} = useContext(BlogContext)
   const navigate = useNavigate();
 
   return (

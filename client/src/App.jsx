@@ -12,8 +12,9 @@ import { Register } from './components/registerComponent/Register'
 import { Login } from './components/loginComponent/Login'
 import { BlogAll } from './components/blogComponents/BlogAll'
 import { BlogPostDetails } from './components/blogComponents/BlogPostDetails'
-import { CreateBlog } from './components/blogComponents/CreateBlog'
+import { BlogCreate } from './components/blogComponents/BlogCreate'
 import { AboutTeamMemberDetails } from './components/aboutComponents/AboutTeamMemberDetails'
+import { BlogEdit } from './components/blogComponents/BlogEdit'
 
 function App() {
   return (
@@ -26,9 +27,10 @@ function App() {
     <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />} />
     <Route path="/services" element={<Services />} />
     <Route path="/blog" element={<Blog />}/>
-    <Route path="/blog/create" element={<CreateBlog/>}/>
-    <Route path="/blog/:_id" element={<BlogPostDetails/>}/>
     <Route path="/blog/all" element={<BlogAll/>}/> 
+    <Route path="/blog/:_id" element={<BlogPostDetails/>}/>
+    <Route path="/blog/create" element={<BlogCreate/>}/>
+    <Route path="/blog/edit/:_id" element={<BlogEdit/>}/>
     <Route path="/contact" element={<Contact />}/>
     <Route path="/register" element={<Register />} />
     <Route path="/login" element={<Login />} />

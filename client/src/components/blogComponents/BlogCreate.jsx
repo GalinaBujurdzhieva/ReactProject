@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import * as blogService from "../../services/blogService";
 
 import "../../assets/styles/register.css";
-import BlogContext from "../../contexts/Blog/BlogContext";
+import {BlogContext} from "../../contexts/Blog/BlogContext";
 
-export const CreateBlog = () => {
+export const BlogCreate = () => {
   const [values, setValues] = useState({
     title: "",
     imageUrl: "",
@@ -17,13 +17,9 @@ export const CreateBlog = () => {
     imageUrl: "",
     text: "",
   });
-  const {addBlog} = useContext(BlogContext);
+  const {addBlogFunc} = useContext(BlogContext);
   const navigate = useNavigate();
   const titleInputRef = useRef();
-
-  // useEffect(() => {
-  //   blogService.getAll().then((blogs) => setBlogs(blogs));
-  // }, []);
 
   useEffect(() => {
     titleInputRef.current.focus();
@@ -39,7 +35,7 @@ export const CreateBlog = () => {
   const createBlogSubmitHandler = (e) => {
     e.preventDefault();
     const newBlog = blogService.create(values);
-    addBlog(newBlog);
+    addBlogFunc(newBlog);
     navigate("/blog/all");
   };
 
@@ -75,7 +71,7 @@ export const CreateBlog = () => {
                   >
                     {blogFormHasErrors.title && (
                       <span className="error_message">
-                        Title should be between 3 and 20 characters
+                        Title should be between 3 and 100 characters
                       </span>
                     )}
                     <input

@@ -23,7 +23,6 @@ export const BlogPost = ({ ...blog }) => {
         </div>
         <div className="blog_post_link">
           <Link to={`/blog/${blog._id}`}>Read More</Link>
-          {console.log(blog)}
         </div>
       </div>
     </div>
