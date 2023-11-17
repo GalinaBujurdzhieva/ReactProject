@@ -12,7 +12,6 @@
 5. Home
 6. About
 7. Team
-8. Footer
 
 
 ******************************/
@@ -750,7 +749,11 @@ section
 }
 .team_row
 {
-	margin-top: 70px;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+.team-details{
+	background-color:#f98c00;
 }
 .team_item
 {
@@ -758,7 +761,7 @@ section
 }
 .team_item img
 {
-	max-width: 100%;
+	max-width: 80%;
 }
 .team_panel
 {
@@ -771,7 +774,7 @@ section
 	transform: translateX(-50%);
 	bottom: -48px;
 	width: 233px;
-	height: 80px;
+	height: 90px;
 	background: #ff9711;
 }
 .team_name a
@@ -779,6 +782,10 @@ section
 	font-size: 16px;
 	font-weight: 500;
 	color: #fff;
+}
+.team_name p{
+	font-size: 16px;
+	font-weight: 600;
 }
 .team_title
 {
@@ -795,6 +802,37 @@ section
 	color: #FFFFFF;
 	margin-top: 3px;
 }
+.team_description{
+	padding-left: 0px;
+	font-size: 16px;
+}
+.add_new_team_member_link a
+{
+	left: 300px;
+	position: relative;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ff9711;
+}
+.add_new_team_member_link a::after
+{
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background: #ff9711;
+	content: '';
+}
+.team_group_button{
+	margin-top: 20px;
+}
+.team_button{
+	margin-right: 10px;
+	font-weight: 600;
+	border-radius: 22px;
+}
 
 /*********************************
 8. Footer
@@ -802,8 +840,8 @@ section
 
 .skills
 {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 .skills_content
 {
@@ -818,41 +856,6 @@ section
 {
 	margin-top: 31px;
 }
-.progress_bar_container
-{
-	margin-top: 52px;
-}
-.pb_item
-{
-	display: block;
-	position: relative;
-	box-sizing: border-box;
-	margin-bottom: 20px;
-}
-.pb_item:last-child
-{
-	margin-bottom: 0px;
-}
-.pb_item h5
-{
-	font-size: 14px;
-	line-height: 0.75;
-	font-weight: 600;
-	margin-top: 33px;
-	color: #262626;
-}
-.progressbar-text
-{
-	top: 37px !important;
-	line-height: 0.75 !important;
-	font-size: 14px !important;
-	font-weight: 600 !important;
-	color: #262626 !important;
-}
-.skill_bars
-{
-	height: 4px;
-}
 .extra
 {
 	width: 100%;
@@ -862,177 +865,3 @@ section
 	padding-top: 50px;
 	padding-bottom: 65px;
 }
-.extra_title
-{
-	font-family: 'Allerta Stencil', sans-serif;
-	font-size: 60px;
-	color: #FFFFFF;
-	line-height: 1.1;
-}
-.extra_text
-{
-	text-align: center;
-	margin-top: 32px;
-}
-.extra_text p
-{
-	color: #FFFFFF;
-	font-weight: 600;
-}
-.extra_button
-{
-	border: solid 1px #FFFFFF;
-	margin-top: 47px;
-}
-
-/*********************************
-12. Footer
-*********************************/
-
-/* .footer
-{
-	display: block;
-	width: 100%;
-	background: #262626;
-	padding-top: 96px;
-	border-top: solid 1px #88591d;
-	padding-bottom: 105px;
-}
-.footer_content
-{
-	padding-bottom: 253px;
-	z-index: 1;
-}
-.footer_logo .logo
-{
-	display: inline-block;
-	left: auto;
-}
-.footer_logo .logo > div
-{
-	font-size: 45.07px;
-}
-.footer_logo .logo img
-{
-	width: 38px;
-	height: 38px;
-	margin-right: 4px;
-}
-.footer_nav
-{
-	margin-top: 80px;
-}
-.footer_nav ul li:not(:last-of-type)
-{
-	margin-right: 70px;
-}
-.footer_nav ul li a
-{
-	font-size: 16px;
-	font-weight: 400;
-	color: #FFFFFF;
-	white-space: nowrap;
-}
-.footer_nav ul li a:hover
-{
-	color: #ff9711;
-}
-.newsletter_container
-{
-	margin-top: 75px;
-}
-.newsletter_form
-{
-	display: block;
-	width: 100%;
-}
-.newsletter_input
-{
-	width: 100%;
-	height: 61px;
-	background: rgba(0,0,0,0.58);
-	border-radius: 31px;
-	border: solid 1px #ff880f;
-	padding-left: 39px;
-	outline: none;
-	color: #FFFFFF;
-}
-.newsletter_input::-webkit-input-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255,255,255,0.48) !important;
-}
-.newsletter_input:-moz-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255,255,255,0.48) !important;
-}
-.newsletter_input::-moz-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255,255,255,0.48) !important;
-} 
-.newsletter_input:-ms-input-placeholder
-{ 
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255,255,255,0.48) !important;
-}
-.newsletter_input::input-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255,255,255,0.48) !important;
-}
-.newsletter_button
-{
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 61px;
-	height: 61px;
-	border-radius: 50%;
-	background: #ff880f;
-	border: none;
-	outline: none;
-	font-size: 16px;
-	font-weight: 700;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	cursor: pointer;
-}
-.copyright
-{
-	padding-right: 15px;
-	font-size: 12px;
-	font-weight: 400;
-	color: #686868;
-	line-height: 0.75;
-	margin-top: 33px;
-}
-.footer_image_woman
-{
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	width: 70%;
-	padding-left: 78px;
-	z-index: 0;
-}
-.footer_image img
-{
-	max-width: 100%;
-} */

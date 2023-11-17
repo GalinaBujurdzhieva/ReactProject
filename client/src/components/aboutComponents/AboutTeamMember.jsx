@@ -8,7 +8,7 @@ return(
     <div className="col-lg-4 team_col">
             <div className="team_item">
               <div className="team_image">
-                {<img src={imageHelper.getImage(trainer.name)} alt="" /> }
+              <Link to={`/about/trainers/${trainer._id}`}>{<img src={imageHelper.getImage(trainer.name)} alt="" /> }</Link>
               </div>
               <div className="team_panel d-flex flex-column align-items-center justify-content-center text-center">
                 <div className="team_name">

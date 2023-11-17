@@ -31,7 +31,7 @@ export const BlogPostDetails = () => {
   }
 
   return (
-    <div className="col-xl-10 offset-xl-1 col-md-12 align-items-center blog_col">
+    <div className="col-xl-10 offset-xl-1 col-md-12 align-items-center blog_col_details">
       <div className="blog_post">
         <div className="blog_post_image_all d-flex justify-content-center">
           <img src={currentBlog.imageUrl} alt={currentBlog.title} />

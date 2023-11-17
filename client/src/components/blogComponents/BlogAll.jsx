@@ -12,11 +12,11 @@ import { BlogPost } from "./BlogPost";
 import {BlogContext} from "../../contexts/Blog/BlogContext";
 
 export const BlogAll = () => {
-  const {blogs, reloadBlogsWhenCreate, reloadBlogsWhenDelete, reloadBlogsWhenEdit} = useContext(BlogContext);
+  const {blogs, reloadBlogsWhenCreate} = useContext(BlogContext);
   const [newBlogs, setBlogs] = useState(blogs);
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, [reloadBlogsWhenCreate, reloadBlogsWhenDelete, reloadBlogsWhenEdit]);
+  }, [reloadBlogsWhenCreate]);
   
   const navigate = useNavigate();
 
