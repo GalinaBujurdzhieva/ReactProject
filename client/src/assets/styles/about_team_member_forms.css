@@ -1,0 +1,21 @@
+.newsletter_input, .newsletter_textarea, .newsletter_button
+{
+	border: solid 3px #6c757d;
+}
+
+.newsletter_button{
+    color: #6c757d;
+}
+.newsletter_input_checkbox{
+    width: 30px;
+	height: 30px;
+	margin-left: 20px;
+    margin-bottom: 20px;
+}
+.newsletter_input_label{
+    margin-left: 10px;
+    font-size: 20px;
+}
+input[type=checkbox] {
+    accent-color: #ff880f;
+  }

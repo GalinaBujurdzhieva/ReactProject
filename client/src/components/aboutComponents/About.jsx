@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import * as trainerService from "../../services/trainerService";
 
 import { AboutMain } from "./AboutMain";
 import { AboutWelcome } from "./AboutWelcome";
-import { AboutTeamBackground } from "./AboutTeamBackground";
-import { AboutTeamMember } from "./AboutTeamMember";
+import { AboutTeamBackground } from "./teamComponents/AboutTeamBackground";
+import { AboutTeamMember } from "./teamComponents/AboutTeamMember";
 import { AboutDiscount } from "./AboutDiscount";
 import { AboutSkills } from "./AboutSkills";
 
@@ -49,16 +49,18 @@ export const About = () => {
                 </div>
               </div>
               <div className="col-lg-6 ">
-              <div className="add_new_team_member_link text-align-right">
-                  <Link to="/blog/all">Add new team member</Link>
+                <div className="add_new_team_member_link text-align-right">
+                  <Link to="/about/trainers/create">Add new trainer</Link>
                 </div>
               </div>
             </div>
-            <div className="row team_row">
-              {/* Team Member */}
-              {Object.values(trainers).map((trainer) => (
-                <AboutTeamMember key={trainer._id} {...trainer} />
-              ))}
+            <div className="container">
+              <div className="row team_row">
+                {/* Team Member */}
+                {Object.values(trainers).map((trainer) => (
+                  <AboutTeamMember key={trainer._id} {...trainer} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -68,7 +70,7 @@ export const About = () => {
             <div className="row row-lg-eq-height">
               {/* Discount */}
               <AboutDiscount />
-              <AboutSkills/>
+              <AboutSkills />
             </div>
           </div>
         </div>

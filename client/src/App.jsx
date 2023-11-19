@@ -13,8 +13,9 @@ import { Login } from './components/loginComponent/Login'
 import { BlogAll } from './components/blogComponents/BlogAll'
 import { BlogPostDetails } from './components/blogComponents/BlogPostDetails'
 import { BlogCreate } from './components/blogComponents/BlogCreate'
-import { AboutTeamMemberDetails } from './components/aboutComponents/AboutTeamMemberDetails'
+import { AboutTeamMemberDetails } from './components/aboutComponents/teamComponents/AboutTeamMemberDetails'
 import { BlogEdit } from './components/blogComponents/BlogEdit'
+import { AboutTeamMemberCreate } from './components/aboutComponents/teamComponents/AboutTeamMemberCreate'
 
 function App() {
   return (
@@ -23,15 +24,22 @@ function App() {
     <Header />
     <Routes>
     <Route path="/" element={<Home />} />
+
     <Route path="/about" element={<About />} />
     <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />} />
+    <Route path="/about/trainers/create" element={<AboutTeamMemberCreate />} />
+    {/* <Route path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit/>}/> */}
+
     <Route path="/services" element={<Services />} />
+
     <Route path="/blog" element={<Blog />}/>
     <Route path="/blog/all" element={<BlogAll/>}/> 
     <Route path="/blog/:_id" element={<BlogPostDetails/>}/>
     <Route path="/blog/create" element={<BlogCreate/>}/>
     <Route path="/blog/edit/:_id" element={<BlogEdit/>}/>
+
     <Route path="/contact" element={<Contact />}/>
+
     <Route path="/register" element={<Register />} />
     <Route path="/login" element={<Login />} />
     

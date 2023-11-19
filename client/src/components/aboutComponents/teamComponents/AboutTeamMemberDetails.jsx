@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 
-import * as trainerService from "../../services/trainerService";
-import * as imageHelper from "../../utils/getImageByKey";
+import * as trainerService from "../../../services/trainerService";
+import * as imageHelper from "../../../utils/getImageByKey";
 
-import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
-import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
-import "../../assets/styles/about.css";
-import "../../assets/styles/about_responsive.css";
+import "../../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
+import "../../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
+import "../../../assets/styles/about.css";
+import "../../../assets/styles/about_responsive.css";
 import { useEffect, useState } from "react";
 
 export const AboutTeamMemberDetails = () => {
@@ -29,7 +29,7 @@ export const AboutTeamMemberDetails = () => {
               />
             }
           </div>
-          <div className="team_panel ">
+          <div className="team_panel_details">
             <div className="team_name">
               <p>{currentTrainer.name}</p>
             </div>
@@ -53,7 +53,7 @@ export const AboutTeamMemberDetails = () => {
             Edit info
           </button>
           <button type="button" className="team_button btn btn-secondary">
-            Hide trainer
+            Remove trainer
           </button>
         </div>
       </div>

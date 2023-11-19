@@ -765,16 +765,26 @@ section
 }
 .team_panel
 {
-	position: absolute;
-	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
-	bottom: -48px;
+	margin-left: 40%;
 	width: 233px;
 	height: 90px;
+	background: #ff9711;
+}
+.team_panel_details
+{
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	margin-left: 30%;
+	width: 233px;
+	height: 120px;
 	background: #ff9711;
 }
 .team_name a
@@ -805,10 +815,11 @@ section
 .team_description{
 	padding-left: 0px;
 	font-size: 16px;
+	text-align: center;
 }
 .add_new_team_member_link a
 {
-	left: 300px;
+	left: 350px;
 	position: relative;
 	font-size: 14px;
 	font-weight: 600;

@@ -75,6 +75,43 @@
 	font-style: italic;
 	color: rgba(255,255,255,0.48) !important;
 }
+
+.newsletter_textarea::-webkit-input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: rgba(255,255,255,0.48) !important;
+}
+.newsletter_textarea:-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: rgba(255,255,255,0.48) !important;
+}
+.newsletter_textarea::-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: rgba(255,255,255,0.48) !important;
+} 
+.newsletter_textarea:-ms-input-placeholder
+{ 
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: rgba(255,255,255,0.48) !important;
+}
+.newsletter_textarea::input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: rgba(255,255,255,0.48) !important;
+}
+
 .newsletter_button
 {
 	width: 200px;
