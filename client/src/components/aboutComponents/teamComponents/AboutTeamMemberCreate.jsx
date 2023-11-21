@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import { useNavigate} from "react-router-dom";
 
 import * as trainerService from "../../../services/trainerService"
+import { TrainerContext } from "../../../contexts/Trainers/TrainerContext";
 
 import "../../../assets/styles/register.css";
 import "../../../assets/styles/about_team_member_forms.css";
 
-export const AboutTeamMemberCreate = () => {
+export const AboutTeamMemberCreate = ({handleClick}) => {
     const [values, setValues] = useState({
         name: "",
         age: 18, 
+        imageUrl: "",
         courses: [],
         description: ""
     })
@@ -23,7 +26,7 @@ export const AboutTeamMemberCreate = () => {
     const [trainerFormHasErrors, setTrainerFormHasErrors] = useState({
         name: "",
         age: "", 
-        // courses: [],
+        imageUrl: "",
         description: ""
       }); 
 
@@ -31,6 +34,9 @@ export const AboutTeamMemberCreate = () => {
     useEffect(() =>{
         nameInputRef.current.focus()
     },[])
+
+    const {addTrainerFunc} = useContext(TrainerContext);
+    const navigate = useNavigate();
 
     const changeHandler = (e) => {
         setValues((state) => ({
@@ -48,14 +54,12 @@ export const AboutTeamMemberCreate = () => {
 
       const createTrainerSubmitHandler = (e) => {
         e.preventDefault();
-        //console.log(checkboxes);
         const trainerCourses = Object.keys(checkboxes).filter(key => checkboxes[key]);
         values.courses = trainerCourses.slice(1);
-        //console.log(values.courses);
         const trainer = trainerService.create(values);
         console.log(trainer);
-        // addBlogFunc(newBlog);
-        // navigate("/blog/all");
+        addTrainerFunc(trainer);
+        navigate('/about');
       };
 
       const trainerNameAndDescriptionErrorHandler = (e, minLength, maxLength) => {
@@ -74,6 +78,13 @@ export const AboutTeamMemberCreate = () => {
             [e.target.name] : number < 18
         }))
       }
+      const imageUrlErrorHandler = (e) => {
+        const regex = new RegExp("^https?://.+/");
+        setTrainerFormHasErrors((state) => ({
+          ...state,
+          [e.target.name]: !regex.test(e.target.value),
+        }));
+      };
 
   return (
     <div className="footer">
@@ -106,6 +117,21 @@ export const AboutTeamMemberCreate = () => {
                       onBlur={(e) => trainerNameAndDescriptionErrorHandler(e, 3, 100)}
                       ref={nameInputRef}
                     />
+                    {trainerFormHasErrors.imageUrl && (
+                      <span className="error_message">
+                        Please, type correct image url
+                      </span>
+                    )}
+                    <input
+                      type="text"
+                      name="imageUrl"
+                      className="newsletter_input"
+                      placeholder="Image"
+                      required="required"
+                      value={values.imageUrl}
+                      onChange={changeHandler}
+                      onBlur={(e) => imageUrlErrorHandler(e)}
+                    />
                     {trainerFormHasErrors.age && (
                         <span className="error_message">
                           Age must be higher or equal to 18.
@@ -121,11 +147,6 @@ export const AboutTeamMemberCreate = () => {
                       onChange={changeHandler}
                       onBlur={isPositive}
                     />
-                    {/* {blogFormHasErrors.text && (
-                        <span className="error_message">
-                          Text should be between 50 and 5000 characters
-                        </span>
-                      )} */}
                     <div>
                     <div className="form-check form-check-inline">
                       <input
@@ -135,7 +156,6 @@ export const AboutTeamMemberCreate = () => {
                         id="weight_loss"
                         value={checkboxes.weight_loss}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="weight_loss">Weight Loss</label>
                       <input
@@ -145,7 +165,6 @@ export const AboutTeamMemberCreate = () => {
                         id="yoga"
                         value={checkboxes.yoga}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="yoga">Yoga</label>
                       <input
@@ -155,7 +174,6 @@ export const AboutTeamMemberCreate = () => {
                         id="spinning"
                         value={checkboxes.spinning}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="spinning">Spinning</label>
                     </div>
@@ -167,7 +185,6 @@ export const AboutTeamMemberCreate = () => {
                         id="private_fitness"
                         value={checkboxes.private_fitness}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="private_fitness">Private Fitness</label>
                       <input
@@ -177,7 +194,6 @@ export const AboutTeamMemberCreate = () => {
                         id="nutrition"
                         value={checkboxes.nutrition}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="nutrition">Nutrition</label>
                       <input
@@ -187,7 +203,6 @@ export const AboutTeamMemberCreate = () => {
                         id="pillates"
                         value={checkboxes.pillates}
                         onChange={checkboxChangeHandler}
-                        //onBlur={}
                       />
                       <label className="newsletter_input_label" htmlFor="pillates">Pillates</label>
                     </div>
@@ -209,10 +224,11 @@ export const AboutTeamMemberCreate = () => {
                     <div className="d-flex justify-content-center">
                       <button
                         type="submit"
-                        //   disabled={Object.values(blogFormHasErrors).some(
-                        //     (x) => x
-                        //   )}
+                          disabled={Object.values(trainerFormHasErrors).some(
+                            (x) => x
+                          )}
                         className="newsletter_button text-center"
+                        onClick={handleClick}
                       >
                         add trainer
                       </button>

@@ -4,7 +4,7 @@ import {useParams, useNavigate} from 'react-router-dom'
 import * as blogService from '../../services/blogService'
 
 import "../../assets/styles/register.css";
-import {BlogContext} from '../../contexts/Blog/BlogContext';
+import {BlogContext} from '../../contexts/Blogs/BlogContext';
 
 export const BlogEdit = ()=> {
     const {blogs, updateBlogFunc} = useContext(BlogContext);

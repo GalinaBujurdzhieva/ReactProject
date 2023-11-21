@@ -60,7 +60,6 @@ export const edit = async (blogId, data) => {
   }
 };
 
-
 export const remove = async (blogId) => {
   try {
     const response = await fetch(`${baseUrl}/blogs/${blogId}`, {

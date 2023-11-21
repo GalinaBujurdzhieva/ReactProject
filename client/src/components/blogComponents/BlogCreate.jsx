@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as blogService from "../../services/blogService";
+import {BlogContext} from "../../contexts/Blogs/BlogContext";
 
 import "../../assets/styles/register.css";
-import {BlogContext} from "../../contexts/Blog/BlogContext";
 
 export const BlogCreate = () => {
   const [values, setValues] = useState({

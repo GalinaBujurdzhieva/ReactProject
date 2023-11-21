@@ -659,10 +659,7 @@ section
 {
 	z-index: 2;
 }
-.about_content
-{
-	
-}
+
 .about_background
 {
 	position: absolute;
@@ -737,7 +734,6 @@ section
 /*********************************
 7. Team
 *********************************/
-
 .team
 {
 	padding-top: 312px;
@@ -749,8 +745,8 @@ section
 }
 .team_row
 {
-	margin-top: 100px;
-	margin-bottom: 50px;
+	height: 100%;
+	margin-top: 70px;
 }
 .team-details{
 	background-color:#f98c00;
@@ -762,6 +758,7 @@ section
 .team_item img
 {
 	max-width: 80%;
+    height: auto;
 }
 .team_panel
 {
@@ -774,6 +771,7 @@ section
 	width: 233px;
 	height: 90px;
 	background: #ff9711;
+	margin-bottom: 100px;
 }
 .team_panel_details
 {

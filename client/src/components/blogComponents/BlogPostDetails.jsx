@@ -1,14 +1,14 @@
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import * as func from "../../utils/dateFormatter";
 import * as blogService from "../../services/blogService";
+import {BlogContext} from "../../contexts/Blogs/BlogContext";
 
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
 import "../../assets/styles/blog.css";
 import "../../assets/styles/blog_responsive.css";
-import { useContext, useEffect, useState } from "react";
-import {BlogContext} from "../../contexts/Blog/BlogContext";
 
 export const BlogPostDetails = () => {
   const { _id } = useParams();
@@ -20,7 +20,8 @@ export const BlogPostDetails = () => {
     blogService.getOne(_id).then((result) => setCurrentBlog(result));
   }, [_id]);
 
-  const deleteBlogHandler = (blogId) => {
+  const deleteBlogHandler = (e, blogId) => {
+    e.preventDefault();
     blogService.remove(blogId);
     deleteBlogFunc(currentBlog);
     navigate('/blog/all');
@@ -47,7 +48,7 @@ export const BlogPostDetails = () => {
         </div>
         <div className="btn-group d-flex justify-content-center" role="group">
           <button onClick={()=> loadEditBlogHandler(currentBlog._id)} type="button" className="button blog_button">Edit Blog</button>
-          <button onClick={()=> deleteBlogHandler(currentBlog._id)} type="button" className="button blog_button">Delete Blog</button>
+          <button onClick={(e)=> deleteBlogHandler(e, currentBlog._id)} type="submit" className="button blog_button">Delete Blog</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import * as trainerService from "../../services/trainerService";
+import { TrainerContext } from "../../contexts/Trainers/TrainerContext";
 
 import { AboutMain } from "./AboutMain";
 import { AboutWelcome } from "./AboutWelcome";
@@ -19,12 +20,20 @@ import "../../assets/plugins/colorbox/colorbox.css";
 import "../../assets/styles/about.css";
 import "../../assets/styles/about_responsive.css";
 
-export const About = () => {
-  const [trainers, setTrainers] = useState([]);
-
+export const About = ({ shouldFocus }) => {
+  const myDivRef = useRef(null);
+  const {trainers, reloadTrainers, reloadTrainersAfterDelete, reloadTrainersAfterEdit} = useContext(TrainerContext);
+  const [newTrainers, setTrainers] = useState(trainers);
   useEffect(() => {
     trainerService.getAll().then((trainers) => setTrainers(trainers));
-  }, []);
+  }, [reloadTrainers, reloadTrainersAfterDelete, reloadTrainersAfterEdit]);
+
+  useEffect(() => {
+    if (shouldFocus) {
+      myDivRef.current.scrollIntoView({ behavior: 'smooth' });
+      myDivRef.current.focus();
+    }
+  }, [shouldFocus]);
 
   return (
     <>
@@ -39,7 +48,7 @@ export const About = () => {
         {/* About */}
         <AboutWelcome />
         {/* Team */}
-        <div className="team">
+        <div className="team" tabIndex="0" ref={myDivRef}>
           <AboutTeamBackground />
           <div className="container">
             <div className="row d-flex align-items-center">

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {BlogContext} from '../../contexts/Blog/BlogContext'
+import {BlogContext} from '../../contexts/Blogs/BlogContext'
 import { useNavigate } from "react-router-dom";
 
 import { BlogMain } from "./BlogMain";

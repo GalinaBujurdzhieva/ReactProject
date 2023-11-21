@@ -24,10 +24,30 @@ export const create = async (postData) => {
       });
       if (response.ok) {
         console.log("Trainer created successfully");
-        const result = JSON.stringify(response);
+        const result = await JSON.stringify(response);
         return result;
       } else {
         console.log("Failed to create new trainer");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  export const remove = async (trainerId) => {
+    try {
+      const response = await fetch(`${baseUrl}/trainers/${trainerId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        console.log("Trainer deleted successfully");
+        const result = await response.json();
+        return result;
+      } else {
+        console.error("Failed to delete trainer");
       }
     } catch (error) {
       console.log("Error:", error);

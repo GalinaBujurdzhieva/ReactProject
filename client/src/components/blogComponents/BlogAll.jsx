@@ -9,14 +9,14 @@ import "../../assets/styles/blog.css";
 import "../../assets/styles/blog_responsive.css";
 
 import { BlogPost } from "./BlogPost";
-import {BlogContext} from "../../contexts/Blog/BlogContext";
+import {BlogContext} from "../../contexts/Blogs/BlogContext";
 
 export const BlogAll = () => {
-  const {blogs, reloadBlogsWhenCreate} = useContext(BlogContext);
+  const {blogs, reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit} = useContext(BlogContext);
   const [newBlogs, setBlogs] = useState(blogs);
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, [reloadBlogsWhenCreate]);
+  }, [reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit]);
   
   const navigate = useNavigate();
 

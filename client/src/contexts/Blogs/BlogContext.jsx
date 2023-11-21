@@ -7,29 +7,31 @@ const BlogContext = createContext();
 const BlogProvider = ({ children }) => {
     const [blogs, setBlogs] = useState([]);
     const [reloadBlogs, setReloadBlogs] = useState(false);
+    const [reloadBlogsAfterDelete, setReloadBlogsAfterDelete] = useState(false);
+    const [reloadBlogsAfterEdit, setReloadBlogsAfterEdit] = useState(false);
 
     useEffect(() => {
       blogService.getAll().then((blogs) => setBlogs(blogs));
-    }, [reloadBlogs]);
+    }, [reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit]);
 
     const addBlogFunc = (newBlog) => {
-      const newBlogAfterCreate = [...Object.values(blogs), newBlog];
-      setBlogs(newBlogAfterCreate);
+      const blogListAfterCreate = [...Object.values(blogs), newBlog];
+      setBlogs(blogListAfterCreate);
       setReloadBlogs(!reloadBlogs);
     };
 
     const deleteBlogFunc = (deletedBlog) =>{
-      const newBlogListAfterDelete = Object.values(blogs).filter(blog => blog._id !== deletedBlog._id);
-      setBlogs(newBlogListAfterDelete);
-      setReloadBlogs(!reloadBlogs);
+      const blogListAfterDelete = Object.values(blogs).filter(blog => blog._id !== deletedBlog._id);
+      setBlogs(blogListAfterDelete);
+      setReloadBlogsAfterDelete(!reloadBlogsAfterDelete);
     }
   
     const updateBlogFunc = (updatedBlog) => {
-      const updatedBlogs = Object.values(blogs).map(blog =>
+      const blogListAfterUpdate = Object.values(blogs).map(blog =>
         blog._id === updatedBlog._id ? updatedBlog : blog
       );
-      setBlogs(updatedBlogs);
-      setReloadBlogs(!reloadBlogs);
+      setBlogs(blogListAfterUpdate);
+      setReloadBlogsAfterEdit(!reloadBlogsAfterEdit);
     };
 
   return (
