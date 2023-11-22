@@ -4,7 +4,7 @@ import * as trainerService from '../../services/trainerService'
 
 const TrainerContext = createContext();
 
-const TrainerProvider = ({ children }) => {
+const TrainerProvider = ({children}) => {
     const [trainers, setTrainers] = useState([]);
     const [reloadTrainers, setReloadTrainers] = useState(false);
     const [reloadTrainersAfterDelete, setReloadTrainersAfterDelete] = useState(false);
@@ -35,7 +35,7 @@ const TrainerProvider = ({ children }) => {
     };
 
   return (
-    <TrainerContext.Provider value={{ trainers, addTrainerFunc, deleteTrainerFunc  }}>
+    <TrainerContext.Provider value={{trainers, addTrainerFunc, deleteTrainerFunc, updateTrainerFunc}}>
       {children}
     </TrainerContext.Provider>
   );

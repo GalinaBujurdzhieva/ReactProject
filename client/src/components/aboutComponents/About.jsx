@@ -19,6 +19,7 @@ import "../../assets/plugins/OwlCarousel2-2.2.1/animate.css";
 import "../../assets/plugins/colorbox/colorbox.css";
 import "../../assets/styles/about.css";
 import "../../assets/styles/about_responsive.css";
+import { AboutTeamMemberCreateLink } from "./teamComponents/AboutTeamMemberCreateLink";
 
 export const About = ({ shouldFocus }) => {
   const myDivRef = useRef(null);
@@ -51,18 +52,7 @@ export const About = ({ shouldFocus }) => {
         <div className="team" tabIndex="0" ref={myDivRef}>
           <AboutTeamBackground />
           <div className="container">
-            <div className="row d-flex align-items-center">
-              <div className="col-lg-6">
-                <div className="section_title_container">
-                  <div className="section_title">The Team</div>
-                </div>
-              </div>
-              <div className="col-lg-6 ">
-                <div className="add_new_team_member_link text-align-right">
-                  <Link to="/about/trainers/create">Add new trainer</Link>
-                </div>
-              </div>
-            </div>
+            <AboutTeamMemberCreateLink />
             <div className="container">
               <div className="row team_row">
                 {/* Team Member */}

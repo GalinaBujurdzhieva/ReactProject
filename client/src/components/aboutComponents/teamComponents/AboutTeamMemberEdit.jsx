@@ -1,28 +1,47 @@
 import { useEffect, useRef, useState, useContext } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 
 import * as trainerService from "../../../services/trainerService"
 import { TrainerContext } from "../../../contexts/Trainers/TrainerContext";
+import * as imageHelper from "../../../utils/getImageByKey";
 
 import "../../../assets/styles/register.css";
 import "../../../assets/styles/about_team_member_forms.css";
 
 export const AboutTeamMemberEdit = ({handleClick}) => {
+    const {trainers, updateTrainerFunc} = useContext(TrainerContext);
+    const {_id} = useParams();
+    const navigate = useNavigate();
+    const trainerToBeEdited = Object.values(trainers).find(trainer => trainer._id === _id);
+
+    const initialInputValues = {
+      _id: trainerToBeEdited._id,
+      name: trainerToBeEdited.name,
+      age: trainerToBeEdited.age, 
+      imageUrl: trainerToBeEdited.imageUrl !== undefined ? trainerToBeEdited.imageUrl : imageHelper.getImage(trainerToBeEdited.name),
+      courses: trainerToBeEdited.courses,
+      description: trainerToBeEdited.description
+  }
+
     const [values, setValues] = useState({
-        name: "",
-        age: 18, 
-        imageUrl: "",
-        courses: [],
-        description: ""
+        _id: trainerToBeEdited._id,
+        name: trainerToBeEdited.name,
+        age: trainerToBeEdited.age, 
+        imageUrl: trainerToBeEdited.imageUrl !== undefined ? trainerToBeEdited.imageUrl : imageHelper.getImage(trainerToBeEdited.name),
+        courses: trainerToBeEdited.courses,
+        description: trainerToBeEdited.description
     })
-    const [checkboxes, setCheckboxes] = useState([{
-        "Weight Loss": false,
-        Yoga: false,
-        Spinning: false,
-        "Private Fitness": false,
-        Nutrition: false,
-        Pillates: false,
-}]);
+
+    const initialCheckboxValues = {
+        "Weight Loss": values.courses.includes('Weight Loss') ? true : false,
+        Yoga: values.courses.includes('Yoga') ? true : false,
+        Spinning: values.courses.includes('Spinning') ? true : false,
+        "Private Fitness": values.courses.includes('Private Fitness') ? true : false,
+        Nutrition: values.courses.includes('Nutrition') ? true : false,
+        Pillates: values.courses.includes('Pillates') ? true : false,
+    }
+
+    const [checkboxes, setCheckboxes] = useState(initialCheckboxValues);
     const [trainerFormHasErrors, setTrainerFormHasErrors] = useState({
         name: "",
         age: "", 
@@ -34,9 +53,6 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
     useEffect(() =>{
         nameInputRef.current.focus()
     },[])
-
-    const {addTrainerFunc} = useContext(TrainerContext);
-    const navigate = useNavigate();
 
     const changeHandler = (e) => {
         setValues((state) => ({
@@ -52,13 +68,13 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
         }));
       }; 
 
-      const createTrainerSubmitHandler = (e) => {
+      const editTrainerSubmitHandler = (e) => {
         e.preventDefault();
         const trainerCourses = Object.keys(checkboxes).filter(key => checkboxes[key]);
-        values.courses = trainerCourses.slice(1);
-        const trainer = trainerService.create(values);
-        console.log(trainer);
-        addTrainerFunc(trainer);
+        values.courses = trainerCourses;
+
+        const trainer = trainerService.edit(_id, values);
+        updateTrainerFunc(trainer);
         navigate('/about');
       };
 
@@ -78,12 +94,15 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
             [e.target.name] : number < 18
         }))
       }
+
       const imageUrlErrorHandler = (e) => {
         const regex = new RegExp("^https?://.+/");
-        setTrainerFormHasErrors((state) => ({
-          ...state,
-          [e.target.name]: !regex.test(e.target.value),
-        }));
+        if (!values.imageUrl.includes('/src/assets/images/')) {
+          setTrainerFormHasErrors((state) => ({
+            ...state,
+            [e.target.name]: !regex.test(e.target.value),
+          }));
+        }
       };
     return (
         <div className="footer">
@@ -93,9 +112,9 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                 <div className="footer_container">
                   <div className="footer_content ">
                     <div className="newsletter_container">
-                      <h2 className="register text-center">Add New Trainer</h2>
+                      <h2 className="register text-center">Edit Trainer</h2>
                       <form
-                        onSubmit={createTrainerSubmitHandler}
+                        onSubmit={editTrainerSubmitHandler}
                         action="#"
                         id="newsletter_form"
                         className="newsletter_form"
@@ -153,6 +172,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Weight Loss"
                             className="newsletter_input_checkbox"
                             id="weight_loss"
+                            checked={checkboxes['Weight Loss']}
                             value={checkboxes.weight_loss}
                             onChange={checkboxChangeHandler}
                           />
@@ -162,6 +182,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Yoga"
                             className="newsletter_input_checkbox"
                             id="yoga"
+                            checked={checkboxes['Yoga']}
                             value={checkboxes.yoga}
                             onChange={checkboxChangeHandler}
                           />
@@ -171,6 +192,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Spinning"
                             className="newsletter_input_checkbox"
                             id="spinning"
+                            checked={checkboxes['Spinning']}
                             value={checkboxes.spinning}
                             onChange={checkboxChangeHandler}
                           />
@@ -182,6 +204,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Private Fitness"
                             className="newsletter_input_checkbox"
                             id="private_fitness"
+                            checked={checkboxes['Private Fitness']}
                             value={checkboxes.private_fitness}
                             onChange={checkboxChangeHandler}
                           />
@@ -191,6 +214,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Nutrition"
                             className="newsletter_input_checkbox"
                             id="nutrition"
+                            checked={checkboxes['Nutrition']}
                             value={checkboxes.nutrition}
                             onChange={checkboxChangeHandler}
                           />
@@ -200,6 +224,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             name="Pillates"
                             className="newsletter_input_checkbox"
                             id="pillates"
+                            checked={checkboxes['Pillates']}
                             value={checkboxes.pillates}
                             onChange={checkboxChangeHandler}
                           />
@@ -229,7 +254,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                             className="newsletter_button text-center"
                             onClick={handleClick}
                           >
-                            add trainer
+                            edit trainer
                           </button>
                         </div>
                       </form>

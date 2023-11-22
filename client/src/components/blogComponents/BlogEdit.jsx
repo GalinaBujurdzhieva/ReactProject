@@ -2,16 +2,15 @@ import {useState, useRef, useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 
 import * as blogService from '../../services/blogService'
+import {BlogContext} from '../../contexts/Blogs/BlogContext';
 
 import "../../assets/styles/register.css";
-import {BlogContext} from '../../contexts/Blogs/BlogContext';
 
 export const BlogEdit = ()=> {
     const {blogs, updateBlogFunc} = useContext(BlogContext);
     const { _id } = useParams();
     const navigate = useNavigate();
     const blogToBeEdited = Object.values(blogs).find(blog => blog._id === _id);
-    console.log(blogToBeEdited);
 
     const [values, setValues] = useState({
       _id: blogToBeEdited._id,

@@ -20,8 +20,6 @@ export const AboutTeamMemberDetails = () => {
     trainerService.getOne(_id).then((result) => setCurrentTrainer(result));
   }, []);
 
-  console.log(currentTrainer);
-
   const deleteTrainerFromServerHandler = (e, trainerId) => {
     e.preventDefault();
     trainerService.remove(trainerId);
@@ -52,9 +50,7 @@ export const AboutTeamMemberDetails = () => {
             </div>
             <div className="team_title">personal trainer</div>
             <div className="team_courses">
-              Courses:
-              {currentTrainer.courses !== undefined
-                ? currentTrainer.courses.join(", ")
+              Courses: {currentTrainer.courses !== undefined ? currentTrainer.courses.join(", ")
                 : ""}
             </div>
             <div className="team_courses">Age: {currentTrainer.age}</div>

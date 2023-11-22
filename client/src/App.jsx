@@ -25,11 +25,6 @@ function App() {
     setShouldFocus(true);
   };
 
-  // const handleCreateTrainer = (newTrainer) => {
-  //   setTrainers([...Object.values(trainers), newTrainer]);
-  //   setIsNewTrainerAdded(!isNewTrainerAdded);
-  // };
-
   return (
     <>
       <BrowserRouter>

@@ -8,7 +8,6 @@ return result.trainers;
 
 export const getOne = async (trainerId) => {
     const response = await fetch(`${baseUrl}/trainers/${trainerId}`);
-    console.log(`${baseUrl}/trainers/${trainerId}`);
     const result = await response.json();
     return result;
 }
@@ -28,6 +27,27 @@ export const create = async (postData) => {
         return result;
       } else {
         console.log("Failed to create new trainer");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  export const edit = async (trainerId, data) => {
+    try {
+      const response = await fetch(`${baseUrl}/trainers/${trainerId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        console.log("Trainer edited successfully");
+        const result = JSON.stringify(response);
+        return result;
+      } else {
+        console.log("Failed to edit trainer");
       }
     } catch (error) {
       console.log("Error:", error);
