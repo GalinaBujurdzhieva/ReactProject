@@ -861,6 +861,13 @@ section
 {
 	margin-top: 28px;
 }
+.about_text_home p {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5; /* number of lines to show */
+			line-clamp: 2; 
+	-webkit-box-orient: vertical;
+}
 .about_button
 {
 	margin-top: 50px;

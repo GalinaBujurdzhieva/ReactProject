@@ -18,10 +18,10 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
     const [checkboxes, setCheckboxes] = useState([{
         "Weight Loss": false,
         Yoga: false,
-        Spinning: false,
+        Swimming: false,
         "Private Fitness": false,
         Nutrition: false,
-        Pillates: false,
+        Pilates: false,
 }]);
     const [trainerFormHasErrors, setTrainerFormHasErrors] = useState({
         name: "",
@@ -169,13 +169,13 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
                       <label className="newsletter_input_label" htmlFor="yoga">Yoga</label>
                       <input
                         type="checkbox"
-                        name="Spinning"
+                        name="Swimming"
                         className="newsletter_input_checkbox"
-                        id="spinning"
-                        value={checkboxes.spinning}
+                        id="swimming"
+                        value={checkboxes.swimming}
                         onChange={checkboxChangeHandler}
                       />
-                      <label className="newsletter_input_label" htmlFor="spinning">Spinning</label>
+                      <label className="newsletter_input_label" htmlFor="swimming">Swimming</label>
                     </div>
                     <div className="form-check form-check-inline">
                       <input
@@ -198,13 +198,13 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
                       <label className="newsletter_input_label" htmlFor="nutrition">Nutrition</label>
                       <input
                         type="checkbox"
-                        name="Pillates"
+                        name="Pilates"
                         className="newsletter_input_checkbox"
-                        id="pillates"
-                        value={checkboxes.pillates}
+                        id="pilates"
+                        value={checkboxes.pilates}
                         onChange={checkboxChangeHandler}
                       />
-                      <label className="newsletter_input_label" htmlFor="pillates">Pillates</label>
+                      <label className="newsletter_input_label" htmlFor="pilates">Pilates</label>
                     </div>
                     </div>
                     {trainerFormHasErrors.description && (

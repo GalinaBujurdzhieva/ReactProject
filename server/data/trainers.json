@@ -12,14 +12,14 @@
             "_id": "1d87b5c8-2601-46bb-bfca-15179c7b7501",
             "name": "Simone Parker",
             "age": 32,
-            "courses": ["Yoga", "Pillates"],
+            "courses": ["Yoga", "Pilates"],
             "description": "This is Simone Parker, a dedicated health and fitness instructor. Simone's passion lies in the practice and teaching of yoga and Pilates, two disciplines that promote physical and mental well-being. With a deep understanding of the mind-body connection, Simone has honed her expertise to provide transformative experiences for her students. In her yoga and Pilates classes, you'll discover a welcoming environment that nurtures not only your physical strength but also your inner peace. Simone's teaching style is a perfect blend of mindfulness, technique, and adaptability, making her courses ideal for individuals of all levels. Join Simone on a journey of self-discovery and holistic well-being."
           },
           "d7d6859c-291e-4cf1-a7dc-c8db85a28cd6": {
             "_id": "d7d6859c-291e-4cf1-a7dc-c8db85a28cd6",
             "name": "William James",
             "age": 36,
-            "courses": ["Weight Loss", "Spinning"],
+            "courses": ["Weight Loss", "Swimming"],
             "description": "Introducing William James, a fitness expert and motivator. William's passion revolves around helping individuals achieve their weight loss goals and experience the exhilaration of spinning. With years of experience in the fitness industry, William has honed his knowledge and skills to provide personalized and effective weight loss programs. In his high-energy spinning classes, you'll find an atmosphere filled with enthusiasm and invigorating music. William's teaching approach is all about empowerment, guiding you on your fitness journey, and ensuring that every step taken leads to success. Join William and embark on a path to a healthier, fitter, and more energetic you."
           }
     }

@@ -35,10 +35,10 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
     const initialCheckboxValues = {
         "Weight Loss": values.courses.includes('Weight Loss') ? true : false,
         Yoga: values.courses.includes('Yoga') ? true : false,
-        Spinning: values.courses.includes('Spinning') ? true : false,
+        Swimming: values.courses.includes('Swimming') ? true : false,
         "Private Fitness": values.courses.includes('Private Fitness') ? true : false,
         Nutrition: values.courses.includes('Nutrition') ? true : false,
-        Pillates: values.courses.includes('Pillates') ? true : false,
+        Pilates: values.courses.includes('Pilates') ? true : false,
     }
 
     const [checkboxes, setCheckboxes] = useState(initialCheckboxValues);
@@ -189,14 +189,14 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                           <label className="newsletter_input_label" htmlFor="yoga">Yoga</label>
                           <input
                             type="checkbox"
-                            name="Spinning"
+                            name="Swimming"
                             className="newsletter_input_checkbox"
-                            id="spinning"
-                            checked={checkboxes['Spinning']}
-                            value={checkboxes.spinning}
+                            id="swimming"
+                            checked={checkboxes['Swimming']}
+                            value={checkboxes.swimming}
                             onChange={checkboxChangeHandler}
                           />
-                          <label className="newsletter_input_label" htmlFor="spinning">Spinning</label>
+                          <label className="newsletter_input_label" htmlFor="swimming">Swimming</label>
                         </div>
                         <div className="form-check form-check-inline">
                           <input
@@ -221,14 +221,14 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                           <label className="newsletter_input_label" htmlFor="nutrition">Nutrition</label>
                           <input
                             type="checkbox"
-                            name="Pillates"
+                            name="Pilates"
                             className="newsletter_input_checkbox"
-                            id="pillates"
-                            checked={checkboxes['Pillates']}
-                            value={checkboxes.pillates}
+                            id="pilates"
+                            checked={checkboxes['Pilates']}
+                            value={checkboxes.pilates}
                             onChange={checkboxChangeHandler}
                           />
-                          <label className="newsletter_input_label" htmlFor="pillates">Pillates</label>
+                          <label className="newsletter_input_label" htmlFor="pilates">Pilates</label>
                         </div>
                         </div>
                         {trainerFormHasErrors.description && (

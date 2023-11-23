@@ -23,7 +23,7 @@ export const BlogMain = () => {
             <div className="home_content">
               <div className="home_title">Blog</div>
               <div className="home_subtitle">
-                Pilates, Yoga, Fitness, Spinning &amp; many more
+                Pilates, Yoga, Fitness, Swimming &amp; more
               </div>
             </div>
           </div>

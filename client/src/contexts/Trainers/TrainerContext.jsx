@@ -1,5 +1,5 @@
 import {createContext} from 'react'
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as trainerService from '../../services/trainerService'
 
 const TrainerContext = createContext();
