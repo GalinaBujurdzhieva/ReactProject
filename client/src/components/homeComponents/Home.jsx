@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {BlogContext} from "../../contexts/Blogs/BlogContext";
+import * as bestProposalsService from '../../services/bestProposalService'
 
 import { HomeAbout } from "./HomeAbout";
 import { HomeMain } from "./HomeMain";
@@ -16,25 +17,26 @@ import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/styles/main_styles.css";
 import "../../assets/styles/responsive.css";
 
-import pilatesIcon from "../../assets/images/icon_1.png";
-import swimmingPoolIcon from "../../assets/images/icon_2.png";
-import healthyDietPlanIcon from "../../assets/images/icon_3.png";
-import weightLossIcon from "../../assets/images/weight-loss-class-icon.png";
-import yogaClassesIcon from "../../assets/images/yoga-class-icon.png";
-import swimmingClassIcon from "../../assets/images/swimming-class-icon.png";
-import privateFitClassIcon from "../../assets/images/private-fit-class-icon.png";
-import nutritionClassesIcon from "../../assets/images/nutrition-class-icon.png";
-import pillatesClassesIcon from "../../assets/images/pilates-class-icon.png";
-
 import blogImage from "../../assets/images/blog.jpg";
 
 import backgroundTestimonialsImage from "../../assets/images/testimonials.jpg";
 import DianeSmithImage from "../../assets/images/test_1.jpg";
 import EricRodriguezImage from "../../assets/images/test_2.jpg";
 import HelenWillowImage from "../../assets/images/test_3.jpg";
+import { CourseContext } from "../../contexts/Courses/CourseContext";
+import { CourseDetails } from "../servicesComponents/coursesComponents/CourseDetails";
+import { HomeBestProposalsDetails } from "./HomeBestProposalsDetails";
 
 export const Home = () => {
-  const {blogs} = useContext(BlogContext)
+  const {blogs} = useContext(BlogContext);
+  const {courses} = useContext(CourseContext);
+
+  const [bestProposals, setBestProposals] = useState([]);
+  useEffect(()=>{
+    bestProposalsService.getAll().then(bestProposals =>
+      setBestProposals(bestProposals));
+  },[])
+
   const navigate = useNavigate();
 
   return (
@@ -48,65 +50,10 @@ export const Home = () => {
             <div className="col">
               <div className="boxes_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
                 {/* Box */}
-                <div className="box">
-                  <div className="box_icon d-flex flex-column align-items-center justify-content-center">
-                    <img src={pilatesIcon} alt="" />
-                  </div>
-                  <div className="box_title">Pilates with trainer</div>
-                  <div className="box_text">
-                    <p>
-                      Etiam commodo justo nec aliquam feugiat. Donec a leo eget
-                      augue porttitor sollicitudin.
-                    </p>
-                  </div>
-                  <div className="box_link_container">
-                    <a href="#">
-                      <div className="box_link d-flex flex-column align-items-center justify-content-center trans_200">
-                        <div>+</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                {/* Box */}
-                <div className="box">
-                  <div className="box_icon d-flex flex-column align-items-center justify-content-center">
-                    <img src={swimmingPoolIcon} alt="" />
-                  </div>
-                  <div className="box_title">Swimming Pool</div>
-                  <div className="box_text">
-                    <p>
-                      Donec a leo eget augue porttitor sollicitudin. Morbi sed
-                      varius risus, vitae molestie lectus. Donec id hendrerit.
-                    </p>
-                  </div>
-                  <div className="box_link_container">
-                    <a href="#">
-                      <div className="box_link d-flex flex-column align-items-center justify-content-center trans_200">
-                        <div>+</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                {/* Box */}
-                <div className="box">
-                  <div className="box_icon d-flex flex-column align-items-center justify-content-center">
-                    <img src={healthyDietPlanIcon} alt="" />
-                  </div>
-                  <div className="box_title">Healthy diet plan</div>
-                  <div className="box_text">
-                    <p>
-                      Morbi sed varius risus, vitae molestie lectus. Donec id
-                      hendrerit velit, eu fringilla neque.
-                    </p>
-                  </div>
-                  <div className="box_link_container">
-                    <Link to="#">
-                      <div className="box_link d-flex flex-column align-items-center justify-content-center trans_200">
-                        <div>+</div>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+               {Object.values(bestProposals).map((bestProposal) => <HomeBestProposalsDetails 
+               key={bestProposal._id}
+               {...bestProposal}
+               />)}
               </div>
             </div>
           </div>
@@ -239,138 +186,10 @@ export const Home = () => {
         <div className="container">
           <HomeClassesMain />
           <div className="row services_row">
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={weightLossIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Weight Loss Class</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <Link to="#">Read More</Link>
-                </div>
-              </div>
-            </div>
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={yogaClassesIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Yoga Classes</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={swimmingClassIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Swimming Class</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={privateFitClassIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Private Fit Class</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={nutritionClassesIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Nutrition Classes</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            {/* Service */}
-            <div className="col-xl-4 col-md-6 service_col">
-              <div className="service">
-                <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-                  <div>
-                    <div className="service_icon">
-                      <img src={pillatesClassesIcon} alt="" />
-                    </div>
-                  </div>
-                  <div className="service_title">Pillates Class</div>
-                </div>
-                <div className="service_text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec malesuada lorem maximus mauris scelerisque, at rutrum.
-                  </p>
-                </div>
-                <div className="course_link">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </div>
+          {Object.values(courses)
+              .map((course) => (
+                <CourseDetails key={course._id} {...course} />
+              ))}
           </div>
         </div>
       </div>

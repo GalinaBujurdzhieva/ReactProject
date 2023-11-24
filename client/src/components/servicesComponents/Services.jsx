@@ -1,4 +1,9 @@
+import { useContext } from 'react'
 import {Link} from 'react-router-dom'
+
+import { CourseContext } from '../../contexts/Courses/CourseContext'
+
+import { CourseDetails } from './coursesComponents/CourseDetails'
 
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
@@ -19,6 +24,7 @@ import pillatesClassIcon from '../../assets/images/pilates-class-icon.png'
 import backgroundTimetableImage from '../../assets/images/timetable.jpg'
 import backgroundDiscountImage from '../../assets/images/extra_wide.jpg'
 
+
 const backgroundServices = {
     backgroundImage: `url(${backgroundServicesImage})`
 }
@@ -28,6 +34,9 @@ const backgroundDiscount = {
 }
 
 export const Services = () => {
+
+  const {courses} = useContext(CourseContext)
+
     return (
         <div className="super_container">
 
@@ -65,120 +74,10 @@ export const Services = () => {
         </div>
       </div>
       <div className="row services_row">
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={weightLossIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Weight Loss Class</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={yogaClassesIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Yoga Classes</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={spinningClassIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Spinning Class</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={privateClassIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Private Fit Class</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={nutritionClassesIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Nutrition Classes</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Service */}
-        <div className="col-xl-4 col-md-6 service_col">
-          <div className="service">
-            <div className="service_title_container d-flex flex-row align-items-center justify-content-start">
-              <div>
-                <div className="service_icon">
-                  <img src={pillatesClassIcon} alt="" />
-                </div>
-              </div>
-              <div className="service_title">Pillates Class</div>
-            </div>
-            <div className="service_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                malesuada lorem maximus mauris scelerisque, at rutrum.
-              </p>
-            </div>
-          </div>
-        </div>
+      {Object.values(courses)
+              .map((course) => (
+                <CourseDetails key={course._id} {...course} />
+              ))}
       </div>
     </div>
   </div>

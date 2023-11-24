@@ -17,7 +17,7 @@ export const HomeMain = () => {
         <div className="row">
           <div className="col">
             <div className="home_content text-center">
-              <div className="home_title">Get fit with us</div>
+              <div className="home_title">Get fit with our best proposals</div>
               <div className="home_subtitle">
                 Pilates, Yoga, Fitness, Swimming &amp; more
               </div>

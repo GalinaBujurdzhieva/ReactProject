@@ -11,7 +11,7 @@ export const NavBarHeader = () => {
                       <Link to="/about">About us</Link>
                     </li>
                     <li>
-                      <Link to="/services">Classes &amp; Services</Link>
+                      <Link to="/courses">Classes &amp; Services</Link>
                     </li>
                     <li>
                       <Link to="/blog">Blog</Link>

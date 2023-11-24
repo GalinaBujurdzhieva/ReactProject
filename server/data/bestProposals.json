@@ -1,0 +1,18 @@
+{
+    "87646329-cc60-4312-91e2-2d9686bb24bf": {
+        "_id": "87646329-cc60-4312-91e2-2d9686bb24bf",
+        "name": "Pilates with Trainer",
+        "description": "Engage in invigorating Pilates sessions no matter what your age is guided by expert trainers to enhance flexibility and core strength."
+      },
+  
+      "7b7671e8-bb79-4ea3-8e9c-c28b5f9e4a35": {
+        "_id": "7b7671e8-bb79-4ea3-8e9c-c28b5f9e4a35",
+        "name": "Swimming Pool",
+        "description": "Dive into our spacious swimming pool and enjoy a refreshing workout that promotes cardiovascular health and overall well-being."
+      },
+      "1c1314ab-a0f5-4a53-897e-b5375c9e5bc9": {
+        "_id": "1c1314ab-a0f5-4a53-897e-b5375c9e5bc9",
+        "name": "Healthy Diet Plan",
+        "description": "Embrace a nutritious and balanced diet plan tailored to your needs, fostering a healthier lifestyle and sustained energy levels."
+      }
+}

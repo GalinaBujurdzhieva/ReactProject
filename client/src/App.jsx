@@ -1,22 +1,27 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import { About } from "./components/aboutComponents/About";
+import { Home } from "./components/homeComponents/Home";
 import { Header } from "./components/mainComponents/Header";
 import { Footer } from "./components/mainComponents/Footer";
+
+import { About } from "./components/aboutComponents/About";
+import { AboutTeamMemberDetails } from "./components/aboutComponents/teamComponents/AboutTeamMemberDetails";
+import { AboutTeamMemberCreate } from "./components/aboutComponents/teamComponents/AboutTeamMemberCreate";
+import { AboutTeamMemberEdit } from "./components/aboutComponents/teamComponents/AboutTeamMemberEdit";
+
 import { Blog } from "./components/blogComponents/Blog";
-import { Services } from "./components/servicesComponents/Services";
-import { Contact } from "./components/contactComponents/Contact";
-import { Home } from "./components/homeComponents/Home";
-import { Register } from "./components/registerComponent/Register";
-import { Login } from "./components/loginComponent/Login";
 import { BlogAll } from "./components/blogComponents/BlogAll";
 import { BlogPostDetails } from "./components/blogComponents/BlogPostDetails";
 import { BlogCreate } from "./components/blogComponents/BlogCreate";
-import { AboutTeamMemberDetails } from "./components/aboutComponents/teamComponents/AboutTeamMemberDetails";
 import { BlogEdit } from "./components/blogComponents/BlogEdit";
-import { AboutTeamMemberCreate } from "./components/aboutComponents/teamComponents/AboutTeamMemberCreate";
-import { AboutTeamMemberEdit } from "./components/aboutComponents/teamComponents/AboutTeamMemberEdit";
+
+import { Services } from "./components/servicesComponents/Services";
+import { CourseDetails } from "./components/servicesComponents/coursesComponents/CourseDetails";
+
+import { Contact } from "./components/contactComponents/Contact";
+
+import { Register } from "./components/registerComponent/Register";
+import { Login } from "./components/loginComponent/Login";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -37,7 +42,8 @@ function App() {
           <Route path="/about/trainers/create" element={<AboutTeamMemberCreate handleClick={handleClick}/> }/>
           <Route path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick}/>}/> 
 
-          <Route path="/services" element={<Services />} />
+          <Route path="/courses" element={<Services />} />
+          <Route path="/courses/:id" element={<CourseDetails/>} />
 
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/all" element={<BlogAll />} />
