@@ -25,25 +25,29 @@ import { Login } from "./components/loginComponent/Login";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
+  const [focusDiv, setFocusDiv] = useState(false);
 
   const handleClick = () => {
     setShouldFocus(true);
   };
+
+  const handleLinkClick = () =>{
+    setFocusDiv(true);
+  }
 
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home handleLinkClick={handleLinkClick}/>} />
 
           <Route path="/about" element={<About shouldFocus={shouldFocus} />}/>
           <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />}/>
           <Route path="/about/trainers/create" element={<AboutTeamMemberCreate handleClick={handleClick}/> }/>
           <Route path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick}/>}/> 
 
-          <Route path="/courses" element={<Services />} />
-          <Route path="/courses/:id" element={<CourseDetails/>} />
+          <Route path="/courses" element={<Services setFocus={focusDiv} />} />
 
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/all" element={<BlogAll />} />

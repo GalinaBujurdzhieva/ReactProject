@@ -1,43 +1,39 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import {BlogContext} from "../../contexts/Blogs/BlogContext";
-import * as bestProposalsService from '../../services/bestProposalService'
+import { BlogContext } from "../../contexts/Blogs/BlogContext";
+import { CourseContext } from "../../contexts/Courses/CourseContext";
 
-import { HomeAbout } from "./HomeAbout";
+import * as bestProposalsService from "../../services/bestProposalService";
+
 import { HomeMain } from "./HomeMain";
+import { HomeBestProposalsDetails } from "./HomeBestProposalsDetails";
+import { HomeAbout } from "./HomeAbout";
 import { HomeClassesMain } from "./HomeClassesMain";
+import { CourseDetails } from "../servicesComponents/coursesComponents/CourseDetails";
+import { HomeTestimonialsMainBackground } from "./HomeTestimonialsMainBackground";
+import { HomeBlogMainBackground } from "./HomeBlogMainBackground";
+import { HomeBlogMain } from "./HomeBlogMain";
 import { BlogPost } from "../blogComponents/BlogPost";
 
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
-// import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
-// import "../../assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css";
-// import "../../assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css";
-// import "../../assets/plugins/OwlCarousel2-2.2.1/animate.css";
-// import "../../assets/plugins/colorbox/colorbox.css";
 import "../../assets/styles/main_styles.css";
 import "../../assets/styles/responsive.css";
 
-import blogImage from "../../assets/images/blog.jpg";
-
-import backgroundTestimonialsImage from "../../assets/images/testimonials.jpg";
 import DianeSmithImage from "../../assets/images/test_1.jpg";
 import EricRodriguezImage from "../../assets/images/test_2.jpg";
 import HelenWillowImage from "../../assets/images/test_3.jpg";
-import { CourseContext } from "../../contexts/Courses/CourseContext";
-import { CourseDetails } from "../servicesComponents/coursesComponents/CourseDetails";
-import { HomeBestProposalsDetails } from "./HomeBestProposalsDetails";
+import { HomeTestimonialsLinkToAll } from "./HomeTestimonialsLinkToAll";
 
-export const Home = () => {
-  const {blogs} = useContext(BlogContext);
-  const {courses} = useContext(CourseContext);
+export const Home = ({handleLinkClick}) => {
+  const { blogs } = useContext(BlogContext);
+  const { courses } = useContext(CourseContext);
 
   const [bestProposals, setBestProposals] = useState([]);
-  useEffect(()=>{
-    bestProposalsService.getAll().then(bestProposals =>
-      setBestProposals(bestProposals));
-  },[])
-
-  const navigate = useNavigate();
+  useEffect(() => {
+    bestProposalsService
+      .getAll()
+      .then((bestProposals) => setBestProposals(bestProposals));
+  }, []);
 
   return (
     <div className="super_container">
@@ -50,10 +46,12 @@ export const Home = () => {
             <div className="col">
               <div className="boxes_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
                 {/* Box */}
-               {Object.values(bestProposals).map((bestProposal) => <HomeBestProposalsDetails 
-               key={bestProposal._id}
-               {...bestProposal}
-               />)}
+                {Object.values(bestProposals).map((bestProposal) => (
+                  <HomeBestProposalsDetails
+                    key={bestProposal._id}
+                    {...bestProposal}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -63,23 +61,18 @@ export const Home = () => {
       <HomeAbout />
       {/* Testimonials */}
       <div className="testimonials">
-        <div
-          className="parallax_background parallax-window"
-          data-parallax="scroll"
-          data-speed="0.8"
-        >
-          <img src={backgroundTestimonialsImage} />
-        </div>
-
+        <HomeTestimonialsMainBackground />
         <div className="container">
+          <div className="section_title_container">
+            <div className="section_subtitle">
+              check what our clients think about us
+            </div>
+            <div className="section_title">Testimonials</div>
+          </div>
           <div className="row">
-            <div className="col-lg-6">
-              <div className="section_title_container">
-                <div className="section_subtitle">welcome to sportfit</div>
-                <div className="section_title">Testimonials</div>
-              </div>
-              {/* Testimonial */}
-              <div className="test test_1 d-flex flex-row align-items-start justify-content-start">
+            {/* Testimonial */}
+            <div className="col-lg-4">
+              <div className="test d-flex-row align-items-start justify-content-start">
                 <div>
                   <div className="test_image">
                     <img src={DianeSmithImage} alt="" />
@@ -109,8 +102,8 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6">
-              {/* Testimonial */}
+            {/* Testimonial */}
+            <div className="col-lg-4">
               <div className="test d-flex flex-row align-items-start justify-content-start">
                 <div>
                   <div className="test_image">
@@ -119,7 +112,7 @@ export const Home = () => {
                 </div>
                 <div className="test_content">
                   <div className="test_name">
-                    <div >Eric Rodriguez</div>
+                    <div>Eric Rodriguez</div>
                   </div>
                   <div className="test_title">client</div>
                   <div className="test_text">
@@ -140,7 +133,9 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* Testimonial */}
+            </div>
+            {/* Testimonial */}
+            <div className="col-lg-4">
               <div className="test d-flex flex-row align-items-start justify-content-start">
                 <div>
                   <div className="test_image">
@@ -172,13 +167,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="row test_button_row">
-            <div className="col text-center">
-              <div className="button test_button">
-                <Link to="/testimonials">Read All</Link>
-              </div>
-            </div>
-          </div>
+          <HomeTestimonialsLinkToAll />
         </div>
       </div>
       {/* Services */}
@@ -186,39 +175,18 @@ export const Home = () => {
         <div className="container">
           <HomeClassesMain />
           <div className="row services_row">
-          {Object.values(courses)
-              .map((course) => (
-                <CourseDetails key={course._id} {...course} />
-              ))}
+            {Object.values(courses).map((course) => (
+              <CourseDetails handleLinkClick = {handleLinkClick} key={course._id} {...course} />
+            ))}
           </div>
         </div>
       </div>
-
       {/* Blog */}
       <div className="blog">
         <div className="blog_overlay" />
-        <div
-          className="parallax_background parallax-window"
-          data-parallax="scroll"
-          data-speed="0.8"
-        >
-          <img src={blogImage} />
-        </div>
-
+        <HomeBlogMainBackground />
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className=" d-flex flex-row align-items-start justify-content-start">
-                <div className="section_title_container">
-                  <div className="section_subtitle">welcome to sportfit</div>
-                  <div className="section_title">The Blog</div>
-                </div>
-                <div className="all_posts_link ml-auto">
-                  <Link to="/blog/all">View all blog posts</Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HomeBlogMain />
           <div className="row blog_row">
             {Object.values(blogs)
               .slice(-3)

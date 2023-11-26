@@ -1,12 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import * as iconHelper from "../../../utils/getCourseIconByKey";
 
 import "../../../assets/styles/services.css";
 
-export const CourseDetails = ({ ...course }) => {
+export const CourseDetails = ({ handleLinkClick, ...course }) => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <div className="col-xl-4 col-md-6 service_col">
@@ -37,7 +36,7 @@ export const CourseDetails = ({ ...course }) => {
         )}
         {location.pathname === "/" && (
           <div className="course_link">
-            <a href="#">Read More</a>
+            <Link to="/courses" onClick={handleLinkClick}>Read More</Link>
           </div>
         )}
       </div>

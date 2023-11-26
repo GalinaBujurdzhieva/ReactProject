@@ -11,6 +11,8 @@ import "../../assets/styles/blog.css";
 import "../../assets/styles/blog_responsive.css";
 
 import { BlogPost } from "./BlogPost";
+import { BlogWelcome } from "./BlogWelcome";
+import { BlogLinkToAll } from "./BlogLinkToAll";
 
 export const Blog = () => {
   const {blogs} = useContext(BlogContext)
@@ -27,14 +29,7 @@ export const Blog = () => {
       {/* Blog */}
       <div className="blog_div">
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="section_title_container">
-                <div className="section_subtitle">welcome to sportfit</div>
-                <div className="section_title_blog">The Blog</div>
-              </div>
-            </div>
-          </div>
+         <BlogWelcome />
           <div className="row blog_row">
             {Object.values(blogs)
               .slice(-3)
@@ -42,16 +37,7 @@ export const Blog = () => {
                 <BlogPost key={blog._id} {...blog} />
               ))}
           </div>
-          <div className="row">
-            <div className="col d-flex align-items-center justify-content-center">
-              <button
-                onClick={() => loadAllBlogsHandler()}
-                className="button blog_button"
-              >
-                Load More
-              </button>
-            </div>
-          </div>
+          <BlogLinkToAll loadAllBlogsHandler = {loadAllBlogsHandler}/> 
         </div>
       </div>
     </div>

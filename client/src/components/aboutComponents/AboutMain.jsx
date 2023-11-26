@@ -24,7 +24,7 @@ export const AboutMain = () => {
               <div className="home_content">
                 <div className="home_title">About us</div>
                 <div className="home_subtitle">
-                  Pilates, Yoga, Fitness, Swimming &amp; many more
+                  Pilates, Yoga, Fitness, Swimming &amp; more
                 </div>
               </div>
             </div>

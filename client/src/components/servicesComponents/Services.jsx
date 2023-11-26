@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import {Link} from 'react-router-dom'
 
 import { CourseContext } from '../../contexts/Courses/CourseContext'
@@ -15,12 +15,6 @@ import '../../assets/styles/services.css'
 import '../../assets/styles/services_responsive.css'
 
 import backgroundServicesImage from '../../assets/images/services.jpg'
-import weightLossIcon from '../../assets/images/weight-loss-class-icon.png'
-import yogaClassesIcon from '../../assets/images/yoga-class-icon.png'
-import spinningClassIcon from '../../assets/images/swimming-class-icon.png'
-import privateClassIcon from '../../assets/images/private-fit-class-icon.png'
-import nutritionClassesIcon from '../../assets/images/nutrition-class-icon.png'
-import pillatesClassIcon from '../../assets/images/pilates-class-icon.png'
 import backgroundTimetableImage from '../../assets/images/timetable.jpg'
 import backgroundDiscountImage from '../../assets/images/extra_wide.jpg'
 
@@ -33,9 +27,18 @@ const backgroundDiscount = {
     backgroundImage: `url(${backgroundDiscountImage})`
 }
 
-export const Services = () => {
+export const Services = ({setFocus}) => {
 
-  const {courses} = useContext(CourseContext)
+  const {courses} = useContext(CourseContext);
+  const myDivRef = useRef(null);
+  console.log(setFocus);
+  useEffect(()=> {
+    if (setFocus) {
+      myDivRef.current.scrollIntoView({ behavior: 'smooth' });
+      myDivRef.current.focus();
+    }
+  }, [setFocus])
+
 
     return (
         <div className="super_container">
@@ -63,17 +66,17 @@ export const Services = () => {
     </div>
   </div>
   {/* Services */}
-  <div className="services">
+  <div className="services" >
     <div className="container">
       <div className="row">
         <div className="col">
           <div className="section_title_container">
             <div className="section_subtitle">welcome to sportfit</div>
-            <div className="section_title">Our Courses</div>
+            <div className="section_title" ref={myDivRef}>Our Courses</div>
           </div>
         </div>
       </div>
-      <div className="row services_row">
+      <div className="row services_row_details" >
       {Object.values(courses)
               .map((course) => (
                 <CourseDetails key={course._id} {...course} />
