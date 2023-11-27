@@ -741,12 +741,20 @@ section
 	white-space: nowrap;
 	margin-bottom: 30px;
 }
+.timetable_filtering ul li a
+{
+	color: white;
+}
 .timetable_filtering ul li:not(:last-of-type)
 {
 	margin-right: 59px;
 }
 .timetable_filtering ul li.active,
 .timetable_filtering ul li:hover
+{
+	color: #f98c00;
+}
+.timetable_filtering ul li a:hover
 {
 	color: #f98c00;
 }

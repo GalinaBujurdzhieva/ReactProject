@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
 import * as trainerService from "../../services/trainerService";
 import { TrainerContext } from "../../contexts/Trainers/TrainerContext";

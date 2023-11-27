@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import { CourseContext } from "../../contexts/Courses/CourseContext";
-
 import * as bestProposalsService from "../../services/bestProposalService";
 
 import { HomeMain } from "./HomeMain";

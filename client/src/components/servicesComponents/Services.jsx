@@ -14,14 +14,11 @@ import '../../assets/plugins/colorbox/colorbox.css'
 import '../../assets/styles/services.css'
 import '../../assets/styles/services_responsive.css'
 
-import backgroundServicesImage from '../../assets/images/services.jpg'
 import backgroundTimetableImage from '../../assets/images/timetable.jpg'
 import backgroundDiscountImage from '../../assets/images/extra_wide.jpg'
-
-
-const backgroundServices = {
-    backgroundImage: `url(${backgroundServicesImage})`
-}
+import { ServicesHome } from './ServicesHome'
+import { ServicesWelcome } from './ServicesWelcome'
+import { CoursesTimetable } from './coursesComponents/CoursesTimetable'
 
 const backgroundDiscount = {
     backgroundImage: `url(${backgroundDiscountImage})`
@@ -39,43 +36,15 @@ export const Services = ({setFocus}) => {
     }
   }, [setFocus])
 
-
     return (
         <div className="super_container">
 
   {/* Home */}
-  <div className="home">
-    <div
-      className="background_image"
-      style={backgroundServices}
-    />
-    <div className="overlay" />
-    <div className="home_container">
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="home_content">
-              <div className="home_title">Services</div>
-              <div className="home_subtitle">
-                Pilates, Yoga, Fitness, Spinning &amp; many more
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ServicesHome />
   {/* Services */}
   <div className="services" >
     <div className="container">
-      <div className="row">
-        <div className="col">
-          <div className="section_title_container">
-            <div className="section_subtitle">welcome to sportfit</div>
-            <div className="section_title" ref={myDivRef}>Our Courses</div>
-          </div>
-        </div>
-      </div>
+      <ServicesWelcome myDivRef = {myDivRef}/>
       <div className="row services_row_details" >
       {Object.values(courses)
               .map((course) => (
@@ -96,230 +65,7 @@ export const Services = ({setFocus}) => {
     <div className="tt_overlay" />
     <div className="container">
       <div className="row">
-        <div className="col">
-          <div className="section_title_container">
-            <div className="section_subtitle">welcome to sportfit</div>
-            <div className="section_title">Classes Timetable</div>
-          </div>
-          <div className="timetable_filtering">
-            <ul className="d-flex flex-row align-items-start justify-content-start flex-wrap">
-              <li className="active item_filter_btn" data-filter="*">
-                All Classes
-              </li>
-              <li className="item_filter_btn" data-filter=".weight_loss">
-                Weight Loss
-              </li>
-              <li className="item_filter_btn" data-filter=".aerobics">
-                Aerobics
-              </li>
-              <li className="item_filter_btn" data-filter=".crossfit">
-                Crossfit
-              </li>
-              <li className="item_filter_btn" data-filter=".fitness">
-                Fitness
-              </li>
-              <li className="item_filter_btn" data-filter=".yoga">
-                Yoga
-              </li>
-              <li className="item_filter_btn" data-filter=".pilates">
-                Pilates
-              </li>
-              <li className="item_filter_btn" data-filter=".stretching">
-                Stretching
-              </li>
-            </ul>
-          </div>
-          <div className="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
-            {/* Monday */}
-            <div className="tt_day">
-              <div className="tt_title">monday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item weight_loss">
-                  <div className="tt_class_title">Weight Loss</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Tuesday */}
-            <div className="tt_day">
-              <div className="tt_title">tuesday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item weight_loss">
-                  <div className="tt_class_title">Weight Loss</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">8:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">12:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Wednesday */}
-            <div className="tt_day">
-              <div className="tt_title">wednesday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item crossfit">
-                  <div className="tt_class_title">Crossfit</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">17:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Thursday */}
-            <div className="tt_day">
-              <div className="tt_title">thursday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item fitness">
-                  <div className="tt_class_title">Fitness</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item yoga">
-                  <div className="tt_class_title">Yoga</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">12:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item pilates">
-                  <div className="tt_class_title">Pilates</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Friday */}
-            <div className="tt_day">
-              <div className="tt_title">friday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item yoga">
-                  <div className="tt_class_title">Yoga</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Saturday */}
-            <div className="tt_day">
-              <div className="tt_title">Saturday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item weight_loss">
-                  <div className="tt_class_title">Weight Loss</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item pilates">
-                  <div className="tt_class_title">Pilates</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">13:00</div>
-                </div>
-              </div>
-            </div>
-            {/* Sunday */}
-            <div className="tt_day">
-              <div className="tt_title">Sunday</div>
-              <div className="tt_day_content grid">
-                {/* Class */}
-                <div className="tt_class grid-item stretching">
-                  <div className="tt_class_title">Stretching</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">9:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class grid-item aerobics">
-                  <div className="tt_class_title">Aerobics</div>
-                  <div className="tt_class_instructor">Jessica Smith</div>
-                  <div className="tt_class_time">10:00</div>
-                </div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-                {/* Class */}
-                <div className="tt_class empty grid-item"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CoursesTimetable />
       </div>
     </div>
   </div>
