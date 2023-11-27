@@ -25,10 +25,8 @@ const backgroundDiscount = {
 }
 
 export const Services = ({setFocus}) => {
-
   const {courses} = useContext(CourseContext);
   const myDivRef = useRef(null);
-  console.log(setFocus);
   useEffect(()=> {
     if (setFocus) {
       myDivRef.current.scrollIntoView({ behavior: 'smooth' });

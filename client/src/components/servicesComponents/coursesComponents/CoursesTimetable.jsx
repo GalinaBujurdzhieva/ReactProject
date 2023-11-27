@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { CoursesTimetableMain } from "./CoursesTimetableMain";
 import { CoursesTimetableStartingHours } from "./CoursesTimetableStartingHours";
+
+import { AllCoursesLink } from "./CoursesLinks/AllCoursesLink";
 import { WeightLossCourseLink } from "./CoursesLinks/WeightLossCourseLink";
 import { SwimmingCourseLink } from "./CoursesLinks/SwimmingCourseLink";
 import { FitnessCourseLink } from "./CoursesLinks/FitnessCourseLink";
@@ -21,17 +23,16 @@ import "../../../assets/styles/services.css";
 export const CoursesTimetable = () => {
   const [visibleClass, setVisibleClass] = useState(null);
   const visibleDivsHandler = (className) => {
-    setVisibleClass(className);
+    setVisibleClass((prevVisibleClass) => (prevVisibleClass === className ? null : className));
   };
-  console.log(visibleClass);
   return (
     <div className="col">
       <CoursesTimetableMain />
       <div className="timetable_filtering">
         <ul className="d-flex flex-row align-items-start justify-content-start flex-wrap">
-          <li className="active item_filter_btn" data-filter="*">
-            All Classes
-          </li>
+          <AllCoursesLink 
+          onClick={() => visibleDivsHandler(null)}
+          />
           <WeightLossCourseLink
             onClick={() => visibleDivsHandler("tt_class grid-item weight_loss")}
           />
@@ -53,69 +54,60 @@ export const CoursesTimetable = () => {
         </ul>
       </div>
       <div className="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
-        {/* Starting hours */}
         <CoursesTimetableStartingHours />
         {/* Monday */}
         <div className="tt_day">
           <div className="tt_title">monday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <WeightLossCourseDiv
-              isVisible={visibleClass === "tt_class grid-item weight_loss"}
+              isVisible={visibleClass === "tt_class grid-item weight_loss" || visibleClass === null}
             />
-            {/* Class */}
             <SwimmingCourseDiv
-              isVisible={visibleClass === "tt_class grid-item swimming"}
+              isVisible={visibleClass === "tt_class grid-item swimming" || visibleClass === null}
             />
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
-            {/* Class */}
             <SwimmingCourseDiv
-              isVisible={visibleClass === "tt_class grid-item swimming"}
+              isVisible={visibleClass === "tt_class grid-item swimming" || visibleClass === null}
+            />
+            <SwimmingCourseDiv
+              isVisible={visibleClass === "tt_class grid-item swimming" || visibleClass === null}
             />
           </div>
+          
         </div>
         {/* Tuesday */}
         <div className="tt_day">
           <div className="tt_title">tuesday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <WeightLossCourseDiv
-              isVisible={visibleClass === "tt_class grid-item weight_loss"}
+              isVisible={visibleClass === "tt_class grid-item weight_loss" || visibleClass === null}
             />
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
-            {/* Class */}
             <SwimmingCourseDiv
-              isVisible={visibleClass === "tt_class grid-item swimming"}
+              isVisible={visibleClass === "tt_class grid-item swimming" || visibleClass === null}
             />
-            {/* Class */}
             <YogaCourseDiv
-              isVisible={visibleClass === "tt_class grid-item yoga"}
+              isVisible={visibleClass === "tt_class grid-item yoga" || visibleClass === null}
             />
+            <div className="tt_class empty grid-item"></div>
           </div>
         </div>
         {/* Wednesday */}
         <div className="tt_day">
           <div className="tt_title">wednesday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <FitnessCourseDiv
-              isVisible={visibleClass === "tt_class grid-item fitness"}
+              isVisible={visibleClass === "tt_class grid-item fitness" || visibleClass === null}
             />
-            {/* Class */}
             <SwimmingCourseDiv
-              isVisible={visibleClass === "tt_class grid-item swimming"}
+              isVisible={visibleClass === "tt_class grid-item swimming" || visibleClass === null}
             />
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
-            {/* Class */}
             <FitnessCourseDiv
-              isVisible={visibleClass === "tt_class grid-item fitness"}
+              isVisible={visibleClass === "tt_class grid-item fitness" || visibleClass === null}
             />
-            {/* Class */}
             <FitnessCourseDiv
-              isVisible={visibleClass === "tt_class grid-item fitness"}
+              isVisible={visibleClass === "tt_class grid-item fitness" || visibleClass === null}
             />
           </div>
         </div>
@@ -123,85 +115,75 @@ export const CoursesTimetable = () => {
         <div className="tt_day">
           <div className="tt_title">thursday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <FitnessCourseDiv
-              isVisible={visibleClass === "tt_class grid-item fitness"}
+              isVisible={visibleClass === "tt_class grid-item fitness" || visibleClass === null}
             />
-            {/* Class */}
             <YogaCourseDiv
-              isVisible={visibleClass === "tt_class grid-item yoga"}
+              isVisible={visibleClass === "tt_class grid-item yoga" || visibleClass === null}
             />
-            {/* Class */}
             <YogaCourseDiv
-              isVisible={visibleClass === "tt_class grid-item yoga"}
+              isVisible={visibleClass === "tt_class grid-item yoga" || visibleClass === null}
             />
-            {/* Class */}
            <PilatesCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item pilates"}
+             isVisible={visibleClass === "tt_class grid-item pilates" || visibleClass === null}
            />
+           <div className="tt_class empty grid-item"></div>
           </div>
         </div>
         {/* Friday */}
         <div className="tt_day">
           <div className="tt_title">friday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <YogaCourseDiv
-              isVisible={visibleClass === "tt_class grid-item yoga"}
+              isVisible={visibleClass === "tt_class grid-item yoga" || visibleClass === null}
             />
-            {/* Class */}
             <NutritionCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item nutrition"}
+             isVisible={visibleClass === "tt_class grid-item nutrition" || visibleClass === null}
            />
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
-            {/* Class */}
             <FitnessCourseDiv
-              isVisible={visibleClass === "tt_class grid-item fitness"}
+              isVisible={visibleClass === "tt_class grid-item fitness" || visibleClass === null}
             />
+            <PilatesCourseDiv 
+             isVisible={visibleClass === "tt_class grid-item pilates" || visibleClass === null}
+           />
           </div>
         </div>
         {/* Saturday */}
         <div className="tt_day">
           <div className="tt_title">Saturday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
             <WeightLossCourseDiv
-              isVisible={visibleClass === "tt_class grid-item weight_loss"}
+              isVisible={visibleClass === "tt_class grid-item weight_loss" || visibleClass === null}
             />
-            {/* Class */}
             <PilatesCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item pilates"}
+             isVisible={visibleClass === "tt_class grid-item pilates" || visibleClass === null}
            />
-             {/* Class */}
              <PilatesCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item pilates"}
+             isVisible={visibleClass === "tt_class grid-item pilates" || visibleClass === null}
            />
-            {/* Class */}
             <NutritionCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item nutrition"}
+             isVisible={visibleClass === "tt_class grid-item nutrition" || visibleClass === null}
            />
+           <YogaCourseDiv
+              isVisible={visibleClass === "tt_class grid-item yoga" || visibleClass === null}
+            />
           </div>
         </div>
         {/* Sunday */}
         <div className="tt_day">
           <div className="tt_title">Sunday</div>
           <div className="tt_day_content grid">
-            {/* Class */}
            <NutritionCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item nutrition"}
+             isVisible={visibleClass === "tt_class grid-item nutrition" || visibleClass === null}
            />
-            {/* Class */}
             <WeightLossCourseDiv
-              isVisible={visibleClass === "tt_class grid-item weight_loss"}
+              isVisible={visibleClass === "tt_class grid-item weight_loss" || visibleClass === null}
             />
-            {/* Class */}
              <PilatesCourseDiv 
-             isVisible={visibleClass === "tt_class grid-item pilates"}
+             isVisible={visibleClass === "tt_class grid-item pilates" || visibleClass === null}
            />
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
-            {/* Class */}
             <div className="tt_class empty grid-item"></div>
           </div>
         </div>
