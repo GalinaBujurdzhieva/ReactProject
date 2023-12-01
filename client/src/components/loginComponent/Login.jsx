@@ -1,14 +1,27 @@
-import { useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef} from 'react'
+
+import useForm from '../../hooks/useForm'
+import { AuthContext } from '../../contexts/Users/AuthContext'
 
 import '../../assets/styles/login.css'
-
 import footerImage from '../../assets/images/footer.png'
 
+const LoginFormKeys = {
+  Email: 'email',
+  Password: 'password'
+}
+
 export const Login = () => {
-  const usernameInputRef = useRef();
+  const emailInputRef = useRef();
+  const {loginSubmitHandler} = useContext(AuthContext);
+
+  const {values, onChange, onSubmit} = useForm(loginSubmitHandler, {
+    [LoginFormKeys.Email]: '',
+    [LoginFormKeys.Password]: ''
+  })
   
   useEffect(() => {
-usernameInputRef.current.focus();
+    emailInputRef.current.focus();
   }, [])
   return(<div className="footer">
     <div className="container">
@@ -19,26 +32,32 @@ usernameInputRef.current.focus();
               <div className="newsletter_container">
               <h2 className='login text-center'>Login</h2>
                 <form
-                  action="#"
                   id="newsletter_form"
                   className="newsletter_form"
+                  onSubmit={onSubmit}
                 >
                   <input
                     type="text"
                     className="newsletter_input"
-                    placeholder="Enter your username here"
+                    placeholder="Enter your email here"
                     required="required"
-                    ref={usernameInputRef}
+                    ref={emailInputRef}
+                    name={LoginFormKeys.Email}
+                    value={values[LoginFormKeys.Email]}
+                    onChange={onChange}
                   />
                   <input
-                    type="text"
+                    type="password"
                     className="newsletter_input"
                     placeholder="Enter your password here"
                     required="required"
+                    name={LoginFormKeys.Password}
+                    value={values[LoginFormKeys.Password]}
+                    onChange={onChange}
                   />
+                  <button type="submit" className="login_button text-center">login</button>
                 </form>
               </div >
-              <button className="login_button text-center">login</button>
             </div>
           </div>
           <div className="footer_image_woman text-center">

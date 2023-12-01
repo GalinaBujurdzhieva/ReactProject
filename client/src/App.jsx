@@ -16,7 +16,6 @@ import { BlogCreate } from "./components/blogComponents/BlogCreate";
 import { BlogEdit } from "./components/blogComponents/BlogEdit";
 
 import { Services } from "./components/servicesComponents/Services";
-import { CourseDetails } from "./components/servicesComponents/coursesComponents/CourseDetails";
 
 import { Contact } from "./components/contactComponents/Contact";
 
@@ -37,7 +36,6 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home handleLinkClick={handleLinkClick}/>} />
@@ -61,7 +59,6 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
     </>
   );
 }

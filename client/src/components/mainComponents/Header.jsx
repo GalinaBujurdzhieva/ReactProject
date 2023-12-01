@@ -1,6 +1,13 @@
+import { useContext } from 'react'
 import { Link} from 'react-router-dom'
 
+import { AuthContext } from '../../contexts/Users/AuthContext'
+
 import { NavBarHeader } from './NavBarHeader'
+import { HamburgerHeader } from './HamburgerHeader'
+import { MobileMenuHeader } from './MobileMenuHeader'
+
+import dotLogo from '../../assets/images/dot.png'
 
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
@@ -11,12 +18,11 @@ import '../../assets/plugins/colorbox/colorbox.css'
 import '../../assets/styles/about.css'
 import '../../assets/styles/about_responsive.css'
 
-import dotLogo from '../../assets/images/dot.png'
-import { HamburgerHeader } from './HamburgerHeader'
-import { MobileMenuHeader } from './MobileMenuHeader'
-
-
 export const Header = () => {
+
+  const { auth } = useContext(AuthContext);
+  const isAuthenticated = !!auth.username;
+
     return(
         <header className="header">
         <div className="container">
@@ -26,7 +32,7 @@ export const Header = () => {
                 <Link to="/">
                   <div className="logo d-flex flex-row align-items-center justify-content-start">
                     <img src={dotLogo} alt="Spot Fitness Logo" />
-                    <div>
+                    <div >
                       Sport<span>fit</span>
                     </div>
                   </div>
@@ -34,6 +40,11 @@ export const Header = () => {
                 <NavBarHeader />
                 <HamburgerHeader />
               </div>
+              {isAuthenticated &&
+              <div className="username">
+              <span>Hello, {auth.username}</span>
+              </div>
+              }
             </div>
           </div>
         </div>

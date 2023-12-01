@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { MobileMenuHeader } from "./MobileMenuHeader";
 
+import '../../assets/styles/about.css'
+
 export const HamburgerHeader = () => {
 const [showMenu, setShowMenu] = useState(false);
 

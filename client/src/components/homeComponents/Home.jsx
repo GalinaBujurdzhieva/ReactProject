@@ -21,7 +21,7 @@ import "../../assets/styles/responsive.css";
 import DianeSmithImage from "../../assets/images/test_1.jpg";
 import EricRodriguezImage from "../../assets/images/test_2.jpg";
 import HelenWillowImage from "../../assets/images/test_3.jpg";
-import { HomeTestimonialsLinkToAll } from "./HomeTestimonialsLinkToAll";
+import { HomeTestimonialsLinkToCreateNew } from "./HomeTestimonialsLinkToCreateNew";
 
 export const Home = ({handleLinkClick}) => {
   const { blogs } = useContext(BlogContext);
@@ -166,7 +166,7 @@ export const Home = ({handleLinkClick}) => {
               </div>
             </div>
           </div>
-          <HomeTestimonialsLinkToAll />
+          <HomeTestimonialsLinkToCreateNew />
         </div>
       </div>
       {/* Services */}

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import '../../assets/styles/about.css'
+
 export const MobileMenuHeader = () => {
     return (
         <div className="menu trans_800">
