@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 
 import useForm from "../../hooks/useForm";
 import { AuthContext } from "../../contexts/Users/AuthContext";
@@ -34,6 +34,35 @@ export const Register = () => {
     firstNameInputRef.current.focus();
   }, []);
 
+  const [registerFormHasErrors, setRegisterFormHasErrors] = useState({
+    [RegisterFormKeys.FirstName] : '',
+    [RegisterFormKeys.LastName] : '',
+    [RegisterFormKeys.Email]: '',
+    [RegisterFormKeys.PhoneNumber]: '',
+    [RegisterFormKeys.Username]: '',
+    [RegisterFormKeys.Password]: '',
+    [RegisterFormKeys.ConfirmPassword]: ''
+  })
+
+  const firstAndLastNameErrorHandler = (e, minLength, maxLength) => {
+    const regex = /^[A-Z][a-z]+$/
+    setRegisterFormHasErrors((state) => ({
+      ...state,
+      [e.target.name]:
+        values[e.target.name].length < minLength ||
+        values[e.target.name].length > maxLength ||
+        !regex.test(e.target.value)
+    }));
+  };
+
+  const emailErrorHandler = (e) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setRegisterFormHasErrors((state) => ({
+      ...state,
+      [e.target.name]: !regex.test(e.target.value),
+    }));
+  };
+
   return (
     <div className="footer">
       <div className="container">
@@ -44,6 +73,11 @@ export const Register = () => {
                 <div className="newsletter_container">
                   <h2 className="register text-center">Register</h2>
                   <form onSubmit={onSubmit} id="newsletter_form" className="newsletter_form">
+                  {registerFormHasErrors.firstName && (
+                        <span className="error_message">
+                          Please enter valid name with first capital letter between 2 and 20 characters
+                        </span>
+                      )} 
                     <input
                       type="text"
                       className="newsletter_input"
@@ -53,7 +87,13 @@ export const Register = () => {
                       name={RegisterFormKeys.FirstName}
                       onChange={onChange}
                       value={values[RegisterFormKeys.FirstName]}
+                      onBlur={(e) => firstAndLastNameErrorHandler(e, 2, 20)}
                     />
+                     {registerFormHasErrors.lastName && (
+                        <span className="error_message">
+                          Please enter valid name with first capital letter between 2 and 20 characters
+                        </span>
+                      )}
                     <input
                       type="text"
                       className="newsletter_input"
@@ -62,7 +102,13 @@ export const Register = () => {
                       name={RegisterFormKeys.LastName}
                       onChange={onChange}
                       value={values[RegisterFormKeys.LastName]}
+                      onBlur={(e) => firstAndLastNameErrorHandler(e, 2, 20)}
                     />
+                    {registerFormHasErrors.email && (
+                        <span className="error_message">
+                          Please, type correct e-mail
+                        </span>
+                      )}
                     <input
                       type="text"
                       className="newsletter_input"
@@ -71,6 +117,7 @@ export const Register = () => {
                       name={RegisterFormKeys.Email}
                       onChange={onChange}
                       value={values[RegisterFormKeys.Email]}
+                      onBlur={(e) => emailErrorHandler(e)}
                     />
                     <input
                       type="text"

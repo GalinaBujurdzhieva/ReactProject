@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef } from 'react'
 import { CourseContext } from '../../contexts/Courses/CourseContext'
+import { AuthContext } from '../../contexts/Users/AuthContext'
 
 import { ServicesHome } from './ServicesHome'
 import { ServicesWelcome } from './ServicesWelcome'
@@ -25,7 +26,9 @@ export const Services = ({setFocus}) => {
       myDivRef.current.scrollIntoView({ behavior: 'smooth' });
       myDivRef.current.focus();
     }
-  }, [setFocus])
+  }, [setFocus]);
+  const { auth } = useContext(AuthContext);
+  const isAuthenticated = !!auth.username;
 
     return (
         <div className="super_container">
@@ -49,13 +52,13 @@ export const Services = ({setFocus}) => {
     <CoursesTimetableBackgroundImage />
     <div className="tt_overlay" />
     <div className="container">
-      <div className="row">
+      <div className="row" >
         <CoursesTimetable />
       </div>
     </div>
   </div>
   {/* Discount */}
-  <ServicesDiscount />
+  {!isAuthenticated && <ServicesDiscount />}
 </div>
     );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./components/homeComponents/Home";
 import { Header } from "./components/mainComponents/Header";
 import { Footer } from "./components/mainComponents/Footer";
@@ -21,6 +21,7 @@ import { Contact } from "./components/contactComponents/Contact";
 
 import { Register } from "./components/registerComponent/Register";
 import { Login } from "./components/loginComponent/Login";
+import { Logout } from "./components/logoutComponents/Logout";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -57,6 +58,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
         <Footer />
     </>

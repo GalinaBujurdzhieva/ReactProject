@@ -2,10 +2,12 @@ import { useContext, useState, useEffect, useRef } from "react";
 
 import * as trainerService from "../../services/trainerService";
 import { TrainerContext } from "../../contexts/Trainers/TrainerContext";
+import { AuthContext } from "../../contexts/Users/AuthContext";
 
 import { AboutMain } from "./AboutMain";
 import { AboutWelcome } from "./AboutWelcome";
 import { AboutTeamBackground } from "./teamComponents/AboutTeamBackground";
+import { AboutTeamMemberCreateLink } from "./teamComponents/AboutTeamMemberCreateLink";
 import { AboutTeamMember } from "./teamComponents/AboutTeamMember";
 import { AboutDiscount } from "./AboutDiscount";
 import { AboutSkills } from "./AboutSkills";
@@ -18,7 +20,6 @@ import "../../assets/plugins/OwlCarousel2-2.2.1/animate.css";
 import "../../assets/plugins/colorbox/colorbox.css";
 import "../../assets/styles/about.css";
 import "../../assets/styles/about_responsive.css";
-import { AboutTeamMemberCreateLink } from "./teamComponents/AboutTeamMemberCreateLink";
 
 export const About = ({ shouldFocus }) => {
   const myDivRef = useRef(null);
@@ -34,6 +35,9 @@ export const About = ({ shouldFocus }) => {
       myDivRef.current.focus();
     }
   }, [shouldFocus]);
+
+  const { auth } = useContext(AuthContext);
+  const isAuthenticated = !!auth.username;
 
   return (
     <>
@@ -67,7 +71,7 @@ export const About = ({ shouldFocus }) => {
           <div className="container">
             <div className="row row-lg-eq-height">
               {/* Discount */}
-              <AboutDiscount />
+              {!isAuthenticated && <AboutDiscount />}
               <AboutSkills />
             </div>
           </div>

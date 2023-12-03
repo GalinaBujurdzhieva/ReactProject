@@ -10,6 +10,7 @@ import { HomeAbout } from "./HomeAbout";
 import { HomeClassesMain } from "./HomeClassesMain";
 import { CourseDetails } from "../servicesComponents/coursesComponents/CourseDetails";
 import { HomeTestimonialsMainBackground } from "./HomeTestimonialsMainBackground";
+import { HomeTestimonialsLinkToCreateNew } from "./HomeTestimonialsLinkToCreateNew";
 import { HomeBlogMainBackground } from "./HomeBlogMainBackground";
 import { HomeBlogMain } from "./HomeBlogMain";
 import { BlogPost } from "../blogComponents/BlogPost";
@@ -21,7 +22,6 @@ import "../../assets/styles/responsive.css";
 import DianeSmithImage from "../../assets/images/test_1.jpg";
 import EricRodriguezImage from "../../assets/images/test_2.jpg";
 import HelenWillowImage from "../../assets/images/test_3.jpg";
-import { HomeTestimonialsLinkToCreateNew } from "./HomeTestimonialsLinkToCreateNew";
 
 export const Home = ({handleLinkClick}) => {
   const { blogs } = useContext(BlogContext);
@@ -173,9 +173,9 @@ export const Home = ({handleLinkClick}) => {
       <div className="services">
         <div className="container">
           <HomeClassesMain />
-          <div className="row services_row">
+          <div className="row services_row" >
             {Object.values(courses).map((course) => (
-              <CourseDetails handleLinkClick = {handleLinkClick} key={course._id} {...course} />
+              <CourseDetails handleLinkClick={handleLinkClick} key={course._id} {...course} />
             ))}
           </div>
         </div>

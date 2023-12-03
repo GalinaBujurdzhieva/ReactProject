@@ -30,7 +30,7 @@ export const NavBarHeader = () => {
         {isAuthenticated 
           ? 
           <li>
-            <Link to="/">Log out</Link>
+            <Link to="/logout">Log out</Link>
           </li>
           :
           <>
