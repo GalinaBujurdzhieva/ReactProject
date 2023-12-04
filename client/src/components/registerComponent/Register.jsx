@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/Users/AuthContext";
 
 import "../../assets/styles/register.css";
 
-
 const RegisterFormKeys = {
   FirstName: 'firstName',
   LastName: 'lastName',
@@ -45,23 +44,47 @@ export const Register = () => {
   })
 
   const firstAndLastNameErrorHandler = (e, minLength, maxLength) => {
-    const regex = /^[A-Z][a-z]+$/
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/
     setRegisterFormHasErrors((state) => ({
       ...state,
       [e.target.name]:
         values[e.target.name].length < minLength ||
         values[e.target.name].length > maxLength ||
-        !regex.test(e.target.value)
+        !nameRegex.test(e.target.value)
     }));
   };
 
   const emailErrorHandler = (e) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setRegisterFormHasErrors((state) => ({
       ...state,
-      [e.target.name]: !regex.test(e.target.value),
+      [e.target.name]: !emailRegex.test(e.target.value),
     }));
   };
+
+  const phoneErrorHandler = (e)=>{
+    const phoneRegex = /^(\+\d{1,2}\s?)?(\d{3}[\s]?)?\d{3}[\s]?\d{4}$/;
+    setRegisterFormHasErrors((state) =>({
+      ...state,
+      [e.target.name]: !phoneRegex.test(e.target.value)
+    }))
+  }
+
+  const usernameAndPasswordErrorHandler = (e) =>{
+    const usernameAndPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+    setRegisterFormHasErrors((state) =>({
+      ...state,
+      [e.target.name]: !usernameAndPasswordRegex.test(e.target.value)
+    }))
+  }
+
+  const confirmPasswordErrorHandler = (e) =>{
+    console.log(values[RegisterFormKeys.Password]);
+    setRegisterFormHasErrors((state) =>({
+      ...state,
+      [e.target.name]: e.target.value !== values[RegisterFormKeys.Password]
+    }))
+  }
 
   return (
     <div className="footer">
@@ -72,10 +95,10 @@ export const Register = () => {
               <div className="footer_content ">
                 <div className="newsletter_container">
                   <h2 className="register text-center">Register</h2>
-                  <form onSubmit={onSubmit} id="newsletter_form" className="newsletter_form">
-                  {registerFormHasErrors.firstName && (
+                  <form onSubmit={onSubmit} id="newsletter_form" className="newsletter_form text-center">
+                  {registerFormHasErrors[RegisterFormKeys.FirstName] && (
                         <span className="error_message">
-                          Please enter valid name with first capital letter between 2 and 20 characters
+                          Please enter valid name with latin letters between 2 and 20 characters
                         </span>
                       )} 
                     <input
@@ -89,9 +112,9 @@ export const Register = () => {
                       value={values[RegisterFormKeys.FirstName]}
                       onBlur={(e) => firstAndLastNameErrorHandler(e, 2, 20)}
                     />
-                     {registerFormHasErrors.lastName && (
+                     {registerFormHasErrors[RegisterFormKeys.LastName] && (
                         <span className="error_message">
-                          Please enter valid name with first capital letter between 2 and 20 characters
+                          Please enter valid name with latin letters between 2 and 20 characters
                         </span>
                       )}
                     <input
@@ -104,7 +127,7 @@ export const Register = () => {
                       value={values[RegisterFormKeys.LastName]}
                       onBlur={(e) => firstAndLastNameErrorHandler(e, 2, 20)}
                     />
-                    {registerFormHasErrors.email && (
+                    {registerFormHasErrors[RegisterFormKeys.Email] && (
                         <span className="error_message">
                           Please, type correct e-mail
                         </span>
@@ -119,6 +142,11 @@ export const Register = () => {
                       value={values[RegisterFormKeys.Email]}
                       onBlur={(e) => emailErrorHandler(e)}
                     />
+                     {registerFormHasErrors[RegisterFormKeys.PhoneNumber] && (
+                        <span className="error_message">
+                          Please, type correct phone number in one of the following formats: "+5 555 555 5555" or "+55 555 555 5555"
+                        </span>
+                      )}
                     <input
                       type="text"
                       className="newsletter_input"
@@ -127,7 +155,13 @@ export const Register = () => {
                       name={RegisterFormKeys.PhoneNumber}
                       onChange={onChange}
                       value={values[RegisterFormKeys.PhoneNumber]}
+                      onBlur={(e) => phoneErrorHandler(e)}
                     />
+                      {registerFormHasErrors[RegisterFormKeys.Username] && (
+                        <span className="error_message">
+                          Please, enter username with at least 1 small letter, 1 capital letter, 1 digit and 1 special symbol
+                        </span>
+                      )}
                      <input
                       type="text"
                       className="newsletter_input"
@@ -136,7 +170,13 @@ export const Register = () => {
                       name={RegisterFormKeys.Username}
                       onChange={onChange}
                       value={values[RegisterFormKeys.Username]}
+                      onBlur={(e) => usernameAndPasswordErrorHandler(e)}
                     />
+                    {registerFormHasErrors[RegisterFormKeys.Password] && (
+                        <span className="error_message">
+                          Please, enter password with at least 1 small letter, 1 capital letter, 1 digit and 1 special symbol
+                        </span>
+                      )}
                     <input
                       type="password"
                       className="newsletter_input"
@@ -145,7 +185,13 @@ export const Register = () => {
                       name={RegisterFormKeys.Password}
                       onChange={onChange}
                       value={values[RegisterFormKeys.Password]}
+                      onBlur={(e) => usernameAndPasswordErrorHandler(e)}
                     />
+                      {registerFormHasErrors[RegisterFormKeys.ConfirmPassword] && (
+                        <span className="error_message">
+                          Password and confirm password do not match
+                        </span>
+                      )}
                     <input
                       type="password"
                       className="newsletter_input"
@@ -154,8 +200,15 @@ export const Register = () => {
                       name={RegisterFormKeys.ConfirmPassword}
                       onChange={onChange}
                       value={values[RegisterFormKeys.ConfirmPassword]}
+                      onBlur={(e) => confirmPasswordErrorHandler(e)}
                     />
-                    <button type="submit" className="register_button text-center">
+                    <button 
+                    type="submit" 
+                    className="register_button"
+                    disabled={Object.values(registerFormHasErrors).some(
+                      (x) => x
+                    )}
+                    >
                       register
                     </button>
                   </form>

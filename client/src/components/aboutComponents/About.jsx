@@ -2,7 +2,6 @@ import { useContext, useState, useEffect, useRef } from "react";
 
 import * as trainerService from "../../services/trainerService";
 import { TrainerContext } from "../../contexts/Trainers/TrainerContext";
-import { AuthContext } from "../../contexts/Users/AuthContext";
 
 import { AboutMain } from "./AboutMain";
 import { AboutWelcome } from "./AboutWelcome";
@@ -36,9 +35,6 @@ export const About = ({ shouldFocus }) => {
     }
   }, [shouldFocus]);
 
-  const { auth } = useContext(AuthContext);
-  const isAuthenticated = !!auth.username;
-
   return (
     <>
       <title>About us</title>
@@ -71,7 +67,7 @@ export const About = ({ shouldFocus }) => {
           <div className="container">
             <div className="row row-lg-eq-height">
               {/* Discount */}
-              {!isAuthenticated && <AboutDiscount />}
+              <AboutDiscount />
               <AboutSkills />
             </div>
           </div>

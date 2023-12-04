@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef} from 'react'
+import { useContext, useEffect, useRef, useState} from 'react'
 
 import useForm from '../../hooks/useForm'
 import { AuthContext } from '../../contexts/Users/AuthContext'
@@ -23,6 +23,12 @@ export const Login = () => {
   useEffect(() => {
     emailInputRef.current.focus();
   }, [])
+
+  const [loginFormHasErrors, setLoginFormHasErrors] = useState({
+    [LoginFormKeys.Email]: '',
+    [LoginFormKeys.Password]: ''
+})
+
   return(<div className="footer">
     <div className="container">
       <div className="row">
@@ -33,7 +39,7 @@ export const Login = () => {
               <h2 className='login text-center'>Login</h2>
                 <form
                   id="newsletter_form"
-                  className="newsletter_form"
+                  className="newsletter_form text-center"
                   onSubmit={onSubmit}
                 >
                   <input
@@ -55,12 +61,12 @@ export const Login = () => {
                     value={values[LoginFormKeys.Password]}
                     onChange={onChange}
                   />
-                  <button type="submit" className="login_button text-center">login</button>
+                  <button type="submit" className="login_button">login</button>
                 </form>
               </div >
             </div>
           </div>
-          <div className="footer_image_woman text-center">
+         <div className="footer_image_woman text-center">
                 <img src={footerImage} alt="" />
               </div>
         </div>

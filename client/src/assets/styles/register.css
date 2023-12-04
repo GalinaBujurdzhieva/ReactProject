@@ -3,11 +3,6 @@
 	margin-top: 20px;
     margin-bottom: 20px;
 }
-.footer_content
-{
-	padding-bottom: 80px;
-	z-index: 1;
-}
 .newsletter_container
 {
 	padding-top: 70px;
@@ -129,11 +124,9 @@
 
 .register_button
 {
-	position: absolute;
-	top: 800px;
-	right: 36%;
 	width: 200px;
 	height: 61px;
+	margin-bottom: 20px;
 	border-radius: 22px;
 	background: #ff880f;
 	border: none;
