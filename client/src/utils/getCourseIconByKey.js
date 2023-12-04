@@ -15,5 +15,5 @@ const images = {
 }
 
 export const getIcon= (courseName) =>{
-return images[courseName]
+return images[courseName];
 }
