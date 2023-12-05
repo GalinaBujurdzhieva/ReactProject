@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {BlogContext} from '../../contexts/Blogs/BlogContext'
+import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { BlogMain } from "./BlogMain";
 import { BlogWelcome } from "./BlogWelcome";
@@ -30,7 +31,9 @@ export const Blog = () => {
         <div className="container">
          <BlogWelcome />
           <div className="row blog_row">
-            {Object.values(blogs)
+            {blogs.length === 0
+            ? toastrNotificationsService.showError('Something went wrong. Could not load blogs')
+            :Object.values(blogs)
               .slice(-3)
               .map((blog) => (
                 <BlogPost key={blog._id} {...blog} />

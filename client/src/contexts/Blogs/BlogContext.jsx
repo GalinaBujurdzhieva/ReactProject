@@ -11,7 +11,11 @@ const BlogProvider = ({ children }) => {
     const [reloadBlogsAfterEdit, setReloadBlogsAfterEdit] = useState(false);
 
     useEffect(() => {
-      blogService.getAll().then((blogs) => setBlogs(blogs));
+      blogService.getAll()
+      .then((blogs) => setBlogs(blogs))
+      .catch((error) =>{
+        throw error;
+      });
     }, [reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit]);
 
     const addBlogFunc = (newBlog) => {

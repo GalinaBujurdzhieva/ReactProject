@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import { CourseContext } from "../../contexts/Courses/CourseContext";
 import * as bestProposalsService from "../../services/bestProposalService";
+import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { HomeMain } from "./HomeMain";
 import { HomeBestProposalsDetails } from "./HomeBestProposalsDetails";
@@ -31,7 +32,10 @@ export const Home = ({handleLinkClick}) => {
   useEffect(() => {
     bestProposalsService
       .getAll()
-      .then((bestProposals) => setBestProposals(bestProposals));
+      .then((bestProposals) => setBestProposals(bestProposals))
+      .catch((error) =>{
+        toastrNotificationsService.showError('Something went wrong. Could not load best proposals')
+      });
   }, []);
 
   return (
@@ -174,7 +178,9 @@ export const Home = ({handleLinkClick}) => {
         <div className="container">
           <HomeClassesMain />
           <div className="row services_row" >
-            {Object.values(courses).map((course) => (
+            { courses.length === 0
+            ? toastrNotificationsService.showError('Something went wrong. Could not load courses')
+            : Object.values(courses).map((course) => (
               <CourseDetails handleLinkClick={handleLinkClick} key={course._id} {...course} />
             ))}
           </div>
@@ -187,7 +193,9 @@ export const Home = ({handleLinkClick}) => {
         <div className="container">
           <HomeBlogMain />
           <div className="row blog_row">
-            {Object.values(blogs)
+            {blogs.length === 0
+            ? toastrNotificationsService.showError('Something went wrong. Could not load blogs')
+            :Object.values(blogs)
               .slice(-3)
               .map((blog) => (
                 <BlogPost key={blog._id} {...blog} />

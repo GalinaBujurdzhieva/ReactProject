@@ -11,7 +11,11 @@ const TrainerProvider = ({children}) => {
     const [reloadTrainersAfterEdit, setReloadTrainersAfterEdit] = useState(false);
 
     useEffect(() => {
-      trainerService.getAll().then((trainers) => setTrainers(trainers));
+      trainerService.getAll()
+      .then((trainers) => setTrainers(trainers))
+      .catch((error) =>{
+        throw error;
+      });
     }, [reloadTrainers, reloadTrainersAfterDelete, reloadTrainersAfterEdit]);
 
     const addTrainerFunc = (newTrainer) => {

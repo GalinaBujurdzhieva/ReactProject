@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Home } from "./components/homeComponents/Home";
 import { Header } from "./components/mainComponents/Header";
 import { Footer } from "./components/mainComponents/Footer";
@@ -22,6 +25,7 @@ import { Contact } from "./components/contactComponents/Contact";
 import { Register } from "./components/registerComponent/Register";
 import { Login } from "./components/loginComponent/Login";
 import { Logout } from "./components/logoutComponents/Logout";
+import { ErrorPage } from "./components/errorPageComponent/ErrorPage";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -59,7 +63,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
+        <ToastContainer />
         <Footer />
     </>
   );

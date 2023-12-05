@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect, useRef } from "react";
 
 import * as trainerService from "../../services/trainerService";
+import toastrNotificationsService from "../../services/toastrNotificationsService"
 import { TrainerContext } from "../../contexts/Trainers/TrainerContext";
 
 import { AboutMain } from "./AboutMain";
@@ -55,7 +56,9 @@ export const About = ({ shouldFocus }) => {
             <div className="container">
               <div className="row team_row">
                 {/* Team Member */}
-                {Object.values(trainers).map((trainer) => (
+                {trainers.length === 0
+                ? toastrNotificationsService.showError('Something went wrong. Could not load trainers')
+                : Object.values(trainers).map((trainer) => (
                   <AboutTeamMember key={trainer._id} {...trainer} />
                 ))}
               </div>

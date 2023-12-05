@@ -8,7 +8,11 @@ const CourseProvider = ({children}) => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-      courseService.getAll().then((courses) => setCourses(courses));
+      courseService.getAll()
+      .then((courses) => setCourses(courses))
+      .catch((error) =>{
+        throw error;
+      });
     }, []);
 
   return (
