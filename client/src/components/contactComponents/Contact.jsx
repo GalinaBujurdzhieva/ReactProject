@@ -30,7 +30,7 @@ export const Contact = () => {
           {/* Contact Map */}
           <div className="contact_map">
             {/* Google Map */}
-            <MapContainer />
+            {/* <MapContainer /> */}
             <MyComponent />
           </div>
         </div>

@@ -1,19 +1,41 @@
 const baseUrl = "http://localhost:3030/jsonstore/trainers";
+const baseUrlNew = "http://localhost:3030/data/trainers";
 
+// export const getAll = async () => {
+//   try{
+// const response = await fetch(baseUrl);
+// const result = await response.json();
+// return result.trainers;
+// } catch (error) {
+//   console.error('Error:', error);
+//   throw error;
+// }
+// }
 export const getAll = async () => {
   try{
-const response = await fetch(baseUrl);
+const response = await fetch(baseUrlNew);
 const result = await response.json();
-return result.trainers;
+return result;
 } catch (error) {
   console.error('Error:', error);
   throw error;
 }
 }
 
+// export const getOne = async (trainerId) => {
+//   try{
+//     const response = await fetch(`${baseUrl}/trainers/${trainerId}`);
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     console.error('Error:', error);
+//     throw error;
+//   }
+// }
+
 export const getOne = async (trainerId) => {
   try{
-    const response = await fetch(`${baseUrl}/trainers/${trainerId}`);
+    const response = await fetch(`${baseUrlNew}/${trainerId}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -31,15 +53,11 @@ export const create = async (postData) => {
         },
         body: JSON.stringify(postData),
       });
-      if (response.ok) {
-        console.log("Trainer created successfully");
         const result = await JSON.stringify(response);
         return result;
-      } else {
-        console.log("Failed to create new trainer");
-      }
     } catch (error) {
       console.log("Error:", error);
+      throw error;
     }
   };
 
@@ -52,15 +70,11 @@ export const create = async (postData) => {
         },
         body: JSON.stringify(data),
       });
-      if (response.ok) {
-        console.log("Trainer edited successfully");
         const result = JSON.stringify(response);
         return result;
-      } else {
-        console.log("Failed to edit trainer");
-      }
     } catch (error) {
       console.log("Error:", error);
+      throw error;
     }
   };
 
@@ -73,13 +87,11 @@ export const create = async (postData) => {
         },
       });
       if (response.ok) {
-        console.log("Trainer deleted successfully");
         const result = await response.json();
         return result;
-      } else {
-        console.error("Failed to delete trainer");
       }
     } catch (error) {
       console.log("Error:", error);
+      throw error;
     }
   };

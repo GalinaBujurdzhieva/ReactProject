@@ -14,15 +14,6 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
     const navigate = useNavigate();
     const trainerToBeEdited = Object.values(trainers).find(trainer => trainer._id === _id);
 
-    const initialInputValues = {
-      _id: trainerToBeEdited._id,
-      name: trainerToBeEdited.name,
-      age: trainerToBeEdited.age, 
-      imageUrl: trainerToBeEdited.imageUrl !== undefined ? trainerToBeEdited.imageUrl : imageHelper.getImage(trainerToBeEdited.name),
-      courses: trainerToBeEdited.courses,
-      description: trainerToBeEdited.description
-  }
-
     const [values, setValues] = useState({
         _id: trainerToBeEdited._id,
         name: trainerToBeEdited.name,
@@ -87,7 +78,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
         }));
       };
 
-      const isPositive = (e) => {
+      const isMoreThanEighteen = (e) => {
         let number = Number(e.target.value);
         setTrainerFormHasErrors(state => ({
             ...state,
@@ -163,7 +154,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
                           required="required"
                           value={values.age}
                           onChange={changeHandler}
-                          onBlur={isPositive}
+                          onBlur={isMoreThanEighteen}
                         />
                         <div>
                         <div className="form-check form-check-inline">

@@ -31,7 +31,7 @@ export const Blog = () => {
         <div className="container">
          <BlogWelcome />
           <div className="row blog_row">
-            {blogs.length === 0
+            {Object.values(blogs).length === 0
             ? toastrNotificationsService.showError('Something went wrong. Could not load blogs')
             :Object.values(blogs)
               .slice(-3)

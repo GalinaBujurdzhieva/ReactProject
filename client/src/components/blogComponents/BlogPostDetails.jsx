@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import * as func from "../../utils/dateFormatter";
 import * as blogService from "../../services/blogService";
+import toastrNotificationsService from "../../services/toastrNotificationsService"
 import {BlogContext} from "../../contexts/Blogs/BlogContext";
 
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
@@ -17,7 +18,11 @@ export const BlogPostDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    blogService.getOne(_id).then((result) => setCurrentBlog(result));
+    blogService.getOne(_id)
+    .then((result) => setCurrentBlog(result))
+    .catch((error) =>{
+      toastrNotificationsService.showError('Something went wrong. Could not show this blog')
+    });
   }, [_id]);
 
   const deleteBlogHandler = (e, blogId) => {

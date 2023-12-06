@@ -3,6 +3,7 @@ import {useParams, useNavigate } from "react-router-dom";
 
 import * as trainerService from "../../../services/trainerService";
 import * as imageHelper from "../../../utils/getImageByKey";
+import toastrNotificationsService from "../../../services/toastrNotificationsService"
 import { TrainerContext } from "../../../contexts/Trainers/TrainerContext";
 
 import "../../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
@@ -17,7 +18,11 @@ export const AboutTeamMemberDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    trainerService.getOne(_id).then((result) => setCurrentTrainer(result));
+    trainerService.getOne(_id)
+    .then((result) => setCurrentTrainer(result))
+    .catch((error) =>{
+      toastrNotificationsService.showError('Something went wrong. Could not show this trainer ')
+    });
   }, []);
 
   const deleteTrainerFromServerHandler = (e, trainerId) => {

@@ -1,19 +1,40 @@
 const baseUrl = "http://localhost:3030/jsonstore/blogs";
+const baseUrlNew = "http://localhost:3030/data/blogs";
 
+// export const getAll = async () => {
+//   try {
+//   const response = await fetch(baseUrl);
+//   const result = await response.json();
+//   return result.blogs;
+//   } catch (error) {
+//     console.error('Error:', error);
+//     throw error;
+//   }
+// };
 export const getAll = async () => {
   try {
-  const response = await fetch(baseUrl);
+  const response = await fetch(baseUrlNew);
   const result = await response.json();
-  return result.blogs;
+  return result;
   } catch (error) {
     console.error('Error:', error);
     throw error;
   }
 };
 
+// export const getOne = async (blogId) => {
+//   try{
+//   const response = await fetch(`${baseUrl}/blogs/${blogId}`);
+//   const result = await response.json();
+//   return result;
+// } catch (error) {
+//   console.error('Error:', error);
+//   throw error;
+// }
+// };
 export const getOne = async (blogId) => {
   try{
-  const response = await fetch(`${baseUrl}/blogs/${blogId}`);
+  const response = await fetch(`${baseUrlNew}/${blogId}`);
   const result = await response.json();
   return result;
 } catch (error) {
@@ -37,15 +58,12 @@ export const create = async (postData) => {
       },
       body: JSON.stringify(postData),
     });
-    if (response.ok) {
-      console.log("Blog created successfully");
-      const result = JSON.stringify(response);
-      return result;
-    } else {
-      console.log("Failed to create blog");
-    }
+    const result = JSON.stringify(response);
+    return result;
+    
   } catch (error) {
     console.log("Error:", error);
+    throw error;
   }
 };
 
@@ -58,15 +76,14 @@ export const edit = async (blogId, data) => {
       },
       body: JSON.stringify(data),
     });
-    if (response.ok) {
-      console.log("Blog edited successfully");
+    if (!response.ok) {
+      throw new Error();
+    }
       const result = JSON.stringify(response);
       return result;
-    } else {
-      console.log("Failed to edit blog");
-    }
   } catch (error) {
     console.log("Error:", error);
+    throw error;
   }
 };
 
@@ -80,10 +97,9 @@ export const remove = async (blogId) => {
     });
     if (response.ok) {
       console.log("Blog deleted successfully");
-    } else {
-      console.error("Failed to delete blog");
     }
   } catch (error) {
     console.log("Error:", error);
+    throw error;
   }
 };

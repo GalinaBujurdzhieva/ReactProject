@@ -21,6 +21,7 @@ import '../../assets/styles/services_responsive.css'
 
 export const Services = ({setFocus}) => {
   const {courses} = useContext(CourseContext);
+  console.log(Object.values(courses).length);
   const myDivRef = useRef(null);
   useEffect(()=> {
     if (setFocus) {
@@ -41,7 +42,7 @@ export const Services = ({setFocus}) => {
     <div className="container">
       <ServicesWelcome myDivRef = {myDivRef}/>
       <div className="row services_row_details" >
-      { courses.length === 0
+      { Object.values(courses).length === 0
       ? toastrNotificationsService.showError('Something went wrong. Could not load courses')
       : Object.values(courses)
               .map((course) => (
@@ -56,7 +57,8 @@ export const Services = ({setFocus}) => {
     <div className="tt_overlay" />
     <div className="container">
       <div className="row" >
-        <CoursesTimetable />
+        {Object.values(courses).length > 0 &&
+        <CoursesTimetable />}
       </div>
     </div>
   </div>
