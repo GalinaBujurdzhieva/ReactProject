@@ -17,7 +17,7 @@ export const BlogPost = ({ ...blog }) => {
         <Link to={`/blog/${blog._id}`}>
           <div className="blog_post_title">{blog.title}</div>
         </Link>
-        <div className="blog_post_date">{func.formatDate(blog.createdAt)}</div>
+        <div className="blog_post_date">{func.formatDate(blog._createdOn)}</div>
         <div className="blog_post_text">
           <p>{blog.text}</p>
         </div>

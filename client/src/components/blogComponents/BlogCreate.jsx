@@ -38,10 +38,10 @@ export const BlogCreate = () => {
     try {
     const newBlog = blogService.create(values);
     addBlogFunc(newBlog);
-    navigate("/blog/all");
     } catch (error) {
       toastrNotificationsService.showError('Something went wrong. Could not create blog')
     }
+    navigate("/blog/all");
   };
 
   const blogTitleAndTextErrorHandler = (e, minLength, maxLength) => {

@@ -61,6 +61,8 @@ export const create = async (postData) => {
     }
   };
 
+  
+
   export const edit = async (trainerId, data) => {
     try {
       const response = await fetch(`${baseUrl}/trainers/${trainerId}`, {
@@ -84,6 +86,7 @@ export const create = async (postData) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          "X-Authorization": token
         },
       });
       if (response.ok) {

@@ -7,7 +7,7 @@ export const login = async (email, password) =>{
   if (email === 'admin@abv.bg' && password === 'admin') {
     headers = {
       ...headers,
-      "X-Admin": "X-Admin"
+      "X-Admin": ""
     }
   }
     try {

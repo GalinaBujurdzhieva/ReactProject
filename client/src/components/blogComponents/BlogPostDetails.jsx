@@ -46,7 +46,7 @@ export const BlogPostDetails = () => {
           {currentBlog.title}
         </div>
         <div className="blog_post_date d-flex justify-content-center align-items-center">
-          {func.formatDate(currentBlog.createdAt)}
+          {func.formatDate(currentBlog._createdOn)}
         </div>
         <div className="blog_post_text_all">
           <p>{currentBlog.text}</p>
