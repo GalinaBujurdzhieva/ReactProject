@@ -1465,7 +1465,7 @@
         imageUrl:
           "https://www.indy100.com/media-library/picture.jpg?id=28117167&width=1245&height=700&quality=85&coordinates=69%2C0%2C69%2C0",
         _createdOn: 1699268400000,
-        _ownerId: "593c7f75-8535-460c-ae91-1219998ee478",
+        _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
         text: "When it comes to achieving the perfect body, nutrition plays a crucial role. Here are some key tips to ensure you're getting the most out of your diet:\n\n1. Focus on a balanced diet that includes carbohydrates, proteins, and healthy fats.\n2. Eat a variety of nutrient-rich foods to ensure you get all the necessary vitamins and minerals.\n3. Control portion sizes to avoid overeating and excessive calorie intake.\n4. Stay mindful of your calorie consumption, especially if you're trying to lose weight.\n5. Incorporate lean proteins like chicken, fish, and beans to support muscle growth and repair.\n6. Consume whole grains for sustained energy and fiber.\n7. Limit your intake of processed and sugary foods, which can lead to weight gain and health issues.\n8. Stay hydrated by drinking plenty of water throughout the day.\n9. Plan your meals and snacks in advance to avoid making unhealthy choices.\n10. Consider consulting with a registered dietitian for personalized guidance and meal plans tailored to your goals.\n\nRemember, your body's transformation is a holistic journey, and nutrition is a fundamental building block for achieving your goals.",
       },
       "8b7d4f31-62a4-4cf6-9b24-7ea4e67c5789": {
@@ -1560,8 +1560,8 @@
             name: "Michael Smith",
             age: 29,
             courses: ["Private Fitness", "Nutrition"],
-            createdAt: "2023-11-07T16:00:00Z",
-            _ownerId: "ab3c1e50-9058-4d5e-8f32-0eda75c943b5",
+            _createdOn: 1699372800000,
+            _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
             description: "Meet Michael Smith, a dynamic fitness and nutrition expert. With a burning passion for personal well-being, he offers specialized courses in private fitness and nutrition. His extensive knowledge and dedication make him the ideal mentor for anyone looking to embark on a journey towards a healthier and fitter life. Michael's private fitness program is customized to your individual needs and goals, whether you're aiming to lose weight, build muscle, or improve overall fitness. Complementing this, his nutrition course equips you with the tools to make informed dietary choices. Join Michael's courses, and let his expertise guide you to a healthier, more vibrant you."
           },
           "1d87b5c8-2601-46bb-bfca-15179c7b7501": {
@@ -1569,8 +1569,8 @@
             name: "Simone Parker",
             age: 32,
             courses: ["Yoga", "Pilates"],
-            createdAt: "2023-11-07T16:00:00Z",
-            _ownerId: "2dc0aaac-24de-47ae-ba90-4c1f0f392f58",
+            _createdOn: 1699372800000,
+            _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
             description: "This is Simone Parker, a dedicated health and fitness instructor. Simone's passion lies in the practice and teaching of yoga and Pilates, two disciplines that promote physical and mental well-being. With a deep understanding of the mind-body connection, Simone has honed her expertise to provide transformative experiences for her students. In her yoga and Pilates classes, you'll discover a welcoming environment that nurtures not only your physical strength but also your inner peace. Simone's teaching style is a perfect blend of mindfulness, technique, and adaptability, making her courses ideal for individuals of all levels. Join Simone on a journey of self-discovery and holistic well-being."
           },
           "d7d6859c-291e-4cf1-a7dc-c8db85a28cd6": {
@@ -1578,7 +1578,7 @@
             name: "William James",
             age: 36,
             courses: ["Weight Loss", "Swimming"],
-            createdAt: "2023-11-07T16:00:00Z",
+            _createdOn: 1699372800000,
             _ownerId: "c31fab6a-5a69-43fa-979c-87c62cb191dd",
             description: "Introducing William James, a fitness expert and motivator. William's passion revolves around helping individuals achieve their weight loss goals and experience the exhilaration of spinning. With years of experience in the fitness industry, William has honed his knowledge and skills to provide personalized and effective weight loss programs. In his high-energy spinning classes, you'll find an atmosphere filled with enthusiasm and invigorating music. William's teaching approach is all about empowerment, guiding you on your fitness journey, and ensuring that every step taken leads to success. Join William and embark on a path to a healthier, fitter, and more energetic you."
           }

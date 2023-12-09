@@ -25,6 +25,8 @@ export const BlogPostDetails = () => {
     });
   }, [_id]);
 
+  const auth = JSON.parse(localStorage.getItem("auth"));
+
   const deleteBlogHandler = (e, blogId) => {
     e.preventDefault();
     blogService.remove(blogId);
@@ -51,10 +53,12 @@ export const BlogPostDetails = () => {
         <div className="blog_post_text_all">
           <p>{currentBlog.text}</p>
         </div>
+        {auth?.email === "admin@abv.bg" &&
         <div className="btn-group d-flex justify-content-center" role="group">
           <button onClick={()=> loadEditBlogHandler(currentBlog._id)} type="button" className="button blog_button">Edit Blog</button>
           <button onClick={(e)=> deleteBlogHandler(e, currentBlog._id)} type="submit" className="button blog_button">Delete Blog</button>
         </div>
+        }
       </div>
     </div>
   );

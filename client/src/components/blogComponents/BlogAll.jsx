@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {BlogContext} from "../../contexts/Blogs/BlogContext";
-import * as blogService from '../../services/blogService'
-import toastrNotificationsService from "../../services/toastrNotificationsService"
+import { BlogContext } from "../../contexts/Blogs/BlogContext";
+import * as blogService from "../../services/blogService";
+import toastrNotificationsService from "../../services/toastrNotificationsService";
 
 import { BlogPost } from "./BlogPost";
 
@@ -13,17 +13,22 @@ import "../../assets/styles/blog.css";
 import "../../assets/styles/blog_responsive.css";
 
 export const BlogAll = () => {
-  const {blogs, reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit} = useContext(BlogContext);
+  const { blogs, reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit } =
+    useContext(BlogContext);
   const [newBlogs, setBlogs] = useState(blogs);
   useEffect(() => {
-    blogService.getAll()
-    .then((blogs) => setBlogs(blogs))
-    .catch((error) =>{
-      toastrNotificationsService.showError('Something went wrong. Could not load blogs')
-    });
+    blogService
+      .getAll()
+      .then((blogs) => setBlogs(blogs))
+      .catch((error) => {
+        toastrNotificationsService.showError(
+          "Something went wrong. Could not load blogs"
+        );
+      });
   }, [reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit]);
-  
+
   const navigate = useNavigate();
+  const auth = JSON.parse(localStorage.getItem("auth"));
 
   const loadCreateBlogFormHandler = () => {
     navigate("/blog/create");
@@ -37,7 +42,8 @@ export const BlogAll = () => {
             <BlogPost key={blog._id} {...blog} />
           ))}
         </div>
-        <div className="row">
+        {auth?.email === "admin@abv.bg" && (
+          <div className="row">
             <div className="col d-flex align-items-center justify-content-center">
               <button
                 onClick={() => loadCreateBlogFormHandler()}
@@ -47,6 +53,7 @@ export const BlogAll = () => {
               </button>
             </div>
           </div>
+        )}
       </div>
     </div>
   );

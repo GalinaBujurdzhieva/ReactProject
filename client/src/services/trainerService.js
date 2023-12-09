@@ -1,16 +1,6 @@
-const baseUrl = "http://localhost:3030/jsonstore/trainers";
+import { headersForEditAndRemove } from "../utils/headersForEditAndRemove";
 const baseUrlNew = "http://localhost:3030/data/trainers";
 
-// export const getAll = async () => {
-//   try{
-// const response = await fetch(baseUrl);
-// const result = await response.json();
-// return result.trainers;
-// } catch (error) {
-//   console.error('Error:', error);
-//   throw error;
-// }
-// }
 export const getAll = async () => {
   try{
 const response = await fetch(baseUrlNew);
@@ -21,17 +11,6 @@ return result;
   throw error;
 }
 }
-
-// export const getOne = async (trainerId) => {
-//   try{
-//     const response = await fetch(`${baseUrl}/trainers/${trainerId}`);
-//     const result = await response.json();
-//     return result;
-//   } catch (error) {
-//     console.error('Error:', error);
-//     throw error;
-//   }
-// }
 
 export const getOne = async (trainerId) => {
   try{
@@ -45,14 +24,19 @@ export const getOne = async (trainerId) => {
 }
 
 export const create = async (postData) => {
+  const token = localStorage.getItem('accessToken');
     try {
-      const response = await fetch(`${baseUrl}/trainers`, {
+      const response = await fetch(baseUrlNew, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          "X-Authorization": token
         },
         body: JSON.stringify(postData),
       });
+      if (!response.ok) {
+        throw new Error();
+      }
         const result = await JSON.stringify(response);
         return result;
     } catch (error) {
@@ -61,17 +45,18 @@ export const create = async (postData) => {
     }
   };
 
-  
-
   export const edit = async (trainerId, data) => {
+    const headers = headersForEditAndRemove();
+    console.log(headers);
     try {
-      const response = await fetch(`${baseUrl}/trainers/${trainerId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-        },
+      const response = await fetch(`${baseUrlNew}/${trainerId}`, {
+        method: "PUT",
+        headers,
         body: JSON.stringify(data),
       });
+      if (!response.ok) {
+        throw new Error();
+      }
         const result = JSON.stringify(response);
         return result;
     } catch (error) {
@@ -81,17 +66,14 @@ export const create = async (postData) => {
   };
 
   export const remove = async (trainerId) => {
+    const headers = headersForEditAndRemove();
     try {
-      const response = await fetch(`${baseUrl}/trainers/${trainerId}`, {
+      const response = await fetch(`${baseUrlNew}/${trainerId}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Authorization": token
-        },
+        headers,
       });
       if (response.ok) {
-        const result = await response.json();
-        return result;
+        console.log("Trainer deleted successfully");
       }
     } catch (error) {
       console.log("Error:", error);

@@ -1,3 +1,4 @@
+import { headersForEditAndRemove } from "../utils/headersForEditAndRemove";
 const baseUrlNew = "http://localhost:3030/data/blogs";
 
 export const getAll = async () => {
@@ -25,7 +26,7 @@ export const getOne = async (blogId) => {
 export const create = async (postData) => {
   const token = localStorage.getItem('accessToken');
   try {
-    const response = await fetch(`${baseUrlNew}`, {
+    const response = await fetch(baseUrlNew, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -46,20 +47,7 @@ export const create = async (postData) => {
 };
 
 export const edit = async (blogId, data) => {
-  const token = localStorage.getItem('accessToken');
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  
-  let headers = {
-    "Content-type": "application/json",
-    "X-Authorization": token
-  };
-  if (auth?.email === "admin@abv.bg") {
-    headers = {
-      ...headers,
-      "X-Admin": ""
-    }
-  }
-  
+  const headers = headersForEditAndRemove();
   try {
     const response = await fetch(`${baseUrlNew}/${blogId}`, {
       method: "PUT",
@@ -77,21 +65,8 @@ export const edit = async (blogId, data) => {
   }
 }
 
-
 export const remove = async (blogId) => {
-  const token = localStorage.getItem('accessToken');
-  const auth = JSON.parse(localStorage.getItem('auth'));
-  
-  let headers = {
-    "Content-type": "application/json",
-    "X-Authorization": token
-  };
-  if (auth?.email === "admin@abv.bg") {
-    headers = {
-      ...headers,
-      "X-Admin": ""
-    }
-  }
+  const headers = headersForEditAndRemove();
   try {
     const response = await fetch(`${baseUrlNew}/${blogId}`, {
       method: "DELETE",

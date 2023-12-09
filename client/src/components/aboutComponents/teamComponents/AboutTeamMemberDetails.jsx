@@ -25,6 +25,7 @@ export const AboutTeamMemberDetails = () => {
     });
   }, []);
 
+  const auth = JSON.parse(localStorage.getItem('auth'));
   const deleteTrainerFromServerHandler = (e, trainerId) => {
     e.preventDefault();
     trainerService.remove(trainerId);
@@ -66,6 +67,7 @@ export const AboutTeamMemberDetails = () => {
         <p className="col-lg-9 team_description">
           {currentTrainer.description}
         </p>
+        {auth?.email === "admin@abv.bg" &&
         <div className="team_group_button btn-group justify-content-center" role="group" aria-label="Basic example">
           <button  onClick={()=> loadEditTrainerHandler(currentTrainer._id)} type="button" className="team_button btn btn-secondary">
             Edit info
@@ -74,6 +76,7 @@ export const AboutTeamMemberDetails = () => {
             Remove trainer
           </button>
         </div>
+        }
       </div>
     </div>
   );
