@@ -4,7 +4,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import * as func from "../../utils/dateFormatter";
 import * as blogService from "../../services/blogService";
 import toastrNotificationsService from "../../services/toastrNotificationsService"
+
 import {BlogContext} from "../../contexts/Blogs/BlogContext";
+
+import { BlogDeleteConfirmation } from "./BlogDeleteConfirmation";
 
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css";
@@ -15,6 +18,7 @@ export const BlogPostDetails = () => {
   const { _id } = useParams();
   const {deleteBlogFunc} = useContext(BlogContext);
   const [currentBlog, setCurrentBlog] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,8 +31,8 @@ export const BlogPostDetails = () => {
 
   const auth = JSON.parse(localStorage.getItem("auth"));
 
-  const deleteBlogHandler = (e, blogId) => {
-    e.preventDefault();
+  const deleteBlogHandler = (blogId) => {
+    // e.preventDefault();
     blogService.remove(blogId);
     deleteBlogFunc(currentBlog);
     navigate('/blog/all');
@@ -37,8 +41,20 @@ export const BlogPostDetails = () => {
   const loadEditBlogHandler = () => {
     navigate(`/blog/edit/${currentBlog._id}`);
   }
+  const showModalHandler = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  }
+  const onClose = ()=>{
+    setShowModal(false)
+  }
 
   return (
+    <>{showModal &&
+      <BlogDeleteConfirmation
+      onClose={onClose}
+      />}
+      
     <div className="col-xl-10 offset-xl-1 col-md-12 align-items-center blog_col_details">
       <div className="blog_post">
         <div className="blog_post_image_all d-flex justify-content-center">
@@ -56,10 +72,18 @@ export const BlogPostDetails = () => {
         {auth?.email === "admin@abv.bg" &&
         <div className="btn-group d-flex justify-content-center" role="group">
           <button onClick={()=> loadEditBlogHandler(currentBlog._id)} type="button" className="button blog_button">Edit Blog</button>
-          <button onClick={(e)=> deleteBlogHandler(e, currentBlog._id)} type="submit" className="button blog_button">Delete Blog</button>
+          <button 
+          onClick={(e) =>showModalHandler(e)}
+          // onClick={(e)=> deleteBlogHandler(e, currentBlog._id)} 
+          type="submit" 
+          className="button blog_button"
+          data-toggle="modal" 
+          data-target="#exampleModal"
+          >Delete Blog</button>
         </div>
         }
       </div>
     </div>
+    </>
   );
 };

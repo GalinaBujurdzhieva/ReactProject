@@ -1,4 +1,5 @@
 import { headersForEditAndRemove } from "../utils/headersForEditAndRemove";
+import toastrNotificationsService from "./toastrNotificationsService";
 const baseUrlNew = "http://localhost:3030/data/blogs";
 
 export const getAll = async () => {
@@ -24,7 +25,12 @@ export const getOne = async (blogId) => {
 };
 
 export const create = async (postData) => {
+  const auth = JSON.parse(localStorage.getItem('auth'));
   const token = localStorage.getItem('accessToken');
+  if (auth?.email !== "admin@abv.bg") {
+    toastrNotificationsService.showError('You are not authorized to create new blog');
+    return null;
+  }
   try {
     const response = await fetch(baseUrlNew, {
       method: "POST",
@@ -35,11 +41,13 @@ export const create = async (postData) => {
       body: JSON.stringify(postData),
     });
     if (!response.ok) {
-      throw new Error();
+      toastrNotificationsService.showError('Could not create new blog');
     }
-    const result = JSON.stringify(response);
-    return result;
-    
+    else{
+      toastrNotificationsService.showSuccess('Blog created successfully');
+      const result = JSON.stringify(response);
+      return result;
+    }
   } catch (error) {
     console.log("Error:", error);
     throw error;
@@ -55,11 +63,14 @@ export const edit = async (blogId, data) => {
       body: JSON.stringify(data),
     });
     if (!response.ok) {
-      throw new Error();
+      toastrNotificationsService.showError('Could not edit this blog');
     }
+    else{
+      toastrNotificationsService.showSuccess('Blog edited successfully!')
       const result = JSON.stringify(response);
       return result;
-  } catch (error) {
+    }
+    } catch (error) {
     console.log("Error:", error);
     throw error;
   }
@@ -73,7 +84,10 @@ export const remove = async (blogId) => {
       headers,
     });
     if (response.ok) {
-      console.log("Blog deleted successfully");
+      toastrNotificationsService.showSuccess('Blog deleted successfully');
+    }
+    else{
+      toastrNotificationsService.showError('Could not delete this blog');
     }
   } catch (error) {
     console.log("Error:", error);

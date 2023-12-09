@@ -2,7 +2,9 @@ import {toast} from 'react-toastify'
 
 class ToastrNotificationsService{
     showSuccess(message) {
-        toast.success(message);
+        toast.success(message, {
+          theme: "dark"
+        });
       }
     
       showError(message) {

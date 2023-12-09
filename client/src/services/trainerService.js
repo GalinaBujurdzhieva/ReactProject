@@ -1,4 +1,5 @@
 import { headersForEditAndRemove } from "../utils/headersForEditAndRemove";
+import toastrNotificationsService from "./toastrNotificationsService";
 const baseUrlNew = "http://localhost:3030/data/trainers";
 
 export const getAll = async () => {
@@ -24,7 +25,12 @@ export const getOne = async (trainerId) => {
 }
 
 export const create = async (postData) => {
+  const auth = JSON.parse(localStorage.getItem('auth'));
   const token = localStorage.getItem('accessToken');
+  if (auth?.email !== "admin@abv.bg") {
+    toastrNotificationsService.showError('You are not authorized to create new blog');
+    return null;
+  }
     try {
       const response = await fetch(baseUrlNew, {
         method: "POST",
@@ -35,10 +41,13 @@ export const create = async (postData) => {
         body: JSON.stringify(postData),
       });
       if (!response.ok) {
-        throw new Error();
+        toastrNotificationsService.showError('Could not create new trainer');
       }
+      else{
+        toastrNotificationsService.showSuccess('Trainer created successfully')
         const result = await JSON.stringify(response);
         return result;
+      } 
     } catch (error) {
       console.log("Error:", error);
       throw error;
@@ -55,10 +64,13 @@ export const create = async (postData) => {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        throw new Error();
+        toastrNotificationsService.showError('Could not edit this trainer');
       }
+      else{
+        toastrNotificationsService.showSuccess('Trainer edited successfully!')
         const result = JSON.stringify(response);
         return result;
+      }
     } catch (error) {
       console.log("Error:", error);
       throw error;
@@ -73,7 +85,10 @@ export const create = async (postData) => {
         headers,
       });
       if (response.ok) {
-        console.log("Trainer deleted successfully");
+        toastrNotificationsService.showSuccess('Trainer deleted successfully');
+      }
+      else{
+        toastrNotificationsService.showError('Could not delete this trainer');
       }
     } catch (error) {
       console.log("Error:", error);

@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/Users/AuthContext';
+import toastrNotificationsService from '../../services/toastrNotificationsService';
 
 export const Logout = () =>{
     const { logoutSubmitHandler } = useContext(AuthContext);
@@ -18,11 +19,12 @@ export const Logout = () =>{
       })
       .then(response => {
         if (response.status === 204) {
-            return {}
-          }
-          else{
-            console.log("Failed to log out user");
-          }
+          toastrNotificationsService.showSuccess('User logged out successfully');
+          return {}
+        }
+        else{
+          toastrNotificationsService.showError('Failed to log out user');
+        }
       })
        .then(() => logoutSubmitHandler())
        .catch(err =>{

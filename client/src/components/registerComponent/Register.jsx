@@ -16,7 +16,7 @@ const RegisterFormKeys = {
 }
 
 export const Register = () => {
-  const firstNameInputRef = useRef();
+  const firstNameInputRef = useRef(null);
   const {registerSubmitHandler} = useContext(AuthContext);
 
   const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
@@ -102,6 +102,7 @@ export const Register = () => {
                         </span>
                       )} 
                     <input
+                      tabIndex={0}
                       type="text"
                       className="newsletter_input"
                       placeholder="Enter your first name here"

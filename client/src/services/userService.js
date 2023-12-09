@@ -1,4 +1,6 @@
+import toastrNotificationsService from "./toastrNotificationsService";
 const baseUrl = 'http://localhost:3030/users/';
+
 let headers = new Headers ({
   "Content-type": "application/json"
 });
@@ -17,14 +19,14 @@ export const login = async (email, password) =>{
           body: JSON.stringify({email, password}),
         });
         if (response.ok) {
-          console.log("User logged in successfully");
+          toastrNotificationsService.showSuccess('User logged in successfully');
           const result = await response.json();
           return result;
         } else {
-          console.log("Failed to log in user");
+          toastrNotificationsService.showError('Failed to log in user');
         }
       } catch (error) {
-        console.log("Error:", error);
+        throw error;
       }
 }
 
@@ -36,32 +38,13 @@ export const register = async (firstName, lastName, email, phoneNumber, username
         body: JSON.stringify({firstName, lastName, email, phoneNumber, username, password}),
       });
       if (response.ok) {
-        console.log("User registered successfully");
+        toastrNotificationsService.showSuccess('User registered successfully');
         const result = await response.json();
         return result;
       } else {
-        console.log("Failed to register user");
+        toastrNotificationsService.showError('Failed to register user');
       }
     } catch (error) {
-      console.log("Error:", error);
+      throw error;
     }
-}
-
-export const logout = async () =>{
-  try {
-    
-    const response = await fetch(`${baseUrl}logout`,{
-      method: 'GET',
-      headers
-    })
-    if (response.status === 204) {
-      console.log("User logged out successfully");
-      return {}
-    }
-    else{
-      console.log("Failed to log out user");
-    }
-  } catch (error) {
-    console.log("Error:", error);
-  }
 }
