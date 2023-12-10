@@ -28,7 +28,7 @@ export const create = async (postData) => {
   const auth = JSON.parse(localStorage.getItem('auth'));
   const token = localStorage.getItem('accessToken');
   if (auth?.email !== "admin@abv.bg") {
-    toastrNotificationsService.showError('You are not authorized to create new blog');
+    toastrNotificationsService.showError('You are not authorized to create new trainer');
     return null;
   }
     try {

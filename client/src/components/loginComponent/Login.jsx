@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState} from 'react'
+import { useContext, useEffect, useRef} from 'react'
 
 import useForm from '../../hooks/useForm'
 import { AuthContext } from '../../contexts/Users/AuthContext'
@@ -23,11 +23,6 @@ export const Login = () => {
   useEffect(() => {
     emailInputRef.current.focus();
   }, [])
-
-  const [loginFormHasErrors, setLoginFormHasErrors] = useState({
-    [LoginFormKeys.Email]: '',
-    [LoginFormKeys.Password]: ''
-})
 
   return(<div className="footer">
     <div className="container">

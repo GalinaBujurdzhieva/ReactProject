@@ -21,7 +21,7 @@ import '../../assets/styles/about_responsive.css'
 export const Header = () => {
 
   const { auth } = useContext(AuthContext);
-  const isAuthenticated = !!auth.username;
+  const isAuthenticated = !!auth?.username;
 
     return(
         <header className="header">

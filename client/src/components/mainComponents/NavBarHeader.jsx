@@ -7,7 +7,7 @@ import "../../assets/styles/about.css";
 
 export const NavBarHeader = () => {
   const { auth } = useContext(AuthContext);
-  const isAuthenticated = !!auth.username;
+  const isAuthenticated = !!auth?.username;
 
   return (
     <nav className="main_nav">

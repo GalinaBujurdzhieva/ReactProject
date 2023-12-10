@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import * as func from "../../utils/dateFormatter";
 import * as blogService from "../../services/blogService";
 import toastrNotificationsService from "../../services/toastrNotificationsService"
-
-import {BlogContext} from "../../contexts/Blogs/BlogContext";
 
 import { BlogDeleteConfirmation } from "./BlogDeleteConfirmation";
 
@@ -16,7 +14,6 @@ import "../../assets/styles/blog_responsive.css";
 
 export const BlogPostDetails = () => {
   const { _id } = useParams();
-  const {deleteBlogFunc} = useContext(BlogContext);
   const [currentBlog, setCurrentBlog] = useState({});
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -30,13 +27,6 @@ export const BlogPostDetails = () => {
   }, [_id]);
 
   const auth = JSON.parse(localStorage.getItem("auth"));
-
-  const deleteBlogHandler = (blogId) => {
-    // e.preventDefault();
-    blogService.remove(blogId);
-    deleteBlogFunc(currentBlog);
-    navigate('/blog/all');
-  }
 
   const loadEditBlogHandler = () => {
     navigate(`/blog/edit/${currentBlog._id}`);
@@ -74,7 +64,6 @@ export const BlogPostDetails = () => {
           <button onClick={()=> loadEditBlogHandler(currentBlog._id)} type="button" className="button blog_button">Edit Blog</button>
           <button 
           onClick={(e) =>showModalHandler(e)}
-          // onClick={(e)=> deleteBlogHandler(e, currentBlog._id)} 
           type="submit" 
           className="button blog_button"
           data-toggle="modal" 

@@ -1,24 +1,24 @@
 import { useEffect, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { BlogContext } from "../../contexts/Blogs/BlogContext";
-import * as blogService from "../../services/blogService";
-import styles from "./BlogDeleteConfirmation.module.css";
+import { TrainerContext } from "../../../contexts/Trainers/TrainerContext"; 
+import * as trainerService from "../../../services/trainerService";
+import styles from "./AboutTeamMemberDeleteConfirmation.module.css";
 
-export const BlogDeleteConfirmation = ({ onClose }) => {
+export const AboutTeamMemberDeleteConfirmation = ({ onClose }) => {
   const myDivRef = useRef(null);
   const { _id } = useParams();
-  const { blogs, deleteBlogFunc } = useContext(BlogContext);
+  const { trainers, deleteTrainerFunc } = useContext(TrainerContext);
   useEffect(() => {
     myDivRef.current.focus();
-  }, []);
+  }, [_id]);
 
-  const currentBlog = Object.values(blogs).find((blog) => blog._id === _id);
+  const currentTrainer = Object.values(trainers).find((trainer) => trainer._id === _id);
   const navigate = useNavigate();
-  const deleteBlogHandler = (e, blogId) => {
+  const deleteTrainerHandler = (e, trainerId) => {
     e.preventDefault();
-    blogService.remove(blogId);
-    deleteBlogFunc(currentBlog);
-    navigate("/blog/all");
+    trainerService.remove(trainerId);
+    deleteTrainerFunc(currentTrainer);
+    navigate('/about');
   };
 
   return (
@@ -26,12 +26,12 @@ export const BlogDeleteConfirmation = ({ onClose }) => {
       <div className={styles.mainContainer} tabIndex={0} ref={myDivRef}>
         <div className={styles.container}>
           <h4 className={styles.confirmation}>
-            Are you sure you want to delete this blog?
+            Are you sure you want to remove this trainer?
           </h4>
           <button
             className={styles.blogButton}
             type="submit"
-            onClick={(e) => deleteBlogHandler(e, _id)}
+            onClick={(e) => deleteTrainerHandler(e, _id)}
           >
             Yes
           </button>

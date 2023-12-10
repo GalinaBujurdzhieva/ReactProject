@@ -66,7 +66,9 @@ function App() {
 
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
-        <ToastContainer />
+        <ToastContainer
+        autoClose={1000}
+        />
         <Footer />
     </>
   );
