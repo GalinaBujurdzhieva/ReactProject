@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import {ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Home } from "./components/homeComponents/Home";
 import { Header } from "./components/mainComponents/Header";
@@ -26,6 +26,8 @@ import { Register } from "./components/registerComponent/Register";
 import { Login } from "./components/loginComponent/Login";
 import { Logout } from "./components/logoutComponents/Logout";
 import { ErrorPage } from "./components/errorPageComponent/ErrorPage";
+import { AuthGuard } from "./components/guards/AuthGuard";
+import { UserGuard } from "./components/guards/UserGuard";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -35,41 +37,48 @@ function App() {
     setShouldFocus(true);
   };
 
-  const handleLinkClick = () =>{
+  const handleLinkClick = () => {
     setFocusDiv(true);
-  }
+  };
 
   return (
     <>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home handleLinkClick={handleLinkClick}/>} />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home handleLinkClick={handleLinkClick} />} />
 
-          <Route path="/about" element={<About shouldFocus={shouldFocus} />}/>
-          <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />}/>
-          <Route path="/about/trainers/create" element={<AboutTeamMemberCreate handleClick={handleClick}/> }/>
-          <Route path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick}/>}/> 
+        <Route path="/about" element={<About shouldFocus={shouldFocus} />} />
+        <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />}/>
 
-          <Route path="/courses" element={<Services setFocus={focusDiv} />} />
+        <Route path="/courses" element={<Services setFocus={focusDiv} />} />
 
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/all" element={<BlogAll />} />
-          <Route path="/blog/:_id" element={<BlogPostDetails />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/all" element={<BlogAll />} />
+        <Route path="/blog/:_id" element={<BlogPostDetails />} />
+
+        <Route path="/contact" element={<Contact />} />
+
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        
+        <Route path="*" element={<ErrorPage />} />
+        
+        <Route element={<UserGuard />}>
+          <Route path="/logout" element={<Logout />} />
+        </Route>
+        <Route element={<AuthGuard />}>
+          <Route
+            path="/about/trainers/create" element={<AboutTeamMemberCreate handleClick={handleClick} />}
+          />
+          <Route
+            path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick} />}
+          />
           <Route path="/blog/create" element={<BlogCreate />} />
           <Route path="/blog/edit/:_id" element={<BlogEdit />} />
-
-          <Route path="/contact" element={<Contact />} />
-
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-
-          <Route path="*" element={<ErrorPage/>}/>
-        </Routes>
-        <ToastContainer
-        autoClose={1000}
-        />
-        <Footer />
+        </Route>
+      </Routes>
+      <ToastContainer autoClose={1000} />
+      <Footer />
     </>
   );
 }
