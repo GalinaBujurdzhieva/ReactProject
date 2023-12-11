@@ -25,7 +25,10 @@ import { Contact } from "./components/contactComponents/Contact";
 import { Register } from "./components/registerComponent/Register";
 import { Login } from "./components/loginComponent/Login";
 import { Logout } from "./components/logoutComponents/Logout";
+
 import { ErrorPage } from "./components/errorPageComponent/ErrorPage";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary.jsx";
+
 import { AuthGuard } from "./components/guards/AuthGuard";
 import { UserGuard } from "./components/guards/UserGuard";
 
@@ -44,6 +47,7 @@ function App() {
   return (
     <>
       <Header />
+      <ErrorBoundary>
       <Routes>
         <Route path="/" element={<Home handleLinkClick={handleLinkClick} />} />
 
@@ -78,6 +82,7 @@ function App() {
         </Route>
       </Routes>
       <ToastContainer autoClose={1000} />
+      </ErrorBoundary>
       <Footer />
     </>
   );
