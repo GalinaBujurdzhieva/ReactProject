@@ -1,6 +1,4 @@
 
-import MapContainer from './GoogleMap'
-
 import { ContactMain } from './ContactMain'
 import { ContactAddressInfo } from './ContactAddressInfo'
 import { ContactForm } from './ContactForm'
@@ -9,7 +7,8 @@ import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../assets/styles/contact.css'
 import '../../assets/styles/contact_responsive.css'
-import MyComponent from './MyComponent'
+import { GoogleMap } from '@react-google-maps/api'
+import MapContainer from './GoogleMap'
 
 export const Contact = () => {
     return (
@@ -30,8 +29,7 @@ export const Contact = () => {
           {/* Contact Map */}
           <div className="contact_map">
             {/* Google Map */}
-            {/* <MapContainer /> */}
-            <MyComponent />
+            <MapContainer />
           </div>
         </div>
       </div>
