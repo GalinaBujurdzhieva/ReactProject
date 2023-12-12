@@ -105,7 +105,7 @@ export const Register = () => {
                       tabIndex={0}
                       type="text"
                       className="newsletter_input"
-                      placeholder="Enter your first name here"
+                      placeholder="Enter your first name with latin letters here"
                       required="required"
                       ref={firstNameInputRef}
                       name={RegisterFormKeys.FirstName}
@@ -121,7 +121,7 @@ export const Register = () => {
                     <input
                       type="text"
                       className="newsletter_input"
-                      placeholder="Enter your last name here"
+                      placeholder="Enter your last name with latin letters here"
                       required="required"
                       name={RegisterFormKeys.LastName}
                       onChange={onChange}
@@ -151,7 +151,7 @@ export const Register = () => {
                     <input
                       type="text"
                       className="newsletter_input"
-                      placeholder="Enter your phone number here"
+                      placeholder="Enter your phone number here in format '+8 888 888 8888' or '+88 888 888 8888'"
                       required="required"
                       name={RegisterFormKeys.PhoneNumber}
                       onChange={onChange}
@@ -166,7 +166,7 @@ export const Register = () => {
                      <input
                       type="text"
                       className="newsletter_input"
-                      placeholder="Enter your username here"
+                      placeholder="Enter your username here - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
                       required="required"
                       name={RegisterFormKeys.Username}
                       onChange={onChange}
@@ -181,7 +181,7 @@ export const Register = () => {
                     <input
                       type="password"
                       className="newsletter_input"
-                      placeholder="Enter your password here"
+                      placeholder="Enter your password here - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
                       required="required"
                       name={RegisterFormKeys.Password}
                       onChange={onChange}

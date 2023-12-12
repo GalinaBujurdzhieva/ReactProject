@@ -1,6 +1,7 @@
 import '../../assets/styles/contact.css'
 
 export const ContactForm = () =>{
+  
     return(
         <div className="col-lg-8 contact_col">
         <div className="contact_title">Get in touch</div>
