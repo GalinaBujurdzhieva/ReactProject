@@ -69,6 +69,9 @@ function App() {
         
         <Route element={<UserGuard />}>
           <Route path="/logout" element={<Logout />} />
+          {/* <Route path="/testimonials/create" element={} /> */}
+          {/* <Route
+            path="/testimonials/edit/:_id" element={}*/}
         </Route>
         <Route element={<AuthGuard />}>
           <Route

@@ -1582,6 +1582,32 @@
             _ownerId: "c31fab6a-5a69-43fa-979c-87c62cb191dd",
             description: "Introducing William James, a fitness expert and motivator. William's passion revolves around helping individuals achieve their weight loss goals and experience the exhilaration of spinning. With years of experience in the fitness industry, William has honed his knowledge and skills to provide personalized and effective weight loss programs. In his high-energy spinning classes, you'll find an atmosphere filled with enthusiasm and invigorating music. William's teaching approach is all about empowerment, guiding you on your fitness journey, and ensuring that every step taken leads to success. Join William and embark on a path to a healthier, fitter, and more energetic you."
           }
+    },
+    testimonials: {
+      "3d67becf-5eb9-4838-8af7-db31934111d2": {
+        _id: "3d67becf-5eb9-4838-8af7-db31934111d2",
+        name: "Peter Ivanov",
+        text: "I love training here. It offers a wide range of courses, services and workouts that keep me motivated and fit. Highly recommend it!",
+        rating: 5,
+        _createdOn: 1701586800000, 
+        _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+      },
+      "ab6f82e3-4e3b-4067-8e47-8bdf4e3ae45f": {
+        _id: "ab6f82e3-4e3b-4067-8e47-8bdf4e3ae45f",
+        name: "George Smith",
+        text: "SportFit has transformed my fitness routine. The variety of exercises and guidance by specialists in each field make it top. I give a solid 4 out of 5!",
+        rating: 4,
+        _createdOn: 1701356400000,
+        _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+      },
+      "8cdc4231-56ef-42db-a648-de9dc3b86c9f": {
+        _id: "8cdc4231-56ef-42db-a648-de9dc3b86c9f",
+        name: "Helen Willow",
+        text: "This fitness is fantastic! It has helped me stay consistent with my workouts. I'm impressed with the results. I'd rate it 5 stars without a doubt.",
+        rating: 5,
+        _createdOn: 1702411200000,
+        _ownerId: "ce8f59a6-83e0-4e1f-9769-058e08e437f2",
+      },
     }
   };
   var rules$1 = {

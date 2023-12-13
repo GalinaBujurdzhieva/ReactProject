@@ -721,12 +721,16 @@ section
 
 .testimonials
 {
-	padding-top: 316px;
+	padding-top: 150px;
 	padding-bottom: 100px;
 }
 .testimonials .section_title
 {
+	padding-bottom: 15px;
 	color: #fff;
+}
+.specific_testimonials{
+	padding-top: 30px;
 }
 .test:not(:last-child)
 {
@@ -758,10 +762,6 @@ section
 	color: #FFFFFF;
 	color: #ff9711
 }
-/* .test_name div:hover
-{
-	color: #ff9711;
-} */
 .test_title
 {
 	font-size: 12px;
@@ -791,7 +791,7 @@ section
 }
 .test_button_row
 {
-	margin-top: 72px;
+	margin-top: 50px;
 }
 .test_button
 {
