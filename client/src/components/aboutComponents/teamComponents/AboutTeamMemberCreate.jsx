@@ -71,7 +71,7 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
         }));
       };
 
-      const isPositive = (e) => {
+      const isMoreThanEighteen = (e) => {
         let number = Number(e.target.value);
         setTrainerFormHasErrors(state => ({
             ...state,
@@ -145,7 +145,7 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
                       required="required"
                       value={values.age}
                       onChange={changeHandler}
-                      onBlur={isPositive}
+                      onBlur={isMoreThanEighteen}
                     />
                     <div>
                     <div className="form-check form-check-inline">

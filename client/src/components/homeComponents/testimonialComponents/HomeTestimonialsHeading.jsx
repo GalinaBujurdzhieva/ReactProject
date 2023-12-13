@@ -1,4 +1,4 @@
-import "../../assets/styles/main_styles.css";
+import "../../../assets/styles/main_styles.css";
 
 export const HomeTestimonialsHeading = () => {
   return (

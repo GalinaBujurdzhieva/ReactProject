@@ -100,7 +100,7 @@ export const ContactForm = () =>{
             <div className="input_item">
             {inquiryFormHasErrors[InquiryFormKeys.Message] && (
                         <span className="error_message">
-                          Please enter valid message between 10 and 1000 characters
+                          Please enter message between 10 and 1000 characters
                         </span>
                       )}
               <textarea

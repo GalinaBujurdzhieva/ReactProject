@@ -1,4 +1,6 @@
-import * as dateFormatter from '../../utils/dateFormatter'
+import * as dateFormatter from '../../../utils/dateFormatter'
+
+import "../../../assets/styles/main_styles.css";
 
 export const HomeTestimonialsDetails = ({...testimonial}) =>{
     return(

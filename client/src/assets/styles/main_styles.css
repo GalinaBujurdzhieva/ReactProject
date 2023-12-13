@@ -800,49 +800,6 @@ section
 }
 
 /*********************************
-9. Gallery
-*********************************/
-
-.gallery
-{
-	margin-top: -9px;
-	margin-bottom: -9px;
-}
-.gallery_slider_container
-{
-	width: 120%;
-	left: -10%;
-	padding-top: 9px;
-	padding-bottom: 9px;
-	background: transparent;
-}
-.gallery_slider.owl-carousel .owl-stage-outer
-{
-	overflow: visible;
-}
-.gallery_slider .owl-item.center
-{
-	z-index: 1;
-}
-.gallery_slider .owl-item.center::after
-{
-	position: absolute;
-	top: -9px;
-	left: -9px;
-	width: calc(100% + 18px);
-	height: calc(100% + 18px);
-	background: transparent;
-	border: solid 9px #ff9711;
-	content: '';
-	z-index: 1;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-
-/*********************************
 10. Services
 *********************************/
 
@@ -898,7 +855,7 @@ section
 
 .blog
 {
-	padding-top: 314px;
+	padding-top: 150px;
 	padding-bottom: 100px;
 	overflow: hidden;
 }

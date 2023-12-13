@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/Users/AuthContext";
+import { AuthContext } from "../../../contexts/Users/AuthContext";
+
+import "../../../assets/styles/main_styles.css";
 
 export const HomeTestimonialsLinkToCreateNew = () => {
   const { auth } = useContext(AuthContext);
@@ -11,9 +13,9 @@ export const HomeTestimonialsLinkToCreateNew = () => {
       <div className="col text-center">
         <div className="button test_button">
           {isAuthenticated ? (
-            <Link to="/testimonials/create">Create New</Link>
+            <Link to="/testimonial/create">Create New</Link>
           ) : (
-            <Link to="/testimonials/all">Read All</Link>
+            <Link to="/testimonial/all">Read All</Link>
           )}
         </div>
       </div>
