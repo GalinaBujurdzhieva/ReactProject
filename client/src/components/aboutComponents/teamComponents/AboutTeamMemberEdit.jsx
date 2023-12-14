@@ -12,7 +12,7 @@ export const AboutTeamMemberEdit = ({handleClick}) => {
     const {trainers, updateTrainerFunc} = useContext(TrainerContext);
     const {_id} = useParams();
     const navigate = useNavigate();
-    const trainerToBeEdited = Object.values(trainers).find(trainer => trainer._id === _id);
+    const trainerToBeEdited = trainers.find(trainer => trainer._id === _id);
 
     const [values, setValues] = useState({
         _id: trainerToBeEdited._id,

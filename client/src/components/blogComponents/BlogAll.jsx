@@ -38,7 +38,7 @@ export const BlogAll = () => {
     <div className="blog_div">
       <div className="container">
         <div className="row blog_row">
-          {Object.values(blogs).map((blog) => (
+          {blogs.map((blog) => (
             <BlogPost key={blog._id} {...blog} />
           ))}
         </div>

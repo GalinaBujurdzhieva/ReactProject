@@ -56,9 +56,7 @@ export const About = ({ shouldFocus }) => {
             <div className="container">
               <div className="row team_row">
                 {/* Team Member */}
-                {Object.values(trainers).length === 0
-                ? toastrNotificationsService.showError('Something went wrong. Could not load trainers')
-                : Object.values(trainers).map((trainer) => (
+                {trainers.map((trainer) => (
                   <AboutTeamMember key={trainer._id} {...trainer} />
                 ))}
               </div>

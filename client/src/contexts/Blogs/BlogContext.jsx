@@ -19,19 +19,19 @@ const BlogProvider = ({ children }) => {
     }, [reloadBlogs, reloadBlogsAfterDelete, reloadBlogsAfterEdit]);
 
     const addBlogFunc = (newBlog) => {
-      const blogListAfterCreate = [...Object.values(blogs), newBlog];
+      const blogListAfterCreate = [...blogs, newBlog];
       setBlogs(blogListAfterCreate);
       setReloadBlogs(!reloadBlogs);
     };
 
     const deleteBlogFunc = (deletedBlog) =>{
-      const blogListAfterDelete = Object.values(blogs).filter(blog => blog._id !== deletedBlog._id);
+      const blogListAfterDelete = blogs.filter(blog => blog._id !== deletedBlog._id);
       setBlogs(blogListAfterDelete);
       setReloadBlogsAfterDelete(!reloadBlogsAfterDelete);
     }
   
     const updateBlogFunc = (updatedBlog) => {
-      const blogListAfterUpdate = Object.values(blogs).map(blog =>
+      const blogListAfterUpdate = blogs.map(blog =>
         blog._id === updatedBlog._id ? updatedBlog : blog
       );
       setBlogs(blogListAfterUpdate);

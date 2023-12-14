@@ -19,19 +19,19 @@ const TrainerProvider = ({children}) => {
     }, [reloadTrainers, reloadTrainersAfterDelete, reloadTrainersAfterEdit]);
 
     const addTrainerFunc = (newTrainer) => {
-      const trainerListAfterCreate = [...Object.values(trainers), newTrainer];
+      const trainerListAfterCreate = [...trainers, newTrainer];
       setTrainers(trainerListAfterCreate);
       setReloadTrainers(!reloadTrainers);
     };
 
     const deleteTrainerFunc = (deletedTrainer) =>{
-      const trainerListAfterDelete = Object.values(trainers).filter(trainer => trainer._id !== deletedTrainer._id);
+      const trainerListAfterDelete = trainers.filter(trainer => trainer._id !== deletedTrainer._id);
       setTrainers(trainerListAfterDelete);
       setReloadTrainersAfterDelete(!reloadTrainersAfterDelete);
     }
   
     const updateTrainerFunc = (updatedTrainer) => {
-      const trainerListAfterUpdate = Object.values(trainers).map(trainer =>
+      const trainerListAfterUpdate = trainers.map(trainer =>
         trainer._id === updatedTrainer._id ? updatedTrainer : trainer
       );
       setTrainers(trainerListAfterUpdate);

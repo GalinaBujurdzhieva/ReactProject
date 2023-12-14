@@ -1,6 +1,8 @@
 import {useRef, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom'
 
 import useForm from '../../../hooks/useForm'
+import * as testimonialService from '../../../services/testimonialService'
 
 const CreateTestimonialFormKeys = {
     Name: 'name',
@@ -10,10 +12,14 @@ const CreateTestimonialFormKeys = {
 
 export const TestimonialCreate = () => {
     const nameInputRef = useRef(null);
+    const navigate = useNavigate();
 
-    const createTestimonialSubmitHandler = {
-
+    let newTestimonial;
+    const createTestimonialSubmitHandler = async(values) => {
+      newTestimonial = await testimonialService.create(values);
+      navigate('/');
     }
+    console.log(newTestimonial);
   
     const {values, onChange, onSubmit} = useForm(createTestimonialSubmitHandler, {
       [CreateTestimonialFormKeys.Name] : '',

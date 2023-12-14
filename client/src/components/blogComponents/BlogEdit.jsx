@@ -10,7 +10,7 @@ export const BlogEdit = ()=> {
     const {blogs, updateBlogFunc} = useContext(BlogContext);
     const { _id } = useParams();
     const navigate = useNavigate();
-    const blogToBeEdited = Object.values(blogs).find(blog => blog._id === _id);
+    const blogToBeEdited = blogs.find(blog => blog._id === _id);
 
     const [values, setValues] = useState({
       _id: blogToBeEdited._id,

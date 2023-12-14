@@ -57,7 +57,6 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
         const trainerCourses = Object.keys(checkboxes).filter(key => checkboxes[key]);
         values.courses = trainerCourses.slice(1);
         const trainer = trainerService.create(values);
-        console.log(trainer);
         addTrainerFunc(trainer);
         navigate('/about');
       };

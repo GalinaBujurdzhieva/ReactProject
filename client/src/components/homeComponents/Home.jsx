@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import { CourseContext } from "../../contexts/Courses/CourseContext";
 import * as bestProposalsService from "../../services/bestProposalService";
-import * as testimonialsService from "../../services/testimonialsService";
+import * as testimonialService from "../../services/testimonialService";
 import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { HomeMain } from "./HomeMain";
@@ -25,13 +25,17 @@ import "../../assets/styles/responsive.css";
 
 export const Home = ({handleLinkClick}) => {
   const { blogs } = useContext(BlogContext);
+  console.log(blogs);
   const { courses } = useContext(CourseContext);
+  console.log(courses);
 
   const [bestProposals, setBestProposals] = useState([]);
   useEffect(() => {
     bestProposalsService
       .getAll()
-      .then((bestProposals) => setBestProposals(bestProposals))
+      .then((bestProposals) => {
+        console.log(bestProposals);
+      setBestProposals(bestProposals)})
       .catch((error) =>{
         toastrNotificationsService.showError('Something went wrong. Could not load best proposals')
       });
@@ -39,9 +43,11 @@ export const Home = ({handleLinkClick}) => {
 
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
-    testimonialsService
+    testimonialService
       .getAll()
-      .then((testimonials) => setTestimonials(testimonials))
+      .then((testimonials) => {
+        console.log(testimonials);
+        setTestimonials(testimonials)})
       .catch((error) =>{
         toastrNotificationsService.showError('Something went wrong. Could not load testimonials')
       });
@@ -77,7 +83,7 @@ export const Home = ({handleLinkClick}) => {
         <div className="container">
          <HomeTestimonialsHeading />
           <div className="specific_testimonials row">
-            {Object.values(testimonials).map((testimonial) => (
+            {testimonials.map((testimonial) => (
                   <HomeTestimonialsDetails
                     key={testimonial._id}
                     {...testimonial}
@@ -92,9 +98,7 @@ export const Home = ({handleLinkClick}) => {
         <div className="container">
           <HomeClassesMain />
           <div className="row services_row" >
-            { Object.values(courses).length === 0
-            ? toastrNotificationsService.showError('Something went wrong. Could not load courses')
-            : Object.values(courses).map((course) => (
+            { Object.values(courses).map((course) => (
               <CourseDetails handleLinkClick={handleLinkClick} key={course._id} {...course} />
             ))}
           </div>
@@ -107,11 +111,7 @@ export const Home = ({handleLinkClick}) => {
         <div className="container">
           <HomeBlogMain />
           <div className="row blog_row">
-            {Object.values(blogs).length === 0
-            ? toastrNotificationsService.showError('Something went wrong. Could not load blogs')
-            :Object.values(blogs)
-              .slice(-3)
-              .map((blog) => (
+            {blogs.slice(-3).map((blog) => (
                 <BlogPost key={blog._id} {...blog} />
               ))}
           </div>
