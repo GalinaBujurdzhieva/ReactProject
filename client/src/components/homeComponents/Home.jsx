@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import { CourseContext } from "../../contexts/Courses/CourseContext";
 import * as bestProposalsService from "../../services/bestProposalService";
-import * as testimonialService from "../../services/testimonialService";
 import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { HomeMain } from "./HomeMain";
@@ -22,34 +21,21 @@ import { BlogPost } from "../blogComponents/BlogPost";
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/styles/main_styles.css";
 import "../../assets/styles/responsive.css";
+import { TestimonialContext } from "../../contexts/Testimonials/TestimonialContext";
 
 export const Home = ({handleLinkClick}) => {
   const { blogs } = useContext(BlogContext);
-  console.log(blogs);
   const { courses } = useContext(CourseContext);
-  console.log(courses);
+  const {testimonials} = useContext(TestimonialContext);
 
   const [bestProposals, setBestProposals] = useState([]);
   useEffect(() => {
     bestProposalsService
       .getAll()
       .then((bestProposals) => {
-        console.log(bestProposals);
       setBestProposals(bestProposals)})
       .catch((error) =>{
         toastrNotificationsService.showError('Something went wrong. Could not load best proposals')
-      });
-  }, []);
-
-  const [testimonials, setTestimonials] = useState([]);
-  useEffect(() => {
-    testimonialService
-      .getAll()
-      .then((testimonials) => {
-        console.log(testimonials);
-        setTestimonials(testimonials)})
-      .catch((error) =>{
-        toastrNotificationsService.showError('Something went wrong. Could not load testimonials')
       });
   }, []);
 

@@ -33,6 +33,7 @@ import ErrorBoundary from "./components/errorBoundary/ErrorBoundary.jsx";
 
 import { AuthGuard } from "./components/guards/AuthGuard";
 import { UserGuard } from "./components/guards/UserGuard";
+import { TestimonialEdit } from "./components/homeComponents/testimonialComponents/TestimonialEdit.jsx";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -72,8 +73,8 @@ function App() {
         <Route element={<UserGuard />}>
           <Route path="/logout" element={<Logout />} />
           <Route path="/testimonial/create" element={<TestimonialCreate />} /> 
-          {/* <Route
-            path="/testimonial/edit/:_id" element={}*/}
+         <Route
+            path="/testimonial/edit/:_id" element={<TestimonialEdit/>} />
         </Route>
         <Route element={<AuthGuard />}>
           <Route

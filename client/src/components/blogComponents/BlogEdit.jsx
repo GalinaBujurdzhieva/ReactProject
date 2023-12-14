@@ -14,7 +14,7 @@ export const BlogEdit = ()=> {
 
     const [values, setValues] = useState({
       _id: blogToBeEdited._id,
-      createdAt: blogToBeEdited.createdAt,
+      //createdAt: blogToBeEdited.createdAt,
       title: blogToBeEdited.title,
       imageUrl: blogToBeEdited.imageUrl,
       text: blogToBeEdited.text,
@@ -54,8 +54,7 @@ export const BlogEdit = ()=> {
         }));
       };
 
-    const editBlogSubmitHandler =(e) =>{
-      e.preventDefault();
+    const editBlogSubmitHandler =() =>{
       const blogToBeEdited = blogService.edit(_id, values);
       updateBlogFunc(blogToBeEdited);
       navigate("/blog/all");

@@ -268,7 +268,7 @@ section
 }
 .button
 {
-	width: 190px;
+	width: 200px;
 	height: 43px;
 	border-radius: 22px;
 	background: #f98c00;
@@ -797,6 +797,16 @@ section
 {
 	display: inline-block;
 	box-shadow: 0 0 1px 0 #f98c00 inset, 0 0 1px 0 #f98c00;
+}
+.test_details_button
+{
+	margin-top: 20px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-weight: 600;
+	color: white;
+	border:none;
+	width: 80px;
 }
 
 /*********************************

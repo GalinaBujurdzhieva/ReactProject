@@ -1,8 +1,12 @@
-import {useRef, useEffect, useState} from 'react';
+import {useRef, useEffect, useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom'
 
 import useForm from '../../../hooks/useForm'
+import { TestimonialContext } from '../../../contexts/Testimonials/TestimonialContext';
 import * as testimonialService from '../../../services/testimonialService'
+
+import "../../../assets/styles/main_styles.css";
+
 
 const CreateTestimonialFormKeys = {
     Name: 'name',
@@ -13,13 +17,17 @@ const CreateTestimonialFormKeys = {
 export const TestimonialCreate = () => {
     const nameInputRef = useRef(null);
     const navigate = useNavigate();
-
-    let newTestimonial;
-    const createTestimonialSubmitHandler = async(values) => {
-      newTestimonial = await testimonialService.create(values);
-      navigate('/');
+    const {addTestimonialFunc} = useContext(TestimonialContext);
+    
+    const createTestimonialSubmitHandler = () => {
+    try {
+    const newTestimonial = testimonialService.create(values);
+    addTestimonialFunc(newTestimonial);
+    } catch (error) {
+      toastrNotificationsService.showError('Something went wrong. Could not create testimonial')
     }
-    console.log(newTestimonial);
+    navigate("/");
+    }
   
     const {values, onChange, onSubmit} = useForm(createTestimonialSubmitHandler, {
       [CreateTestimonialFormKeys.Name] : '',
@@ -86,16 +94,16 @@ export const TestimonialCreate = () => {
                             Please enter your opinion. It has to be between 10 and 2000 characters
                           </span>
                         )} 
-                      <input
+                      <textarea
                         type="text"
-                        className="newsletter_input"
+                        className="newsletter_textarea"
                         placeholder="Enter your opinion here"
                         required="required"
                         name={CreateTestimonialFormKeys.Text}
                         onChange={onChange}
                         value={values[CreateTestimonialFormKeys.Text]}
-                        onBlur={(e) => nameAndTextErrorHandler(e, 10, 2000)}
-                      />
+                        onBlur={(e) => nameAndTextErrorHandler(e, 10, 2000)}>
+                        </textarea>
                        {testimonialFormHasErrors[CreateTestimonialFormKeys.Rating] && (
                           <span className="error_message">
                             Please, rate our fitness between 1 and 5

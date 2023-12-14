@@ -11,13 +11,11 @@ export const HomeTestimonialsLinkToCreateNew = () => {
   return (
     <div className="row test_button_row">
       <div className="col text-center">
+      {isAuthenticated &&
         <div className="button test_button">
-          {isAuthenticated ? (
             <Link to="/testimonial/create">Create New</Link>
-          ) : (
-            <Link to="/testimonial/all">Read All</Link>
-          )}
         </div>
+        }
       </div>
     </div>
   );
