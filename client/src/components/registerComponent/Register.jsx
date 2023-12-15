@@ -17,6 +17,10 @@ const RegisterFormKeys = {
 
 export const Register = () => {
   const firstNameInputRef = useRef(null);
+  useEffect(() => {
+    firstNameInputRef.current.focus();
+  }, []);
+
   const {registerSubmitHandler} = useContext(AuthContext);
 
   const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
@@ -101,6 +105,7 @@ export const Register = () => {
                           Please enter valid name with latin letters between 2 and 20 characters
                         </span>
                       )} 
+                     
                     <input
                       tabIndex={0}
                       type="text"
@@ -113,6 +118,7 @@ export const Register = () => {
                       value={values[RegisterFormKeys.FirstName]}
                       onBlur={(e) => firstAndLastNameErrorHandler(e, 2, 20)}
                     />
+                   
                      {registerFormHasErrors[RegisterFormKeys.LastName] && (
                         <span className="error_message">
                           Please enter valid name with latin letters between 2 and 20 characters

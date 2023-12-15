@@ -76,3 +76,22 @@ export const edit = async (testimonialId, data) => {
     throw error;
   }
 }
+
+export const remove = async (testimonialId) => {
+  const headers = headersForEditAndRemove();
+  try {
+    const response = await fetch(`${baseUrl}/${testimonialId}`, {
+      method: "DELETE",
+      headers,
+    });
+    if (response.ok) {
+      toastrNotificationsService.showSuccess('Testimonial deleted successfully');
+    }
+    else{
+      toastrNotificationsService.showError('Could not delete this testimonial');
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    throw error;
+  }
+};

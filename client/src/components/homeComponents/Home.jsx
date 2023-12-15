@@ -1,8 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import { CourseContext } from "../../contexts/Courses/CourseContext";
+import { TestimonialContext } from "../../contexts/Testimonials/TestimonialContext";
+
 import * as bestProposalsService from "../../services/bestProposalService";
+import * as testimonialService from '../../services/testimonialService'
 import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { HomeMain } from "./HomeMain";
@@ -21,12 +24,17 @@ import { BlogPost } from "../blogComponents/BlogPost";
 import "../../assets/styles/bootstrap-4.1.2/bootstrap.min.css";
 import "../../assets/styles/main_styles.css";
 import "../../assets/styles/responsive.css";
-import { TestimonialContext } from "../../contexts/Testimonials/TestimonialContext";
 
 export const Home = ({handleLinkClick}) => {
+  const testimonialDivRef = useRef(null);
+
+  useEffect(() => {
+    testimonialDivRef.current.focus();
+  }, []);
+  
   const { blogs } = useContext(BlogContext);
   const { courses } = useContext(CourseContext);
-  const {testimonials} = useContext(TestimonialContext);
+  const {testimonials, reloadTestimonialsAfterCreate, reloadTestimonialsAfterEdit, reloadTestimonialsAfterDelete} = useContext(TestimonialContext);
 
   const [bestProposals, setBestProposals] = useState([]);
   useEffect(() => {
@@ -38,6 +46,15 @@ export const Home = ({handleLinkClick}) => {
         toastrNotificationsService.showError('Something went wrong. Could not load best proposals')
       });
   }, []);
+
+  const [newTestimonials, setTestimonials] = useState(testimonials);
+  useEffect(() => {
+    testimonialService.getAll()
+    .then((testimonials) => setTestimonials(testimonials))
+    .catch((error) =>{
+      throw error;
+    });
+  }, [reloadTestimonialsAfterCreate, reloadTestimonialsAfterEdit, reloadTestimonialsAfterDelete]);
 
   return (
     <div className="super_container">
@@ -64,7 +81,7 @@ export const Home = ({handleLinkClick}) => {
       {/* About */}
       <HomeAbout />
       {/* Testimonials */}
-      <div className="testimonials text-center">
+      <div className="testimonials text-center" tabIndex={0} ref={testimonialDivRef}>
         <HomeTestimonialsMainBackground />
         <div className="container">
          <HomeTestimonialsHeading />
