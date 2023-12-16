@@ -21,7 +21,7 @@ export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
       e.preventDefault();
       testimonialService.remove(testimonialId);
       deleteTestimonialFunc(currentTestimonial);
-      navigate(Paths.Home);
+      navigate(Paths.About);
     };
   
     return (

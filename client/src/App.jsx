@@ -75,17 +75,17 @@ function App() {
           <Route path={Paths.Logout} element={<Logout />} />
           <Route path={Paths.TestimonialCreate} element={<TestimonialCreate />} /> 
          <Route
-            path={Paths.TestimonialEdit} element={<TestimonialEdit/>} />
+            path="/testimonial/edit/:_id" element={<TestimonialEdit/>} />
         </Route>
         <Route element={<AuthGuard />}>
           <Route
             path={Paths.AboutTrainersCreate} element={<AboutTeamMemberCreate handleClick={handleClick} />}
           />
           <Route
-            path={Paths.AboutTrainersEdit} element={<AboutTeamMemberEdit handleClick={handleClick} />}
+            path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick} />}
           />
           <Route path={Paths.BlogCreate} element={<BlogCreate />} />
-          <Route path={Paths.BlogEdit} element={<BlogEdit />} />
+          <Route path="/blog/edit/:_id" element={<BlogEdit />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={1000} />

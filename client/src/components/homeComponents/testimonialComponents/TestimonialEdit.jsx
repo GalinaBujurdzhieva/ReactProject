@@ -13,13 +13,14 @@ export const TestimonialEdit = () =>{
   const navigate = useNavigate();
   const {testimonials, updateTestimonialFunc} = useContext(TestimonialContext);
   const testimonialToBeEdited = testimonials.find(x => x._id === _id);
+  console.log(testimonialToBeEdited);
 
   useEffect(() => {
     nameInputRef.current.focus();
   }, []);
 
   const [values, setValues] = useState({
-    _id: testimonialToBeEdited._id,
+    _id: _id,
     name: testimonialToBeEdited.name,
     text : testimonialToBeEdited.text,
     rating: testimonialToBeEdited.rating
