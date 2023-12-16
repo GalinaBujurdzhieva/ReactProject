@@ -66,7 +66,8 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
           ...state,
           [e.target.name]:
             values[e.target.name].length < minLength ||
-            values[e.target.name].length > maxLength,
+            values[e.target.name].length > maxLength ||
+            values[e.target.name].trim().length === 0,
         }));
       };
 
@@ -81,7 +82,7 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
         const regex = new RegExp("^https?://.+/");
         setTrainerFormHasErrors((state) => ({
           ...state,
-          [e.target.name]: !regex.test(e.target.value),
+          [e.target.name]: !regex.test(e.target.value) 
         }));
       };
 

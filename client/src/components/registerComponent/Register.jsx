@@ -54,7 +54,8 @@ export const Register = () => {
       [e.target.name]:
         values[e.target.name].length < minLength ||
         values[e.target.name].length > maxLength ||
-        !nameRegex.test(e.target.value)
+        !nameRegex.test(e.target.value) ||
+        values[e.target.name].trim().length === 0
     }));
   };
 
@@ -62,7 +63,8 @@ export const Register = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setRegisterFormHasErrors((state) => ({
       ...state,
-      [e.target.name]: !emailRegex.test(e.target.value),
+      [e.target.name]: !emailRegex.test(e.target.value) ||
+      values[e.target.name].trim() === '@.',
     }));
   };
 
@@ -172,7 +174,7 @@ export const Register = () => {
                      <input
                       type="text"
                       className="newsletter_input"
-                      placeholder="Enter your username here - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
+                      placeholder="Enter your username here between 6 and 20 symbols - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
                       required="required"
                       name={RegisterFormKeys.Username}
                       onChange={onChange}
@@ -187,7 +189,7 @@ export const Register = () => {
                     <input
                       type="password"
                       className="newsletter_input"
-                      placeholder="Enter your password here - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
+                      placeholder="Enter your password here between 6 and 20 symbols - at least 1 small and 1 capital letter, as well as 1 digit and 1 special symbol"
                       required="required"
                       name={RegisterFormKeys.Password}
                       onChange={onChange}

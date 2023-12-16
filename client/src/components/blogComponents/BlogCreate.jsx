@@ -49,7 +49,8 @@ export const BlogCreate = () => {
       ...state,
       [e.target.name]:
         values[e.target.name].length < minLength ||
-        values[e.target.name].length > maxLength,
+        values[e.target.name].length > maxLength ||
+        values[e.target.name].trim().length === 0,
     }));
   };
   const imageUrlErrorHandler = (e) => {

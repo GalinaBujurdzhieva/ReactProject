@@ -28,7 +28,7 @@ export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
         <div className={styles.mainContainer} tabIndex={0} ref={myDivRef}>
           <div className={styles.container}>
             <h4 className={styles.confirmation}>
-              Are you sure you want to remove this trainer?
+              Really want to delete your testimonial?
             </h4>
             <button
               className={styles.testimonialButton}
