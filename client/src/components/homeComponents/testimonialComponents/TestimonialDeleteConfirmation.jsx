@@ -21,7 +21,7 @@ export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
       e.preventDefault();
       testimonialService.remove(testimonialId);
       deleteTestimonialFunc(currentTestimonial);
-      navigate(Paths.About);
+      navigate(Paths.Courses);
     };
   
     return (
@@ -29,7 +29,7 @@ export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
         <div className={styles.mainContainer} tabIndex={0} ref={myDivRef}>
           <div className={styles.container}>
             <h4 className={styles.confirmation}>
-              Really want to delete your testimonial?
+              Really want to delete your testimonial? If so take a look at our courses timetable - you may find something interesting for you.
             </h4>
             <button
               className={styles.testimonialButton}
