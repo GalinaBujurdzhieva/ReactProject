@@ -1,5 +1,7 @@
 import * as iconHelper from '../../utils/getBestSellerIconByKey'
 
+import "../../assets/styles/main_styles.css";
+
 export const HomeBestProposalsDetails = ({...bestProposal}) =>{
     return(
         <div className="box">

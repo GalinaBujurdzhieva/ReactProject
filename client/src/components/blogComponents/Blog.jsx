@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {BlogContext} from '../../contexts/Blogs/BlogContext'
+import Paths from "../../utils/Paths";
 
 import { BlogMain } from "./BlogMain";
 import { BlogWelcome } from "./BlogWelcome";
@@ -18,7 +19,7 @@ export const Blog = () => {
   const navigate = useNavigate();
 
   const loadAllBlogsHandler = () => {
-    navigate("/blog/all");
+    navigate(Paths.BlogAll);
   };
 
   return (

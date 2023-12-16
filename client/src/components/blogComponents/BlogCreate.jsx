@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {BlogContext} from "../../contexts/Blogs/BlogContext";
 import * as blogService from "../../services/blogService";
 import toastrNotificationsService from "../../services/toastrNotificationsService"
-import {BlogContext} from "../../contexts/Blogs/BlogContext";
+import Paths from "../../utils/Paths";
 
 import "../../assets/styles/register.css";
 
@@ -41,7 +42,7 @@ export const BlogCreate = () => {
     } catch (error) {
       toastrNotificationsService.showError('Something went wrong. Could not create blog')
     }
-    navigate("/blog/all");
+    navigate(Paths.BlogAll);
   };
 
   const blogTitleAndTextErrorHandler = (e, minLength, maxLength) => {

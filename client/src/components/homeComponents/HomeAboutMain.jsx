@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 
-import aboutImage from "../../assets/images/a1.png";
+import Paths from "../../utils/Paths";
+
+import { HomeAboutBackground } from "./HomeAboutBackground";
 
 import "../../assets/styles/main_styles.css";
 
-export const HomeAbout = () =>{
+export const HomeAboutMain = () =>{
     return(<div className="about">
     <div className="container about_container">
       <div className="row">
@@ -28,22 +30,12 @@ export const HomeAbout = () =>{
                 </p>
             </div>
             <div className="button about_button">
-              <Link to="/about">Learn more</Link>
+              <Link to={Paths.About}>Learn more</Link>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div className="about_background">
-      <div className="container fill_height">
-        <div className="row fill_height">
-          <div className="col-lg-6 offset-lg-6 fill_height">
-            <div className="about_image_home">
-              <img src={aboutImage} alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <HomeAboutBackground />
   </div>)
 }

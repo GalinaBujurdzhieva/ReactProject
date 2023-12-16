@@ -1,9 +1,9 @@
+import backgroundAboutImage from '../../assets/images/about_page.jpg'
+
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../assets/styles/about.css'
 import '../../assets/styles/about_responsive.css'
-
-import backgroundAboutImage from '../../assets/images/about_page.jpg'
 
 const backgroundImage ={
     backgroundImage: `url(${backgroundAboutImage})`,

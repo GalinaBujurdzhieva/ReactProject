@@ -1,5 +1,6 @@
-import '../../assets/styles/contact.css'
 import backgroundContactImage from '../../assets/images/contact.jpg'
+
+import '../../assets/styles/contact.css'
 
 const backgroundContact = {
     backgroundImage: `url(${backgroundContactImage})`

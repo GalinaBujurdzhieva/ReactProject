@@ -10,7 +10,7 @@ import toastrNotificationsService from "../../services/toastrNotificationsServic
 
 import { HomeMain } from "./HomeMain";
 import { HomeBestProposalsDetails } from "./HomeBestProposalsDetails";
-import { HomeAbout } from "./HomeAbout";
+import { HomeAboutMain } from "./HomeAboutMain";
 import { HomeClassesMain } from "./HomeClassesMain";
 import { CourseDetails } from "../servicesComponents/coursesComponents/CourseDetails";
 import { HomeTestimonialsMainBackground } from "./testimonialComponents/HomeTestimonialsMainBackground";
@@ -79,7 +79,7 @@ export const Home = ({handleLinkClick}) => {
         </div>
       </div>
       {/* About */}
-      <HomeAbout />
+      <HomeAboutMain />
       {/* Testimonials */}
       <div className="testimonials text-center" tabIndex={0} ref={testimonialDivRef}>
         <HomeTestimonialsMainBackground />

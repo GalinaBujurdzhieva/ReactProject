@@ -1,7 +1,10 @@
 import { useEffect, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import { TrainerContext } from "../../../contexts/Trainers/TrainerContext"; 
 import * as trainerService from "../../../services/trainerService";
+import Paths from "../../../utils/Paths";
+
 import styles from "./AboutTeamMemberDeleteConfirmation.module.css";
 
 export const AboutTeamMemberDeleteConfirmation = ({ onClose }) => {
@@ -18,7 +21,7 @@ export const AboutTeamMemberDeleteConfirmation = ({ onClose }) => {
     e.preventDefault();
     trainerService.remove(trainerId);
     deleteTrainerFunc(currentTrainer);
-    navigate('/about');
+    navigate(Paths.About);
   };
 
   return (

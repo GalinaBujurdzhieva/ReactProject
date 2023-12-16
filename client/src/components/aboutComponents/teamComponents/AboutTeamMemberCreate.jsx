@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate} from "react-router-dom";
 
-import * as trainerService from "../../../services/trainerService"
 import { TrainerContext } from "../../../contexts/Trainers/TrainerContext";
+import * as trainerService from "../../../services/trainerService"
+import Paths from '../../../utils/Paths'
 
 import "../../../assets/styles/register.css";
 import "../../../assets/styles/about_team_member_forms.css";
@@ -58,7 +59,7 @@ export const AboutTeamMemberCreate = ({handleClick}) => {
         values.courses = trainerCourses.slice(1);
         const trainer = trainerService.create(values);
         addTrainerFunc(trainer);
-        navigate('/about');
+        navigate(Paths.About);
       };
 
       const trainerNameAndDescriptionErrorHandler = (e, minLength, maxLength) => {

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import Paths from "../../utils/Paths";
+
 import backgroundHomeImage from "../../assets/images/index.jpg";
 
 import "../../assets/styles/main_styles.css";
@@ -22,7 +24,7 @@ export const HomeMain = () => {
                 Pilates, Yoga, Fitness, Swimming &amp; more
               </div>
               <div className="button home_button ml-auto mr-auto">
-                <Link to="/register">Join Now</Link>
+                <Link to={Paths.Register}>Join Now</Link>
               </div>
             </div>
           </div>

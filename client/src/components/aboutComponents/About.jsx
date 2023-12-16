@@ -1,8 +1,7 @@
 import { useContext, useState, useEffect, useRef } from "react";
 
-import * as trainerService from "../../services/trainerService";
-import toastrNotificationsService from "../../services/toastrNotificationsService"
 import { TrainerContext } from "../../contexts/Trainers/TrainerContext";
+import * as trainerService from "../../services/trainerService";
 
 import { AboutMain } from "./AboutMain";
 import { AboutWelcome } from "./AboutWelcome";

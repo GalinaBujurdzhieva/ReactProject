@@ -1,8 +1,9 @@
 import {useState, useRef, useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 
-import * as blogService from '../../services/blogService'
 import {BlogContext} from '../../contexts/Blogs/BlogContext';
+import * as blogService from '../../services/blogService'
+import Paths from '../../utils/Paths';
 
 import "../../assets/styles/register.css";
 
@@ -14,7 +15,6 @@ export const BlogEdit = ()=> {
 
     const [values, setValues] = useState({
       _id: blogToBeEdited._id,
-      //createdAt: blogToBeEdited.createdAt,
       title: blogToBeEdited.title,
       imageUrl: blogToBeEdited.imageUrl,
       text: blogToBeEdited.text,
@@ -57,7 +57,7 @@ export const BlogEdit = ()=> {
     const editBlogSubmitHandler =() =>{
       const blogToBeEdited = blogService.edit(_id, values);
       updateBlogFunc(blogToBeEdited);
-      navigate("/blog/all");
+      navigate(Paths.BlogAll);
     }
     return (
         <div className="footer">

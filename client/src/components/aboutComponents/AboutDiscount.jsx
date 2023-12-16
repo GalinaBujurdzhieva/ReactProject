@@ -1,13 +1,15 @@
 import {useContext} from 'react'
 import { Link } from 'react-router-dom'
+
 import { AuthContext } from "../../contexts/Users/AuthContext";
+import Paths from '../../utils/Paths';
+
+import backgroundDiscountImage from '../../assets/images/extra.jpg'
 
 import '../../assets/styles/bootstrap-4.1.2/bootstrap.min.css'
 import '../../assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../assets/styles/about.css'
 import '../../assets/styles/about_responsive.css'
-
-import backgroundDiscountImage from '../../assets/images/extra.jpg'
 
 const backgroundDiscount = {
     backgroundImage: `url(${backgroundDiscountImage})`,
@@ -33,7 +35,7 @@ export const AboutDiscount = ()=>{
             </p>
           </div>
           <div className="button extra_button">
-          <Link to="/register">Join Now</Link>
+          <Link to={Paths.Register}>Join Now</Link>
           </div>
           </>
           }

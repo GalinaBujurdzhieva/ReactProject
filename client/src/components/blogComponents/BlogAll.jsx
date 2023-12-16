@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import * as blogService from "../../services/blogService";
 import toastrNotificationsService from "../../services/toastrNotificationsService";
+import Paths from "../../utils/Paths";
 
 import { BlogPost } from "./BlogPost";
 
@@ -31,7 +32,7 @@ export const BlogAll = () => {
   const auth = JSON.parse(localStorage.getItem("auth"));
 
   const loadCreateBlogFormHandler = () => {
-    navigate("/blog/create");
+    navigate(Paths.BlogCreate);
   };
 
   return (

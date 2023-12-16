@@ -1,12 +1,11 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 
+import { TestimonialContext } from '../../../contexts/Testimonials/TestimonialContext';
 import * as testimonialService from '../../../services/testimonialService'
-import * as toastrNotificationsService from '../../../services/toastrNotificationsService'
+import Paths from '../../../utils/Paths';
 
 import "../../../assets/styles/main_styles.css";
-import { useContext } from 'react';
-import { TestimonialContext } from '../../../contexts/Testimonials/TestimonialContext';
 
 export const TestimonialEdit = () =>{
   const nameInputRef = useRef(null);
@@ -36,7 +35,7 @@ export const TestimonialEdit = () =>{
   const editTestimonialSubmitHandler =() =>{
     const testimonialToBeEdited = testimonialService.edit(_id, values);
     updateTestimonialFunc(testimonialToBeEdited);
-    navigate("/");
+    navigate(Paths.Home);
   }
 
   const [testimonialFormHasErrors, setTestimonialFormHasErrors] = useState({

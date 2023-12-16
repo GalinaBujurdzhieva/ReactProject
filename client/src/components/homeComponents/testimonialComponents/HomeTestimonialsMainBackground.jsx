@@ -1,4 +1,5 @@
 import backgroundTestimonialsImage from "../../../assets/images/testimonials.jpg";
+
 import "../../../assets/styles/main_styles.css";
 
 export const HomeTestimonialsMainBackground = () =>{

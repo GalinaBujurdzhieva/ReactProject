@@ -3,7 +3,8 @@ import {useNavigate} from 'react-router-dom'
 
 import {TestimonialContext} from '../../../contexts/Testimonials/TestimonialContext'
 import * as testimonialService from '../../../services/testimonialService'
-import "../../../assets/styles/main_styles.css";
+import Paths from '../../../utils/Paths';
+
 import * as styles from './TestimonialDeleteConfirmation.module.css'
 
 export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
@@ -20,7 +21,7 @@ export const TestimonialDeleteConfirmation = ({onClose, _id}) =>{
       e.preventDefault();
       testimonialService.remove(testimonialId);
       deleteTestimonialFunc(currentTestimonial);
-      navigate('/');
+      navigate(Paths.Home);
     };
   
     return (

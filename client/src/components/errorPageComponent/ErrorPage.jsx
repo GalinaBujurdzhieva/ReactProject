@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom'
 
+import Paths from '../../utils/Paths'
+
 import '../../assets/styles/error.css'
 
 export const ErrorPage = () =>{
@@ -10,7 +12,7 @@ export const ErrorPage = () =>{
 				<h1>Oops!</h1>
 				<h2>Our server is on a break between sets</h2>
 			</div>
-			<Link to="/">Go TO Homepage</Link>
+			<Link to={Paths.Home}>Go TO Homepage</Link>
 		</div>
 	</div>
     )

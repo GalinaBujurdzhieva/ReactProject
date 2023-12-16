@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Paths from './utils/Paths.js'
 
 import { Home } from "./components/homeComponents/Home";
 import { Header } from "./components/mainComponents/Header";
@@ -21,6 +22,7 @@ import { BlogEdit } from "./components/blogComponents/BlogEdit";
 import { Services } from "./components/servicesComponents/Services";
 
 import { TestimonialCreate } from "./components/homeComponents/testimonialComponents/TestimonialCreate.jsx";
+import { TestimonialEdit } from "./components/homeComponents/testimonialComponents/TestimonialEdit.jsx";
 
 import { Contact } from "./components/contactComponents/Contact";
 
@@ -33,7 +35,6 @@ import ErrorBoundary from "./components/errorBoundary/ErrorBoundary.jsx";
 
 import { AuthGuard } from "./components/guards/AuthGuard";
 import { UserGuard } from "./components/guards/UserGuard";
-import { TestimonialEdit } from "./components/homeComponents/testimonialComponents/TestimonialEdit.jsx";
 
 function App() {
   const [shouldFocus, setShouldFocus] = useState(false);
@@ -52,39 +53,39 @@ function App() {
       <Header />
       <ErrorBoundary>
       <Routes>
-        <Route path="/" element={<Home handleLinkClick={handleLinkClick} />} />
+        <Route path={Paths.Home} element={<Home handleLinkClick={handleLinkClick} />} />
 
-        <Route path="/about" element={<About shouldFocus={shouldFocus} />} />
-        <Route path="/about/trainers/:_id" element={<AboutTeamMemberDetails />}/>
+        <Route path={Paths.About} element={<About shouldFocus={shouldFocus} />} />
+        <Route path={Paths.AboutTrainersDetails} element={<AboutTeamMemberDetails />}/>
 
-        <Route path="/courses" element={<Services setFocus={focusDiv} />} />
+        <Route path={Paths.Courses} element={<Services setFocus={focusDiv} />} />
 
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/all" element={<BlogAll />} />
-        <Route path="/blog/:_id" element={<BlogPostDetails />} />
+        <Route path={Paths.Blog} element={<Blog />} />
+        <Route path={Paths.BlogAll} element={<BlogAll />} />
+        <Route path={Paths.BlogDetails} element={<BlogPostDetails />} />
 
-        <Route path="/contact" element={<Contact />} />
+        <Route path={Paths.Contact} element={<Contact />} />
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path={Paths.Register}element={<Register />} />
+        <Route path={Paths.Login} element={<Login />} />
         
-        <Route path="*" element={<ErrorPage />} />
+        <Route path={Paths.Error} element={<ErrorPage />} />
         
         <Route element={<UserGuard />}>
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/testimonial/create" element={<TestimonialCreate />} /> 
+          <Route path={Paths.Logout} element={<Logout />} />
+          <Route path={Paths.TestimonialCreate} element={<TestimonialCreate />} /> 
          <Route
-            path="/testimonial/edit/:_id" element={<TestimonialEdit/>} />
+            path={Paths.TestimonialEdit} element={<TestimonialEdit/>} />
         </Route>
         <Route element={<AuthGuard />}>
           <Route
-            path="/about/trainers/create" element={<AboutTeamMemberCreate handleClick={handleClick} />}
+            path={Paths.AboutTrainersCreate} element={<AboutTeamMemberCreate handleClick={handleClick} />}
           />
           <Route
-            path="/about/trainers/edit/:_id" element={<AboutTeamMemberEdit handleClick={handleClick} />}
+            path={Paths.AboutTrainersEdit} element={<AboutTeamMemberEdit handleClick={handleClick} />}
           />
-          <Route path="/blog/create" element={<BlogCreate />} />
-          <Route path="/blog/edit/:_id" element={<BlogEdit />} />
+          <Route path={Paths.BlogCreate} element={<BlogCreate />} />
+          <Route path={Paths.BlogEdit} element={<BlogEdit />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={1000} />

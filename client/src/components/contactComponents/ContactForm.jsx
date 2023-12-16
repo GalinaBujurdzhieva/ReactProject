@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+
 import useForm from '../../hooks/useForm'
 import * as inquiryService from '../../services/inquiryService'
+import Paths from '../../utils/Paths'
 
 import '../../assets/styles/contact.css'
 
@@ -20,7 +22,7 @@ export const ContactForm = () =>{
 
   const inquirySubmitHandler = async (values) =>{
     await inquiryService.create({'From': values[InquiryFormKeys.Name], 'Email': values[InquiryFormKeys.Email], 'Message': values[InquiryFormKeys.Message]});
-    navigate('/');
+    navigate(Paths.Home);
   }
 
   const {values, onChange, onSubmit} = useForm(inquirySubmitHandler, {
@@ -38,7 +40,8 @@ export const ContactForm = () =>{
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setInquiryFormHasErrors((state) => ({
       ...state,
-      [e.target.name]: !emailRegex.test(e.target.value),
+      [e.target.name]: !emailRegex.test(e.target.value) ||
+      values[e.target.name].trim() === '@.',
     }));
   };
 
@@ -47,7 +50,8 @@ export const ContactForm = () =>{
       ...state,
       [e.target.name]:
         values[e.target.name].length < minLength ||
-        values[e.target.name].length > maxLength,
+        values[e.target.name].length > maxLength ||
+        values[e.target.name].trim().length === 0,
     }));
   };
   

@@ -1,5 +1,6 @@
-import '../../assets/styles/contact.css'
 import dotLogo from '../../assets/images/dot.png'
+
+import '../../assets/styles/contact.css'
 
 export const ContactAddressInfo = () =>{
     return(

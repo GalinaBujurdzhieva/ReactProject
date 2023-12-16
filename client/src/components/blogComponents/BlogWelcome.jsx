@@ -1,3 +1,5 @@
+import "../../assets/styles/blog.css";
+
 export const BlogWelcome = () =>{
     return (
         <div className="row">

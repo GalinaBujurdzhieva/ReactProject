@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 import { AuthContext } from "../../../contexts/Users/AuthContext";
+import Paths from "../../../utils/Paths";
 
 import "../../../assets/styles/main_styles.css";
 
@@ -13,7 +15,7 @@ export const HomeTestimonialsLinkToCreateNew = () => {
       <div className="col text-center">
       {isAuthenticated &&
         <div className="button test_button">
-            <Link to="/testimonial/create">Create New</Link>
+            <Link to={Paths.TestimonialCreate}>Create New</Link>
         </div>
         }
       </div>

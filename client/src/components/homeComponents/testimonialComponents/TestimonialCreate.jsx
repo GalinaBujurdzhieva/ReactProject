@@ -2,11 +2,12 @@ import {useRef, useEffect, useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom'
 
 import useForm from '../../../hooks/useForm'
+
 import { TestimonialContext } from '../../../contexts/Testimonials/TestimonialContext';
 import * as testimonialService from '../../../services/testimonialService'
+import Paths from '../../../utils/Paths';
 
 import "../../../assets/styles/main_styles.css";
-
 
 const CreateTestimonialFormKeys = {
     Name: 'name',
@@ -26,7 +27,7 @@ export const TestimonialCreate = () => {
     } catch (error) {
       toastrNotificationsService.showError('Something went wrong. Could not create testimonial')
     }
-    navigate("/");
+    navigate(Paths.Home);
     }
   
     const {values, onChange, onSubmit} = useForm(createTestimonialSubmitHandler, {

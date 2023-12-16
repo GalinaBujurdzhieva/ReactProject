@@ -1,7 +1,10 @@
 import { useEffect, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import { BlogContext } from "../../contexts/Blogs/BlogContext";
 import * as blogService from "../../services/blogService";
+import Paths from "../../utils/Paths";
+
 import styles from "./BlogDeleteConfirmation.module.css";
 
 export const BlogDeleteConfirmation = ({ onClose }) => {
@@ -18,7 +21,7 @@ export const BlogDeleteConfirmation = ({ onClose }) => {
     e.preventDefault();
     blogService.remove(blogId);
     deleteBlogFunc(currentBlog);
-    navigate("/blog/all");
+    navigate(Paths.BlogAll);
   };
 
   return (
