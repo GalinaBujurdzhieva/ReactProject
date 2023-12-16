@@ -2,10 +2,10 @@ import { useContext } from 'react'
 import { Link} from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/Users/AuthContext'
+import Paths from '../../utils/Paths'
 
 import { NavBarHeader } from './NavBarHeader'
 import { HamburgerHeader } from './HamburgerHeader'
-import { MobileMenuHeader } from './MobileMenuHeader'
 
 import dotLogo from '../../assets/images/dot.png'
 
@@ -29,7 +29,7 @@ export const Header = () => {
           <div className="row">
             <div className="col">
               <div className="header_content d-flex flex-row align-items-center justify-content-start trans_400">
-                <Link to="/">
+                <Link to={Paths.Home}>
                   <div className="logo d-flex flex-row align-items-center justify-content-start">
                     <img src={dotLogo} alt="Spot Fitness Logo" />
                     <div >

@@ -1,5 +1,6 @@
-import '../../../assets/styles/services.css'
 import backgroundTimetableImage from '../../../assets/images/timetable.jpg'
+
+import '../../../assets/styles/services.css'
 
 export const CoursesTimetableBackgroundImage = () =>{
     return(

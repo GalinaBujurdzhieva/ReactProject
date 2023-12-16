@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef } from 'react'
-import toastrNotificationsService from "../../services/toastrNotificationsService"
+
 import { CourseContext } from '../../contexts/Courses/CourseContext'
 import { AuthContext } from '../../contexts/Users/AuthContext'
+import toastrNotificationsService from "../../services/toastrNotificationsService"
 
 import { ServicesHome } from './ServicesHome'
 import { ServicesWelcome } from './ServicesWelcome'

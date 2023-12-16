@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 
+import Paths from "../../../utils/Paths";
 import * as iconHelper from "../../../utils/getCourseIconByKey";
 
 import "../../../assets/styles/services.css";
@@ -36,7 +37,7 @@ export const CourseDetails = ({ handleLinkClick, ...course }) => {
         )}
         {location.pathname === "/" && (
           <div className="course_link">
-            <Link to="/courses" onClick={handleLinkClick}>Read More</Link>
+            <Link to={Paths.Courses} onClick={handleLinkClick}>Read More</Link>
           </div>
         )}
       </div>

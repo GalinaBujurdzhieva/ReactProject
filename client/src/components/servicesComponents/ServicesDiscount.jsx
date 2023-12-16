@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom'
 
-import '../../assets/styles/services.css'
+import Paths from '../../utils/Paths'
+
 import backgroundDiscountImage from '../../assets/images/extra_wide.jpg'
+
+import '../../assets/styles/services.css'
 
 const backgroundDiscount = {
     backgroundImage: `url(${backgroundDiscountImage})`
@@ -25,7 +28,7 @@ export const ServicesDiscount = () =>{
               </p>
             </div>
             <div className="button extra_button">
-              <Link to="/register">Join Now</Link>
+              <Link to={Paths.Register}>Join Now</Link>
             </div>
           </div>
         </div>

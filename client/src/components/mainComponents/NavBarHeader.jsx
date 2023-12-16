@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/Users/AuthContext";
+import Paths from "../../utils/Paths";
 
 import "../../assets/styles/about.css";
 
@@ -13,32 +14,32 @@ export const NavBarHeader = () => {
     <nav className="main_nav">
       <ul className="d-flex flex-row align-items-center justify-content-start">
         <li>
-          <Link to="/">Home</Link>
+          <Link to={Paths.Home}>Home</Link>
         </li>
         <li>
-          <Link to="/about">About us</Link>
+          <Link to={Paths.About}>About us</Link>
         </li>
         <li>
-          <Link to="/courses">Classes &amp; Services</Link>
+          <Link to={Paths.Courses}>Classes &amp; Services</Link>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to={Paths.Blog}>Blog</Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to={Paths.Contact}>Contact</Link>
         </li>
         {isAuthenticated 
           ? 
           <li>
-            <Link to="/logout">Log out</Link>
+            <Link to={Paths.Logout}>Log out</Link>
           </li>
           :
           <>
           <li>
-            <Link to="/register">Register</Link>
+            <Link to={Paths.Register}>Register</Link>
           </li>
           <li>
-            <Link to="/login">Log in</Link>
+            <Link to={Paths.Login}>Log in</Link>
           </li>
         </>
         }
