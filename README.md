@@ -14,7 +14,7 @@
 
 &emsp;**Register and Login**.
 
-2. The **private area** is accessible after successful login. Every logged-in user can add, edit and delete comments about the fitness.
+2. The **private area** is accessible after successful login. Every logged-in user can add, edit and delete comments about the fitness. He also can vote (like, dislike) courses.
 
 3. The **admin** has special rights to create, edit and delete blogs and info about trainers.
 
@@ -23,6 +23,16 @@
 &emsp;**Front-End - ReactJS**.
 
 &emsp;**Server - SoftUni Practice Server**.
+
+In order to start this project you have to do the following: 
+1. Clone the repo
+
+2. In directory "/client", open command terminal and run:
+**npm install**
+**npm run dev**
+
+3. In directory "/server", open command terminal and run:
+**node server.js**
 
 **You can log in with the following users:**
 

@@ -42,9 +42,7 @@ export const Services = ({setFocus}) => {
     <div className="container">
       <ServicesWelcome myDivRef = {myDivRef}/>
       <div className="row services_row_details" >
-      { Object.values(courses).length === 0
-      ? toastrNotificationsService.showError('Something went wrong. Could not load courses')
-      : Object.values(courses)
+      {Object.values(courses)
               .map((course) => (
                 <CourseDetails key={course._id} {...course} />
               ))}

@@ -483,14 +483,14 @@ section
 
 .services
 {
-	padding-top: 42px;
+	padding-top: 10px;
 	padding-bottom: 34px;
 	background: #FFFFFF;
 }
 .services_row
 {
-	margin-top: 50px;
-	height: 70vh;
+	margin-top: 10px;
+	height: 80vh;
 }
 .services_row_details
 {
@@ -519,12 +519,12 @@ section
 }
 .service_text
 {
-	margin-top: 17px;
+	margin-top: 2px;
 	overflow: hidden;
 }
 .service_text_part
 {
-	margin-top: 17px;
+	margin-top: 5px;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 3; /* number of lines to show */
@@ -536,7 +536,7 @@ section
 	background-color: white;
 	color: #f98c00;
 	cursor: pointer;
-	margin: 10px 5px 10px 30px;
+	margin: 10px 5px 0px 30px;
 }
 .likes_dislikes{
 	color: #262626;
@@ -558,7 +558,7 @@ section
 .tt_overlay
 {
 	position: absolute;
-	top: -270px;
+	top: -250px;
 	right: 0;
 	transform-origin: right bottom;
 	width: 130%;

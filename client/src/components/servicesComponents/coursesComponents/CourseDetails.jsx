@@ -1,27 +1,47 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import { CourseContext } from "../../../contexts/Courses/CourseContext";
+import { AuthContext } from "../../../contexts/Users/AuthContext";
 import Paths from "../../../utils/Paths";
 import * as courseService from '../../../services/courseService'
+import toastrNotificationsService from "../../../services/toastrNotificationsService";
 import * as iconHelper from "../../../utils/getCourseIconByKey";
 
 import "../../../assets/styles/services.css";
 
 export const CourseDetails = ({ handleLinkClick, ...course }) => {
   const location = useLocation();
-  const {updateCourseFunc} = useContext(CourseContext)
-  const [likes, setLikes] = useState(course.likes);
+  const {updateCourseFunc} = useContext(CourseContext);
+  const { auth } = useContext(AuthContext);
+  const isAuthenticated = !!auth.username;
 
   const likesHandler = () =>{
     const courseWithUpdatedLikes = {
       ...course,
       likes: course.likes + 1
     }
-    const editedCourse = courseService.edit(course._id, courseWithUpdatedLikes);
+    if (isAuthenticated) {
+      const editedCourse = courseService.edit(course._id, courseWithUpdatedLikes);
     updateCourseFunc(editedCourse);
+    }
+    else{
+      toastrNotificationsService.showError('Only registered users can vote. Please log in your account')
+    }
   }
-  console.log(likes);
+
+  const dislikesHandler = () =>{
+    const courseWithUpdatedDislikes = {
+      ...course,
+      dislikes: course.dislikes + 1
+    }
+    if (isAuthenticated) {
+      const editedCourse = courseService.edit(course._id, courseWithUpdatedDislikes);
+      updateCourseFunc(editedCourse);
+    } else{
+      toastrNotificationsService.showError('Only registered users can vote. Please log in your account')
+    }
+  }
 
   return (
     <div className="col-xl-4 col-md-6 service_col">
@@ -56,7 +76,9 @@ export const CourseDetails = ({ handleLinkClick, ...course }) => {
             onClick={() => likesHandler()}
             className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-up" aria-hidden="true"></i></button>
             <span className="likes_dislikes">{course.likes}</span>
-            <button className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-down" aria-hidden="true"></i></button>
+            <button 
+            onClick={() => dislikesHandler()}
+            className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-down" aria-hidden="true"></i></button>
             <span className="likes_dislikes">{course.dislikes}</span>
             </div>
           </div>
