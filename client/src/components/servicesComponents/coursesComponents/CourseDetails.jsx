@@ -1,12 +1,27 @@
+import { useState, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 
+import { CourseContext } from "../../../contexts/Courses/CourseContext";
 import Paths from "../../../utils/Paths";
+import * as courseService from '../../../services/courseService'
 import * as iconHelper from "../../../utils/getCourseIconByKey";
 
 import "../../../assets/styles/services.css";
 
 export const CourseDetails = ({ handleLinkClick, ...course }) => {
   const location = useLocation();
+  const {updateCourseFunc} = useContext(CourseContext)
+  const [likes, setLikes] = useState(course.likes);
+
+  const likesHandler = () =>{
+    const courseWithUpdatedLikes = {
+      ...course,
+      likes: course.likes + 1
+    }
+    const editedCourse = courseService.edit(course._id, courseWithUpdatedLikes);
+    updateCourseFunc(editedCourse);
+  }
+  console.log(likes);
 
   return (
     <div className="col-xl-4 col-md-6 service_col">
@@ -31,9 +46,21 @@ export const CourseDetails = ({ handleLinkClick, ...course }) => {
             <p>{course.description}</p>
           </div>
         ) : (
+         <>
           <div className="service_text">
             <p>{course.description}</p>
           </div>
+          <div className="container"> 
+          <div className="row justify-content-center">
+            <button 
+            onClick={() => likesHandler()}
+            className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-up" aria-hidden="true"></i></button>
+            <span className="likes_dislikes">{course.likes}</span>
+            <button className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-down" aria-hidden="true"></i></button>
+            <span className="likes_dislikes">{course.dislikes}</span>
+            </div>
+          </div>
+         </>
         )}
         {location.pathname === "/" && (
           <div className="course_link">

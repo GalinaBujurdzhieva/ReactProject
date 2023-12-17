@@ -2,31 +2,43 @@
     "6a479d69-d2f8-4961-89ee-a2cefc10b206":{
         "_id": "6a479d69-d2f8-4961-89ee-a2cefc10b206",
         "name": "Weight Loss",
-        "description": "Embark on a transformative journey with our Weight Loss Class at SportFIT Fitness. This dynamic program combines targeted exercises, personalized fitness plans, and expert guidance to help you shed unwanted pounds. With a focus on sustainable lifestyle changes, you'll discover the key to achieving and maintaining your weight loss goals in a supportive and motivating environment."
+        "description": "Embark on a transformative journey with our Weight Loss Class at SportFIT Fitness. This dynamic program combines targeted exercises, personalized fitness plans, and expert guidance to help you shed unwanted pounds. With a focus on sustainable lifestyle changes, you'll discover the key to achieving and maintaining your weight loss goals in a supportive and motivating environment.",
+        "likes": 15,
+        "dislikes": 0
     },
     "21043903-bc76-4bbc-a937-155a5d90c73a":{
         "_id": "21043903-bc76-4bbc-a937-155a5d90c73a",
         "name": "Yoga",
-        "description": "Immerse yourself in the holistic practice of Yoga at SportFIT Fitness. Our classes blend physical postures, breath control, and meditation to enhance flexibility, strength, and mental well-being. Whether you're a beginner or an experienced yogi, our skilled instructors will guide you through a harmonious exploration of mind-body connection, leaving you refreshed and revitalized."
+        "description": "Immerse yourself in the holistic practice of Yoga at SportFIT Fitness. Our classes blend physical postures, breath control, and meditation to enhance flexibility, strength, and mental well-being. Whether you're a beginner or an experienced yogi, our skilled instructors will guide you through a harmonious exploration of mind-body connection, leaving you refreshed and revitalized.",
+        "likes": 22,
+        "dislikes": 3
     },
     "83767529-b632-41a2-a469-f110a86fcd2f":{
         "_id": "83767529-b632-41a2-a469-f110a86fcd2f",
         "name": "Swimming",
-        "description": "Dive into fitness with our Swimming Class at SportFIT! Designed for all skill levels, our classes offer a full-body workout while minimizing impact on joints. Our certified instructors will help you improve your swim strokes, build endurance and boost cardiovascular health. Experience the joy of swimming in a supportive and energizing atmosphere."
+        "description": "Dive into fitness with our Swimming Class at SportFIT! Designed for all skill levels, our classes offer a full-body workout while minimizing impact on joints. Our certified instructors will help you improve your swim strokes, build endurance and boost cardiovascular health. Experience the joy of swimming in a supportive and energizing atmosphere.",
+        "likes": 18,
+        "dislikes": 1
     },
     "6b576357-9bb0-441f-9fe5-479104aad847":{
         "_id": "6b576357-9bb0-441f-9fe5-479104aad847",
         "name": "Private Fit",
-        "description": "For personalized attention and tailored workouts, opt for our Private Fit Class at SportFIT Fitness. Work closely with a dedicated trainer to address your unique fitness goals, whether it's weight management, muscle toning or overall well-being. Enjoy a customized exercise plan that maximizes efficiency and accelerates your fitness journey."
+        "description": "For personalized attention and tailored workouts, opt for our Private Fit Class at SportFIT Fitness. Work closely with a dedicated trainer to address your unique fitness goals, whether it's weight management, muscle toning or overall well-being. Enjoy a customized exercise plan that maximizes efficiency and accelerates your fitness journey.",
+        "likes": 29,
+        "dislikes": 2
     },
     "e92e1a14-ce54-4ba0-b336-79f162b4bb1f":{
         "_id": "e92e1a14-ce54-4ba0-b336-79f162b4bb1f",
         "name": "Nutrition",
-        "description": "Unlock the power of nutrition with SportFIT's Nutrition Class. Delve into the science of balanced eating, learn to make informed food choices and discover how to fuel your body for peak performance. Our experienced nutritionists will provide practical insights and strategies to help you establish sustainable and healthy eating habits."
+        "description": "Unlock the power of nutrition with SportFIT's Nutrition Class. Delve into the science of balanced eating, learn to make informed food choices and discover how to fuel your body for peak performance. Our experienced nutritionists will provide practical insights and strategies to help you establish sustainable and healthy eating habits.",
+        "likes": 10,
+        "dislikes": 0
     },
     "aa2d6d84-ec6b-4635-ac14-4febf560ab8d":{
         "_id": "aa2d6d84-ec6b-4635-ac14-4febf560ab8d",
         "name": "Pilates",
-        "description": "Join our Pilates Class at SportFIT for gaining additional strength, flexibility and core stability. Led by certified instructors, our classes emphasize controlled movements and mindful breathing to enhance overall body awareness. Whether you're a beginner or an advanced practitioner, experience the benefits of Pilates in a supportive and encouraging environment."
+        "description": "Join our Pilates Class at SportFIT for gaining additional strength, flexibility and core stability. Led by certified instructors, our classes emphasize controlled movements and mindful breathing to enhance overall body awareness. Whether you're a beginner or an advanced practitioner, experience the benefits of Pilates in a supportive and encouraging environment.",
+        "likes": 19,
+        "dislikes": 3
     }
 }

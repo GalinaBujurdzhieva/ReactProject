@@ -22,7 +22,6 @@ import '../../assets/styles/services_responsive.css'
 
 export const Services = ({setFocus}) => {
   const {courses} = useContext(CourseContext);
-  console.log(Object.values(courses).length);
   const myDivRef = useRef(null);
   useEffect(()=> {
     if (setFocus) {

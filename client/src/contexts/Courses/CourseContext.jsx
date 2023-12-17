@@ -5,6 +5,7 @@ const CourseContext = createContext();
 
 const CourseProvider = ({children}) => {
     const [courses, setCourses] = useState([]);
+    const [reloadCoursesAfterEdit, setReloadCoursesAfterEdit] = useState(false);
 
     useEffect(() => {
       courseService.getAll()
@@ -12,10 +13,18 @@ const CourseProvider = ({children}) => {
       .catch((error) =>{
         throw error;
       });
-    }, []);
+    }, [reloadCoursesAfterEdit]);
+
+    const updateCourseFunc = (updatedCourse) => {
+      const courseListAfterUpdate = Object.values(courses).map(course =>
+        course._id === updatedCourse._id ? updatedCourse : course
+      );
+      setCourses(courseListAfterUpdate);
+      setReloadCoursesAfterEdit(!reloadCoursesAfterEdit);
+    };
 
   return (
-    <CourseContext.Provider value={{courses}}>
+    <CourseContext.Provider value={{courses, updateCourseFunc}}>
       {children}
     </CourseContext.Provider>
   );

@@ -1,3 +1,5 @@
+import * as toastrNotificationsService from './toastrNotificationsService'
+
 const baseUrl = "http://localhost:3030/jsonstore/courses";
 
 export const getAll = async () => {
@@ -10,3 +12,24 @@ export const getAll = async () => {
   throw error;
  }
 };
+
+export const edit = async (courseId, data) => {
+    try {
+      const response = await fetch(`${baseUrl}/${courseId}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        toastrNotificationsService.showError('Something went wrong. Please try to vote later');
+      }
+      else{
+        //toastrNotificationsService.showSuccess('Thank you for your rating')
+        const result = JSON.stringify(response);
+        return result;
+      }
+      } catch (error) {
+      console.log("Error:", error);
+      throw error;
+    }
+  }
