@@ -24,6 +24,8 @@
 
 &emsp;**Server - SoftUni Practice Server**.
 
+It has seeded data about Users, Blogs, Trainers, Testimonials, Courses and Best Proposals.
+
 In order to start this project you have to do the following: 
 1. Clone the repo
 
