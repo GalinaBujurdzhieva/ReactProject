@@ -28,10 +28,13 @@ In order to start this project you have to do the following:
 1. Clone the repo
 
 2. In directory "/client", open command terminal and run:
+
 **npm install**
+
 **npm run dev**
 
 3. In directory "/server", open command terminal and run:
+
 **node server.js**
 
 **You can log in with the following users:**
