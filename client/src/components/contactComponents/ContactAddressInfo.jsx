@@ -16,7 +16,7 @@ export const ContactAddressInfo = () =>{
             </div>
             <div className="contact_text">
               <p>
-              Have a question or want to get in touch? Fill out the form below, and we'll get back to you as soon as possible.
+              Have a question or want to get in touch? Fill out the form below, and we'll get back to you as soon as possible. It's important to leave your e-mail in order to receive our answer.
               </p>
             </div>
             <div className="contact_list">

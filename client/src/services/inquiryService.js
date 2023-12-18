@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3030/jsonstore/inquires";
+const baseUrl = "http://localhost:3030/jsonstore/inquiries";
 
 import toastrNotificationsService from "./toastrNotificationsService";
 

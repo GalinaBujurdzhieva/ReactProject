@@ -6,11 +6,11 @@
 
 &emsp;**About us** - more detailed description of the fitness, trainers info and link to Register page;
 
-&emsp;**Classes&Services** - additional information for the courses offered, timetable of the courses with trainers and again link to Register page;
+&emsp;**Classes&Services** - additional information for the courses offered, timetable of the courses with trainers, where you can take a look at all courses of the week or choose a specific one and be aware of its timetable and again link to Register page;
 
 &emsp;**Blog** - latest 3 blogs with link to all blogs; 
 
-&emsp;**Contact** - form for inquiries and Google Map; 
+&emsp;**Contact** - form for inquiries for unregistered users and Google Map; 
 
 &emsp;**Register and Login**.
 
