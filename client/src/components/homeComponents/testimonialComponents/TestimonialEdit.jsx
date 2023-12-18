@@ -13,7 +13,6 @@ export const TestimonialEdit = () =>{
   const navigate = useNavigate();
   const {testimonials, updateTestimonialFunc} = useContext(TestimonialContext);
   const testimonialToBeEdited = testimonials.find(x => x._id === _id);
-  console.log(testimonialToBeEdited);
 
   useEffect(() => {
     nameInputRef.current.focus();

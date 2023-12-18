@@ -24,7 +24,6 @@ export const edit = async (courseId, data) => {
         toastrNotificationsService.showError('Something went wrong. Please try to vote later');
       }
       else{
-        //toastrNotificationsService.showSuccess('Thank you for your rating')
         const result = JSON.stringify(response);
         return result;
       }

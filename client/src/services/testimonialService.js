@@ -14,17 +14,6 @@ export const getAll = async () => {
   }
 };
 
-// export const getOne = async (testimonialId) => {
-//   try{
-//   const response = await fetch(`${baseUrl}/${testimonialId}`);
-//   const result = await response.json();
-//   return result;
-// } catch (error) {
-//   console.error('Error:', error);
-//   throw error;
-// }
-// };
-
 export const create = async (postData) => {
   const token = localStorage.getItem("accessToken");
   if (!token) {

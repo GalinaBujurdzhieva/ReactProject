@@ -14,7 +14,7 @@ export const HomeTestimonialsDetails = ({...testimonial}) =>{
  const {auth} = useContext(AuthContext);
  const navigate = useNavigate();
  const [showModal, setShowModal] = useState(false);
- const isOwnerOfTestimonial = auth._id === testimonial._ownerId;
+ const isOwnerOfTestimonial = auth._id === testimonial._ownerId || auth.email === 'admin@abv.bg';
 
  const loadEditTestimonialHandler = () => {
   navigate(`/testimonial/edit/${testimonial._id}`);

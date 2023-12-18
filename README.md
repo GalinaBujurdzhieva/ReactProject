@@ -14,9 +14,9 @@
 
 &emsp;**Register and Login**.
 
-2. The **private area** is accessible after successful login. Every logged-in user can add, edit and delete comments about the fitness. He also can vote (like, dislike) courses.
+2. The **private area** is accessible after successful login. Every logged-in user can add, edit and delete comments about the fitness. He also can vote (like, dislike) for courses (only one time for specific course).
 
-3. The **admin** has special rights to create, edit and delete blogs and info about trainers.
+3. The **admin** has special rights to create, edit and delete blogs, info about trainers and testimonials.
 
 **This project is built with:**
 
@@ -24,16 +24,23 @@
 
 &emsp;**Server - SoftUni Practice Server**.
 
-It has seeded data about Users, Blogs, Trainers, Testimonials, Courses and Best Proposals.
+It has seeded data about Users, Blogs, Trainers, Testimonials, Courses and Best Proposals. In addition and for better user experience the website uses Toastr notifications.
 
 In order to start this project you have to do the following: 
 1. Clone the repo
 
 2. In directory "/client", open command terminal and run:
 
-**npm install**
-
-**npm run dev**
+ ```sh
+   npm install
+   ```
+    ```sh
+   npm install react-toastify
+   ```
+ 
+   ```sh
+   npm run dev
+   ```
 
 3. In directory "/server", open command terminal and run:
 

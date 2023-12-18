@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import { CourseContext } from "../../../contexts/Courses/CourseContext";
@@ -14,32 +14,48 @@ export const CourseDetails = ({ handleLinkClick, ...course }) => {
   const location = useLocation();
   const {updateCourseFunc} = useContext(CourseContext);
   const { auth } = useContext(AuthContext);
+  const [canVote, setCanVote] = useState(true);
   const isAuthenticated = !!auth.username;
 
   const likesHandler = () =>{
-    const courseWithUpdatedLikes = {
-      ...course,
-      likes: course.likes + 1
-    }
     if (isAuthenticated) {
-      const editedCourse = courseService.edit(course._id, courseWithUpdatedLikes);
-    updateCourseFunc(editedCourse);
+      if (!course.usersWithVote.includes(auth.email)) {
+        const newUsersWithVote = [... course.usersWithVote, auth.email];
+        const courseWithUpdatedLikes = {
+          ...course,
+          likes: course.likes + 1,
+          usersWithVote: newUsersWithVote
+        }
+        const editedCourse = courseService.edit(course._id, courseWithUpdatedLikes);
+        updateCourseFunc(editedCourse);
+        setCanVote(false);
+      } else{
+        toastrNotificationsService.showError('Only registered users who haven\'t voted so far can vote.')
+      } 
     }
     else{
-      toastrNotificationsService.showError('Only registered users can vote. Please log in your account')
+      toastrNotificationsService.showError('Only registered can vote. Please log in')
     }
   }
 
   const dislikesHandler = () =>{
-    const courseWithUpdatedDislikes = {
-      ...course,
-      dislikes: course.dislikes + 1
-    }
     if (isAuthenticated) {
-      const editedCourse = courseService.edit(course._id, courseWithUpdatedDislikes);
-      updateCourseFunc(editedCourse);
-    } else{
-      toastrNotificationsService.showError('Only registered users can vote. Please log in your account')
+      if (!course.usersWithVote.includes(auth.email)) {
+        const newUsersWithVote = [... course.usersWithVote, auth.email];
+        const courseWithUpdatedDislikes = {
+          ...course,
+          dislikes: course.dislikes + 1,
+          usersWithVote: newUsersWithVote
+        }
+        const editedCourse = courseService.edit(course._id, courseWithUpdatedDislikes);
+        updateCourseFunc(editedCourse);
+        setCanVote(false);
+      }  else{
+        toastrNotificationsService.showError('Only registered users who haven\'t voted so far can vote.')
+      } 
+    }
+    else{
+      toastrNotificationsService.showError('Only registered can vote. Please log in')
     }
   }
 
@@ -75,11 +91,20 @@ export const CourseDetails = ({ handleLinkClick, ...course }) => {
             <button 
             onClick={() => likesHandler()}
             className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-up" aria-hidden="true"></i></button>
-            <span className="likes_dislikes">{course.likes}</span>
+            <span className="likes_dislikes">
+              {course.likes 
+              ? course.likes
+              : ''
+              }
+              </span>
             <button 
             onClick={() => dislikesHandler()}
             className="like_dislike_btn"><i className="fa fa-3x fa-thumbs-down" aria-hidden="true"></i></button>
-            <span className="likes_dislikes">{course.dislikes}</span>
+            <span className="likes_dislikes">
+              {course.dislikes
+              ? course.dislikes
+              : ''}
+              </span>
             </div>
           </div>
          </>
