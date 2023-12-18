@@ -34,11 +34,11 @@ In order to start this project you have to do the following:
  ```sh
    npm install
    ```
-    ```sh
+ ```sh
    npm install react-toastify
    ```
  
-   ```sh
+ ```sh
    npm run dev
    ```
 
