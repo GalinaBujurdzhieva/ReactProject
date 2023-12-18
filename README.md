@@ -44,7 +44,9 @@ In order to start this project you have to do the following:
 
 3. In directory "/server", open command terminal and run:
 
-**node server.js**
+ ```sh
+   node server.js
+   ```
 
 **You can log in with the following users:**
 

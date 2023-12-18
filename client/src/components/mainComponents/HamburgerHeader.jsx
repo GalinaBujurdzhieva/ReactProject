@@ -14,9 +14,9 @@ console.log(showMenu);
     return(  
       <> 
     <div className="hamburger_bar trans_400 d-flex flex-row align-items-center justify-content-start">
-    <div className="hamburger" onClick={ShowMenuClickHandler}>
+    <div className="hamburger" >
       <div className="menu_toggle d-flex flex-row align-items-center justify-content-start">
-        <span >menu</span>
+        <button onClick={ShowMenuClickHandler}>menu</button>
         <div className="hamburger_container">
           <div className="menu_hamburger">
             <div
@@ -33,7 +33,9 @@ console.log(showMenu);
             />
           </div>
         </div>
-        <MobileMenuHeader />
+        {showMenu &&
+        <MobileMenuHeader/>
+        }
       </div>
     </div>
   </div>
